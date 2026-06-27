@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Importamos o useState para salvar o que o usuário digita
+import React, { useState, useEffect } from 'react';
 import { 
   StyleSheet, 
   Text, 
@@ -11,45 +11,54 @@ import {
   Platform, 
   TouchableWithoutFeedback, 
   Keyboard,
-  Alert // Importamos o Alert nativo para mostrar mensagens na tela
+  Alert 
 } from 'react-native';
+import * as NavigationBar from 'expo-navigation-bar';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'; // Ícones nativos do Expo (User, Home e Check)
 
 export default function App() {
-  // Criamos "estados" (variáveis especiais) para guardar o texto do e-mail e da senha
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  
+  // Estado para controlar o perfil ativo: começa como 'freelancer' por padrão
+  const [perfil, setPerfil] = useState('freelancer'); 
 
-  // Função que é executada quando o usuário clica no botão "Entrar"
+  // Configuração da barra inferior do Android
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      NavigationBar.setBackgroundColorAsync('#000000');
+      NavigationBar.setButtonStyleAsync('light');
+    }
+  }, []);
+
+  // Disparado ao tentar logar
   const handleLogin = () => {
-    // Validação simples: verifica se os campos não estão vazios
     if (email.trim() === '' || senha.trim() === '') {
       Alert.alert('Atenção', 'Por favor, preencha todos os campos.');
       return;
     }
 
-    // Se estiver tudo preenchido, exibe a caixinha de sucesso!
+    // Alerta customizado mostrando qual tipo de perfil está logando
     Alert.alert(
       'Sucesso', 
-      `Login realizado com sucesso!\n\nUsuário: ${email}`,
-      [{ text: 'OK' }] // Botão para fechar o alerta
+      `Login realizado como ${perfil === 'freelancer' ? 'Freelancer' : 'Empresa'}!\n\nUsuário: ${email}`,
+      [{ text: 'OK' }]
     );
   };
 
+  const handleForgotPassword = () => {
+    Alert.alert('Recuperar Senha', 'Uma mensagem de recuperação será enviada para o seu e-mail.');
+  };
+
   return (
-    // TouchableWithoutFeedback monitora os cliques na tela. 
-    // O Keyboard.dismiss faz o teclado fechar se você clicar no fundo azul.
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      
-      {/* KeyboardAvoidingView é o responsável pela responsividade. 
-          Ele empurra os campos para cima quando o teclado do celular abre. */}
       <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
         style={styles.container}
       >
-        {/* StatusBar controla a barra de status superior do celular (hora, bateria, etc) */}
-        <StatusBar barStyle="light-content" backgroundColor="#0A1D25" />
+        <StatusBar barStyle="light-content" backgroundColor="#000000" />
 
-        {/* Área do Logotipo extraído do seu design do Figma */}
+        {/* Logo do FreelaDuo */}
         <View style={styles.logoContainer}>
           <Image 
             source={require('./assets/Logo - Redesenho vetorial.png')} 
@@ -57,73 +66,224 @@ export default function App() {
           />
         </View>
 
-        {/* Formulário que agrupa os campos de acesso */}
+        {/* Textos de Boas-Vindas baseados no design (image_9c8f5f.png) */}
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.welcomeTitle}>Bem-vindo de volta! 👋</Text>
+          <Text style={styles.welcomeSubtitle}>
+            Acesse sua conta e continue conectando talentos a oportunidades.
+          </Text>
+        </View>
+
+        {/* Bloco dos Seletores de Perfil (Freelancer / Empresa) */}
+        <View style={styles.profileSelectorContainer}>
+          
+          {/* Card: Sou Freelancer */}
+          <TouchableOpacity 
+            // Aplica o estilo padrão e adiciona a borda/fundo roxo apenas se estiver selecionado
+            style={[
+              styles.profileCard, 
+              perfil === 'freelancer' && styles.profileCardSelected
+            ]}
+            onPress={() => setPerfil('freelancer')} // Muda o estado para 'freelancer' ao clicar
+            activeOpacity={0.9}
+          >
+            {/* Círculo do Ícone: ganha fundo roxo se selecionado */}
+            <View style={[styles.iconCircle, perfil === 'freelancer' && styles.iconCircleSelected]}>
+              <Feather name="user" size={22} color={perfil === 'freelancer' ? '#FFF' : '#A3A3A3'} />
+            </View>
+            
+            {/* Título do Card */}
+            <Text style={[styles.profileCardTitle, perfil === 'freelancer' && styles.textSelected]}>
+              Sou freelancer
+            </Text>
+            
+            {/* Descrição do Card */}
+            <Text style={styles.profileCardSubtitle}>Encontre projetos e faça seu negócio</Text>
+            
+            {/* Bolinha do Check (canto inferior direito) */}
+            <View style={styles.checkContainer}>
+              <MaterialCommunityIcons 
+                name={perfil === 'freelancer' ? "checkbox-marked-circle" : "checkbox-blank-circle-outline"} 
+                size={18} 
+                color={perfil === 'freelancer' ? '#8A3FFC' : 'rgba(255,255,255,0.2)'} 
+              />
+            </View>
+          </TouchableOpacity>
+
+          {/* Card: Sou Empresa */}
+          <TouchableOpacity 
+            style={[
+              styles.profileCard, 
+              perfil === 'empresa' && styles.profileCardSelected
+            ]}
+            onPress={() => setPerfil('empresa')} // Muda o estado para 'empresa' ao clicar
+            activeOpacity={0.9}
+          >
+            {/* Círculo do Ícone */}
+            <View style={[styles.iconCircle, perfil === 'empresa' && styles.iconCircleSelected]}>
+              <Feather name="home" size={22} color={perfil === 'empresa' ? '#FFF' : '#A3A3A3'} />
+            </View>
+            
+            {/* Título do Card */}
+            <Text style={[styles.profileCardTitle, perfil === 'empresa' && styles.textSelected]}>
+              Sou empresa
+            </Text>
+            
+            {/* Descrição do Card */}
+            <Text style={styles.profileCardSubtitle}>Contrate talentos e acelere projetos</Text>
+            
+            {/* Bolinha do Check */}
+            <View style={styles.checkContainer}>
+              <MaterialCommunityIcons 
+                name={perfil === 'empresa' ? "checkbox-marked-circle" : "checkbox-blank-circle-outline"} 
+                size={18} 
+                color={perfil === 'empresa' ? '#8A3FFC' : 'rgba(255,255,255,0.2)'} 
+              />
+            </View>
+          </TouchableOpacity>
+
+        </View>
+
+        {/* Formulário de Login */}
         <View style={styles.formContainer}>
           
-          {/* Campo de Entrada de E-mail */}
           <View style={styles.inputGroup}>
             <Text style={styles.label}>E-mail</Text>
             <TextInput 
               style={styles.input} 
               placeholder="Digite seu e-mail" 
               placeholderTextColor="rgba(255, 255, 255, 0.4)"
-              keyboardType="email-address" // Otimiza o teclado para digitar e-mail (mostra o '@')
-              autoCapitalize="none" // Impede o celular de colocar a primeira letra em maiúscula automaticamente
-              value={email} // Vincula o texto ao nosso estado
-              onChangeText={setEmail} // Atualiza o estado toda vez que o usuário digita uma letra
+              keyboardType="email-address"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
 
-          {/* Campo de Entrada de Senha */}
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Senha</Text>
             <TextInput 
               style={styles.input} 
               placeholder="Digite sua senha" 
               placeholderTextColor="rgba(255, 255, 255, 0.4)"
-              secureTextEntry={true} // Esconde os caracteres digitados com pontinhos por segurança
-              value={senha} // Vincula o texto ao nosso estado
-              onChangeText={setSenha} // Atualiza o estado com a senha digitada
+              secureTextEntry={true}
+              value={senha}
+              onChangeText={setSenha}
             />
           </View>
 
-          {/* Botão customizável de Entrar */}
+          {/* Botão Esqueceu a Senha */}
+          <TouchableOpacity 
+            style={styles.forgotPasswordContainer} 
+            onPress={handleForgotPassword}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+          </TouchableOpacity>
+
+          {/* Botão Entrar */}
           <TouchableOpacity 
             style={styles.button} 
-            activeOpacity={0.8} // Controla o efeito de opacidade ao clicar no botão
-            onPress={handleLogin} //Chama a função handleLogin para disparar o alerta
+            activeOpacity={0.8} 
+            onPress={handleLogin}
           >
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
-
         </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 }
 
-// Estilização visual (CSS do React Native)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A1D25', // Cor Azul Petróleo Escuro Corporativo
+    backgroundColor: '#000000',
     justifyContent: 'center',
-    paddingHorizontal: 30,
+    paddingHorizontal: 24,
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
   },
   logo: {
     width: 130,
-    height: 130,
-    resizeMode: 'contain', // Garante que a imagem do logo não fique distorcida
+    height: 40, 
+    resizeMode: 'contain',
+  },
+  welcomeContainer: {
+    alignItems: 'center',
+    marginBottom: 25,
+  },
+  welcomeTitle: {
+    color: '#FFF',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  welcomeSubtitle: {
+    color: '#A3A3A3',
+    fontSize: 14,
+    textAlign: 'center',
+    paddingHorizontal: 20,
+    lineHeight: 20,
+  },
+  profileSelectorContainer: {
+    flexDirection: 'row', // Organiza os dois cards um do lado do outro (em linha)
+    justifyContent: 'space-between',
+    marginBottom: 25,
+  },
+  profileCard: {
+    width: '48%', // Faz cada card ocupar quase metade da linha, deixando um espaçamento sutil entre eles
+    backgroundColor: 'rgba(255, 255, 255, 0.03)', // Fundo cinza quase invisível (tema escuro)
+    borderRadius: 16,
+    padding: 16,
+    borderWidth: 1.5,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
+    position: 'relative', // Permite o posicionamento absoluto do ícone de Check interno
+  },
+  profileCardSelected: {
+    backgroundColor: 'rgba(138, 63, 252, 0.08)', // Fundo roxo bem transparente para destaque
+    borderColor: '#8A3FFC', // Borda roxa oficial da marca
+  },
+  iconCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  iconCircleSelected: {
+    backgroundColor: '#8A3FFC', // Círculo fica roxo quando selecionado
+  },
+  profileCardTitle: {
+    color: '#A3A3A3',
+    fontSize: 15,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  textSelected: {
+    color: '#FFF', // Texto fica aceso (branco) se o card estiver ativo
+  },
+  profileCardSubtitle: {
+    color: '#737373',
+    fontSize: 12,
+    lineHeight: 16,
+    marginBottom: 15, // Espaço extra em baixo para o ícone de check não cobrir o texto
+  },
+  checkContainer: {
+    position: 'absolute', // Prende a bolinha de check de forma fixa dentro do card
+    bottom: 12,
+    right: 12,
   },
   formContainer: {
     width: '100%',
   },
   inputGroup: {
-    marginBottom: 20,
+    marginBottom: 16,
   },
   label: {
     color: '#FFF',
@@ -132,24 +292,32 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   input: {
-    backgroundColor: 'rgba(255, 255, 255, 0.06)', // Fundo cinza bem transparente
+    backgroundColor: 'rgba(255, 255, 255, 0.05)', 
     color: '#FFF',
-    paddingVertical: 14,
+    paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 8,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.12)', // Borda sutil para dar acabamento
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  forgotPasswordContainer: {
+    alignSelf: 'flex-end',
+    marginBottom: 20,
+  },
+  forgotPasswordText: {
+    color: '#007AFF',
+    fontSize: 14,
+    fontWeight: '500',
   },
   button: {
-    backgroundColor: '#FFF', // Botão branco contrastando com o fundo escuro
-    paddingVertical: 15,
+    backgroundColor: '#FFF', 
+    paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 15,
   },
   buttonText: {
-    color: '#0A1D25', // Texto do botão na mesma cor do fundo
+    color: '#000000', 
     fontSize: 16,
     fontWeight: 'bold',
   },

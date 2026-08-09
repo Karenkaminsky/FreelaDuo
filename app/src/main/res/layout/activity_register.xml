@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:fillViewport="true">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Como deseja se cadastrar?"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Escolha o tipo de conta ideal para você."
+                android:textColor="#A0A0A0"
+                android:textSize="14sp" />
+
+        <!-- Opção Freelancer -->
+        <LinearLayout
+                android:id="@+id/cardFreelancer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="#1E1E1E"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚀 Sou Freelancer"
+                    android:textColor="#3B82F6"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Quero prestar serviços, encontrar projetos e trabalhar como autônomo."
+                    android:textColor="#A0A0A0"
+                    android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Opção Empresa -->
+        <LinearLayout
+                android:id="@+id/cardEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#1E1E1E"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏢 Sou Empresa / Contratante"
+                    android:textColor="#10B981"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Quero publicar vagas, contratar profissionais e gerenciar projetos com CNPJ."
+                    android:textColor="#A0A0A0"
+                    android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Link para Voltar ao Login -->
+        <TextView
+                android:id="@+id/txtBackToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:padding="12dp"
+                android:text="Já tem uma conta? Faça Login"
+                android:textColor="#3B82F6"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

@@ -10,24 +10,35 @@
             android:label="My Application"
             android:supportsRtl="true"
             android:theme="@style/Theme.MyApplication">
-        <activity
-                android:name=".register.RegisterFreelancerActivity"
-                android:exported="false"/>
-        <activity
-                android:name=".register.RegisterCompanyActivity"
-                android:exported="false"/>
-        <activity
-                android:name=".register.RegisterActivity"
-                android:exported="false"/>
+
+        <!-- Tela Principal de Login (Inicia o App) -->
         <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Tela de Seleção ("Sou Empresa" / "Sou Freelancer") -->
+        <activity
+                android:name=".RegisterSelectionActivity"
+                android:exported="false" />
+
+        <!-- Tela de Cadastro da Empresa -->
+        <activity
+                android:name=".RegisterCompanyActivity"
+                android:exported="false" />
+
+        <!-- Outras telas do seu pacote register (se existirem) -->
+        <activity
+                android:name=".register.RegisterFreelancerActivity"
+                android:exported="false" />
+        <activity
+                android:name=".register.RegisterActivity"
+                android:exported="false" />
+
     </application>
 
 </manifest>

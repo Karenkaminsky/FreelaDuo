@@ -1,104 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#000000"
-            android:fillViewport="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/freela_dark_background"
+                android:padding="24dp">
 
+    <!-- Header Area (StatusBar mock e Logo) -->
     <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        <!-- Logo referenciada corretamente -->
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif-medium"
+                android:text=" FreelaDuo"
+                android:textColor="@color/freela_white"
+                android:textSize="20sp" />
+    </LinearLayout>
+
+    <!-- Título Principal -->
+    <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="Como deseja\nse cadastrar?"
+            android:textColor="@color/freela_white"
+            android:textSize="32sp" />
+
+    <TextView
+            android:id="@+id/txtSubtitle"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Escolha o tipo de conta ideal para você."
+            android:textColor="@color/freela_white_subtle"
+            android:textSize="14sp" />
+
+    <!-- Card Freelancer (Roxo) -->
+    <LinearLayout
+            android:id="@+id/cardFreelancer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/txtSubtitle"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_card_freelancer"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="20dp">
+
+        <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@color/freela_purple_primary"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_menu_send"
+                app:tint="@color/freela_white" />
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Como deseja se cadastrar?"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="Escolha o tipo de conta ideal para você."
-                android:textColor="#A0A0A0"
-                android:textSize="14sp" />
-
-        <!-- Opção Freelancer -->
-        <LinearLayout
-                android:id="@+id/cardFreelancer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="#1E1E1E"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🚀 Sou Freelancer"
-                    android:textColor="#3B82F6"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Quero prestar serviços, encontrar projetos e trabalhar como autônomo."
-                    android:textColor="#A0A0A0"
-                    android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- Opção Empresa -->
-        <LinearLayout
-                android:id="@+id/cardEmpresa"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="#1E1E1E"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:fontFamily="sans-serif-bold"
+                android:text="Sou Freelancer"
+                android:textColor="@color/freela_purple_primary"
+                android:textSize="18sp" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="🏢 Sou Empresa / Contratante"
-                    android:textColor="#10B981"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_toStartOf="@id/btnArrowFreelancer"
+                    android:fontFamily="sans-serif"
+                    android:paddingEnd="16dp"
+                    android:text="Quero prestar serviços, encontrar projetos e trabalhar como autônomo."
+                    android:textColor="@color/freela_white_subtle"
+                    android:textSize="14sp" />
+
+            <!-- Seta Circular -->
+            <ImageView
+                    android:id="@+id/btnArrowFreelancer"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ic_circle_arrow"
+                    android:backgroundTint="@color/freela_purple_primary"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_media_play"
+                    app:tint="@color/freela_white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Card Empresa (Azul-Petróleo) -->
+    <LinearLayout
+            android:id="@+id/cardEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/cardFreelancer"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_card_company"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+        <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@color/freela_petrol_light"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                app:tint="@color/freela_white" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-bold"
+                android:text="Sou Empresa / Contratante"
+                android:textColor="@color/freela_petrol_light"
+                android:textSize="18sp" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_toStartOf="@id/btnArrowCompany"
+                    android:fontFamily="sans-serif"
+                    android:paddingEnd="16dp"
                     android:text="Quero publicar vagas, contratar profissionais e gerenciar projetos com CNPJ."
-                    android:textColor="#A0A0A0"
-                    android:textSize="13sp" />
-        </LinearLayout>
+                    android:textColor="@color/freela_white_subtle"
+                    android:textSize="14sp" />
 
-        <!-- Link para Voltar ao Login -->
+            <!-- Seta Circular -->
+            <ImageView
+                    android:id="@+id/btnArrowCompany"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ic_circle_arrow"
+                    android:backgroundTint="@color/freela_petrol_light"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_media_play"
+                    app:tint="@color/freela_white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Link 'Voltar ao Login' no rodapé -->
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Já tem uma conta? "
+                android:textColor="@color/freela_white_subtle" />
+
         <TextView
                 android:id="@+id/txtBackToLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:padding="12dp"
-                android:text="Já tem uma conta? Faça Login"
-                android:textColor="#3B82F6"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="Faça Login"
+                android:textColor="@color/freela_purple_primary" />
     </LinearLayout>
-</ScrollView>
+
+</RelativeLayout>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- Cores da Paleta FreelaDuo -->
+    <color name="freela_dark_background">#050A1A</color> <!-- Fundo quase preto, azul-petróleo escuro -->
+    <color name="freela_purple_primary">#7B26F7</color>   <!-- Roxo vibrante da logo -->
+    <color name="freela_petrol_light">#00C3C9</color>    <!-- Azul-petróleo claro (dos ícones/setas) -->
+    <color name="freela_card_freelancer_border">#2E1072</color> <!-- Borda roxa escura -->
+    <color name="freela_card_company_border">#004245</color>  <!-- Borda azul-petróleo escura -->
+    <color name="freela_white">#FFFFFF</color>
+    <color name="freela_white_subtle">#BDBDBD</color> <!-- Cinza para texto secundário -->
 </resources>

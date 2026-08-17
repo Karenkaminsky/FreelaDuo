@@ -4,21 +4,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/freela_dark_background"
-                android:padding="24dp">
+                android:padding="20dp">
 
-    <!-- Header Area (StatusBar mock e Logo) -->
+    <!-- Header Area -->
     <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-        <!-- Logo referenciada corretamente -->
         <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo" />
 
@@ -29,7 +28,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text=" FreelaDuo"
                 android:textColor="@color/freela_white"
-                android:textSize="20sp" />
+                android:textSize="22sp" />
     </LinearLayout>
 
     <!-- Título Principal -->
@@ -39,153 +38,134 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:text="Como deseja\nse cadastrar?"
             android:textColor="@color/freela_white"
             android:textSize="32sp" />
 
-    <TextView
-            android:id="@+id/txtSubtitle"
-            android:layout_width="280dp"
+    <!-- Container dos Cards Lado a Lado -->
+    <LinearLayout
+            android:id="@+id/cardsContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtTitle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:text="Escolha o tipo de conta ideal para você."
-            android:textColor="@color/freela_white_subtle"
-            android:textSize="14sp" />
+            android:layout_marginTop="20dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-    <!-- Card Freelancer (Roxo) -->
-    <LinearLayout
-            android:id="@+id/cardFreelancer"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/txtSubtitle"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/bg_card_freelancer"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical"
-            android:padding="20dp">
+        <!-- Card Freelancer -->
+        <LinearLayout
+                android:id="@+id/cardFreelancer"
+                android:layout_width="0dp"
+                android:layout_height="310dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_freelancer"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-        <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@color/freela_purple_primary"
-                android:padding="12dp"
-                android:src="@android:drawable/ic_menu_send"
-                app:tint="@color/freela_white" />
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-bold"
-                android:text="Sou Freelancer"
-                android:textColor="@color/freela_purple_primary"
-                android:textSize="18sp" />
-
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/freela_tela" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/btnArrowFreelancer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif"
-                    android:paddingEnd="16dp"
-                    android:text="Quero prestar serviços, encontrar projetos e trabalhar como autônomo."
+                    android:gravity="center"
+                    android:text="Freelancer com a conta de freelancer para se cadastrar."
                     android:textColor="@color/freela_white_subtle"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
 
-            <!-- Seta Circular -->
             <ImageView
                     android:id="@+id/btnArrowFreelancer"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/ic_circle_arrow"
                     android:backgroundTint="@color/freela_purple_primary"
-                    android:padding="8dp"
+                    android:padding="10dp"
                     android:src="@android:drawable/ic_media_play"
                     app:tint="@color/freela_white" />
-        </RelativeLayout>
-    </LinearLayout>
+        </LinearLayout>
 
-    <!-- Card Empresa (Azul-Petróleo) -->
-    <LinearLayout
-            android:id="@+id/cardEmpresa"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/cardFreelancer"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_card_company"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical"
-            android:padding="20dp">
+        <!-- Card Empresa -->
+        <LinearLayout
+                android:id="@+id/cardEmpresa"
+                android:layout_width="0dp"
+                android:layout_height="310dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_company"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-        <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@color/freela_petrol_light"
-                android:padding="12dp"
-                android:src="@android:drawable/ic_menu_gallery"
-                app:tint="@color/freela_white" />
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-bold"
-                android:text="Sou Empresa / Contratante"
-                android:textColor="@color/freela_petrol_light"
-                android:textSize="18sp" />
-
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/empresa_tela" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/btnArrowCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif"
-                    android:paddingEnd="16dp"
-                    android:text="Quero publicar vagas, contratar profissionais e gerenciar projetos com CNPJ."
+                    android:gravity="center"
+                    android:text="Company com uma conta de empresa com a empresa."
                     android:textColor="@color/freela_white_subtle"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
 
-            <!-- Seta Circular -->
             <ImageView
                     android:id="@+id/btnArrowCompany"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/ic_circle_arrow"
-                    android:backgroundTint="@color/freela_petrol_light"
-                    android:padding="8dp"
+                    android:backgroundTint="@color/freela_dark_blue_light"
+                    android:padding="10dp"
                     android:src="@android:drawable/ic_media_play"
                     app:tint="@color/freela_white" />
-        </RelativeLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
-    <!-- Link 'Voltar ao Login' no rodapé -->
+    <!-- Rodapé Fixado na Parte Inferior -->
     <LinearLayout
+            android:id="@+id/footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
         <TextView
@@ -203,6 +183,37 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Faça Login"
                 android:textColor="@color/freela_purple_primary" />
+    </LinearLayout>
+
+    <!-- Card Informativo de Segurança (Agora Posicionado Acima do Rodapé e Maior) -->
+    <LinearLayout
+            android:id="@+id/cardInfoSecurity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/footer"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_info_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+        <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/ic_circle_arrow"
+                android:backgroundTint="#1A153B"
+                android:padding="14dp"
+                android:src="@drawable/ic_verified_shield" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4dp"
+                android:text="Segurança, praticidade e conexões que impulsionam seus projetos."
+                android:textColor="@color/freela_white"
+                android:textSize="15sp" />
     </LinearLayout>
 
 </RelativeLayout>

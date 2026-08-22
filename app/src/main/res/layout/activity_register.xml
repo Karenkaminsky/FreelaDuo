@@ -1,25 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Layout ajustado para preencher a tela e alinhar com o design da esquerda -->
+<!--
+=============================================================================
+TELA DE SELEÇÃO DE CADASTRO (FREELANCER / EMPRESA)
+Ajustes: Marca destacada no header + Título expandido
+=============================================================================
+-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#05050A"
-                android:padding="20dp"
+                android:padding="16dp"
                 tools:ignore="HardcodedText,UnusedAttribute">
 
-    <!-- Cabeçalho: Logo + Nome -->
+    <!-- Cabeçalho: Logo + Nome do App (Aumentados para maior destaque) -->
     <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:orientation="horizontal">
 
         <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:importantForAccessibility="no"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo"
@@ -28,219 +33,42 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-bold"
                 android:text="FreelaDuo"
                 android:textColor="#FFFFFF"
-                android:textSize="22sp" />
+                android:textSize="24sp" />
     </LinearLayout>
 
-    <!-- Título Principal -->
+    <!-- Título Principal (Texto fluido sem quebras bruscas) -->
     <TextView
             android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Como deseja\nse cadastrar?"
+            android:text="Como deseja se cadastrar?"
             android:textColor="#FFFFFF"
-            android:textSize="32sp" />
+            android:textSize="24sp" />
 
-    <!-- Subtítulo -->
+    <!-- Subtítulo Explicativo -->
     <TextView
             android:id="@+id/txtSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtTitle"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="Escolha o perfil que melhor combina\ncom você e comece agora."
-            android:textColor="#9AA0A6"
+            android:textColor="#A1A5B7"
             android:textSize="14sp" />
 
-    <!-- Container dos Cards Principais -->
-    <LinearLayout
-            android:id="@+id/cardsContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtSubtitle"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-        <!-- ================= CARD FREELANCER ================= -->
-        <RelativeLayout
-                android:id="@+id/cardFreelancer"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_card_freelancer"
-                android:padding="20dp">
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toStartOf="@id/imgFreelancer3D"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                <!-- Ícone Foguete (Substitua pelo seu drawable de ícone se tiver) -->
-                <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginBottom="6dp"
-                        android:importantForAccessibility="no"
-                        android:src="@drawable/ic_circle_arrow"
-                        tools:ignore="ImageContrastCheck" />
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="Freelancer"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Conta para quem trabalha por conta própria e busca novas oportunidades."
-                        android:textColor="#C5CAE9"
-                        android:textSize="12sp" />
-
-                <Button
-                        android:id="@+id/btnCadastrarFreelancer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="12dp"
-                        android:backgroundTint="#7C4DFF"
-                        android:fontFamily="sans-serif-medium"
-                        android:paddingHorizontal="24dp"
-                        android:text="➔   Cadastrar"
-                        android:textColor="#FFFFFF"
-                        android:textSize="13sp" />
-
-            </LinearLayout>
-
-            <!-- Imagem 3D preenchendo melhor o lado direito -->
-            <ImageView
-                    android:id="@+id/imgFreelancer3D"
-                    android:layout_width="160dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:importantForAccessibility="no"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/freela_tela"
-                    tools:ignore="ImageContrastCheck" />
-
-        </RelativeLayout>
-
-        <!-- ================= CARD EMPRESA ================= -->
-        <RelativeLayout
-                android:id="@+id/cardEmpresa"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:background="@drawable/bg_card_company"
-                android:padding="20dp">
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toStartOf="@id/imgEmpresa3D"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                <!-- Ícone Prédio -->
-                <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginBottom="6dp"
-                        android:importantForAccessibility="no"
-                        android:src="@drawable/ic_circle_arrow"
-                        tools:ignore="ImageContrastCheck" />
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="Empresa"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Conta para empresas que buscam profissionais qualificados para seus projetos."
-                        android:textColor="#C5CAE9"
-                        android:textSize="12sp" />
-
-                <Button
-                        android:id="@+id/btnCadastrarCompany"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="12dp"
-                        android:backgroundTint="#0066FF"
-                        android:fontFamily="sans-serif-medium"
-                        android:paddingHorizontal="24dp"
-                        android:text="➔   Cadastrar"
-                        android:textColor="#FFFFFF"
-                        android:textSize="13sp" />
-
-            </LinearLayout>
-
-            <!-- Imagem 3D preenchendo melhor o lado direito -->
-            <ImageView
-                    android:id="@+id/imgEmpresa3D"
-                    android:layout_width="160dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:importantForAccessibility="no"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/empresa_cadastro"
-                    tools:ignore="ImageContrastCheck" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <!-- Card de Segurança (Rodapé Superior) -->
-    <LinearLayout
-            android:id="@+id/cardInfoSecurity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/footer"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_info_card"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-        <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_circle_arrow"
-                tools:ignore="ImageContrastCheck" />
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Segurança, praticidade e conexões que impulsionam seus projetos."
-                android:textColor="#FFFFFF"
-                android:textSize="13sp" />
-    </LinearLayout>
-
-    <!-- Texto do Rodapé -->
+    <!-- Rodapé: Link para retornar à tela de Login -->
     <LinearLayout
             android:id="@+id/footer"
             android:layout_width="wrap_content"
@@ -255,20 +83,178 @@
                 android:layout_height="wrap_content"
                 android:text="Já tem uma conta? "
                 android:textColor="#9AA0A6"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
         <TextView
                 android:id="@+id/txtBackToLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="44dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:gravity="center_vertical"
                 android:text="Faça Login"
                 android:textColor="#9D65FF"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 tools:ignore="DuplicateSpeakableTextCheck" />
+    </LinearLayout>
+
+    <!-- Card Informativo de Segurança -->
+    <LinearLayout
+            android:id="@+id/cardInfoSecurity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/footer"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_info_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+        <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_verified_shield"
+                tools:ignore="ImageContrastCheck" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Segurança, praticidade e conexões que impulsionam seus projetos."
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Container dos Cards de Perfil -->
+    <LinearLayout
+            android:id="@+id/cardsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/cardInfoSecurity"
+            android:layout_below="@id/txtSubtitle"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+        <!-- ================= CARD FREELANCER ================= -->
+        <RelativeLayout
+                android:id="@+id/cardFreelancer"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card_freelancer"
+                android:padding="16dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/imgFreelancer3D"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-bold"
+                        android:text="Freelancer"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Conta para quem trabalha por conta própria e busca novas oportunidades."
+                        android:textColor="#C5CAE9"
+                        android:textSize="11sp" />
+
+                <Button
+                        android:id="@+id/btnCadastrarFreelancer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="#7C4DFF"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingHorizontal="20dp"
+                        android:text="➔   Cadastrar"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                    android:id="@+id/imgFreelancer3D"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/freela_tela"
+                    tools:ignore="ImageContrastCheck" />
+
+        </RelativeLayout>
+
+        <!-- ================= CARD EMPRESA ================= -->
+        <RelativeLayout
+                android:id="@+id/cardEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/bg_card_company"
+                android:padding="16dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/imgEmpresa3D"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-bold"
+                        android:text="Empresa"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Conta para empresas que buscam profissionais qualificados para seus projetos."
+                        android:textColor="#C5CAE9"
+                        android:textSize="11sp" />
+
+                <Button
+                        android:id="@+id/btnCadastrarCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="#5D3EBC"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingHorizontal="20dp"
+                        android:text="➔   Cadastrar"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                    android:id="@+id/imgEmpresa3D"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/empresa_cadastro"
+                    tools:ignore="ImageContrastCheck" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

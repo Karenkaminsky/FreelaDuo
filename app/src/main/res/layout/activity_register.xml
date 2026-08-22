@@ -1,9 +1,3 @@
-<!--
-=============================================================================
-TELA DE SELEÇÃO DE CADASTRO (FREELANCER / EMPRESA)
-Ajustes: Marca destacada no header + Título expandido
-=============================================================================
--->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -12,13 +6,15 @@ Ajustes: Marca destacada no header + Título expandido
                 android:padding="16dp"
                 tools:ignore="HardcodedText,UnusedAttribute">
 
-    <!-- Cabeçalho: Logo + Nome do App (Aumentados para maior destaque) -->
+    <!-- ================================================================
+         CABEÇALHO: LOGO + NOME DO APLICATIVO
+         ================================================================ -->
     <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -38,23 +34,24 @@ Ajustes: Marca destacada no header + Título expandido
                 android:text="FreelaDuo"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
+
     </LinearLayout>
 
-    <!-- Título Principal (Texto fluido sem quebras bruscas) -->
+    <!-- =========== Título Principal ===========  -->
     <TextView
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:text="Como deseja se cadastrar?"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
-    <!-- Subtítulo Explicativo -->
+    <!-- Subtítulo explicando a escolha do perfil -->
     <TextView
             android:id="@+id/txtSubtitle"
             android:layout_width="wrap_content"
@@ -68,7 +65,9 @@ Ajustes: Marca destacada no header + Título expandido
             android:textColor="#A1A5B7"
             android:textSize="14sp" />
 
-    <!-- Rodapé: Link para retornar à tela de Login -->
+    <!-- ================================================================
+         RODAPÉ
+         ================================================================ -->
     <LinearLayout
             android:id="@+id/footer"
             android:layout_width="wrap_content"
@@ -97,9 +96,12 @@ Ajustes: Marca destacada no header + Título expandido
                 android:textColor="#9D65FF"
                 android:textSize="13sp"
                 tools:ignore="DuplicateSpeakableTextCheck" />
+
     </LinearLayout>
 
-    <!-- Card Informativo de Segurança -->
+    <!-- ================================================================
+         CARD INFORMATIVO DE SEGURANÇA
+         ================================================================ -->
     <LinearLayout
             android:id="@+id/cardInfoSecurity"
             android:layout_width="match_parent"
@@ -126,9 +128,12 @@ Ajustes: Marca destacada no header + Título expandido
                 android:text="Segurança, praticidade e conexões que impulsionam seus projetos."
                 android:textColor="#FFFFFF"
                 android:textSize="12sp" />
+
     </LinearLayout>
 
-    <!-- Container dos Cards de Perfil -->
+    <!-- ================================================================
+         CONTAINER DOS CARDS
+         ================================================================ -->
     <LinearLayout
             android:id="@+id/cardsContainer"
             android:layout_width="match_parent"
@@ -138,11 +143,11 @@ Ajustes: Marca destacada no header + Título expandido
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-        <!-- ================= CARD FREELANCER ================= -->
+        <!-- ========= CARD FREELANCER ========= -->
         <RelativeLayout
                 android:id="@+id/cardFreelancer"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_card_freelancer"
                 android:padding="16dp">
@@ -171,15 +176,18 @@ Ajustes: Marca destacada no header + Título expandido
                         android:textColor="#C5CAE9"
                         android:textSize="11sp" />
 
-                <Button
+                <!-- Botão sem seta e com efeito de clique aprimorado -->
+                <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCadastrarFreelancer"
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:backgroundTint="#7C4DFF"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:fontFamily="sans-serif-medium"
-                        android:paddingHorizontal="20dp"
-                        android:text="➔   Cadastrar"
+                        android:paddingHorizontal="24dp"
+                        android:text="Cadastrar"
                         android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
@@ -187,7 +195,7 @@ Ajustes: Marca destacada no header + Título expandido
 
             <ImageView
                     android:id="@+id/imgFreelancer3D"
-                    android:layout_width="140dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:importantForAccessibility="no"
@@ -201,7 +209,7 @@ Ajustes: Marca destacada no header + Título expandido
         <RelativeLayout
                 android:id="@+id/cardEmpresa"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:background="@drawable/bg_card_company"
                 android:padding="16dp">
 
@@ -229,15 +237,18 @@ Ajustes: Marca destacada no header + Título expandido
                         android:textColor="#C5CAE9"
                         android:textSize="11sp" />
 
-                <Button
+                <!-- Botão sem seta e com efeito de clique aprimorado -->
+                <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCadastrarCompany"
                         android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:backgroundTint="#5D3EBC"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:fontFamily="sans-serif-medium"
-                        android:paddingHorizontal="20dp"
-                        android:text="➔   Cadastrar"
+                        android:paddingHorizontal="24dp"
+                        android:text="Cadastrar"
                         android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
@@ -245,7 +256,7 @@ Ajustes: Marca destacada no header + Título expandido
 
             <ImageView
                     android:id="@+id/imgEmpresa3D"
-                    android:layout_width="140dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:importantForAccessibility="no"

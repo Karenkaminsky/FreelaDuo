@@ -1,135 +1,332 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#05050A"
-                android:padding="20dp"
-                tools:ignore="HardcodedText">
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ScrollView principal para garantir rolagens fluidas em telas menores -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#05050A"
+            android:fillViewport="true"
+            tools:ignore="HardcodedText">
 
-    <!-- Botão Voltar -->
-    <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_circle_arrow"
-            app:tint="#FFFFFF" />
-
-    <!-- Título Principal -->
-    <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btnBack"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/prociono_regular"
-            android:text="Cadastro de Empresa"
-            android:textColor="#FFFFFF"
-            android:textSize="26sp" />
-
-    <!-- Subtítulo -->
-    <TextView
-            android:id="@+id/txtSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtTitle"
-            android:layout_marginTop="6dp"
-            android:fontFamily="sans-serif"
-            android:text="Preencha os dados corporativos para continuar."
-            android:textColor="#A1A5B7"
-            android:textSize="14sp" />
-
-    <!-- Campos de Formulário -->
+    <!-- Container Vertical Principal -->
     <LinearLayout
-            android:id="@+id/formContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtSubtitle"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <EditText
-                android:id="@+id/edtCompanyName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="Razão Social / Nome da Empresa"
-                android:inputType="textPersonName"
-                android:paddingHorizontal="16dp"
+        <!-- ============================================================ -->
+        <!-- CABEÇALHO: LOGO E NOME DO APLICATIVO                         -->
+        <!-- ============================================================ -->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <!-- logo view -->
+            <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo"
+                    tools:ignore="ImageContrastCheck" />
+
+            <!-- Nome da logo -->
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/prociono_regular"
+                    android:text="FreelaDuo"
+                    android:textColor="#FFFFFF"
+                    android:textSize="28sp" />
+        </LinearLayout>
+
+        <!-- =========== TÍTULO E SUBTÍTULO DA TELA DE CADASTRO =========== -->
+        <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Cadastro de Empresa"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#6C727F"
+                android:textSize="24sp" />
+
+        <TextView
+                android:id="@+id/txtSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="Preencha os dados corporativos para continuar."
+                android:textColor="#A1A5B7"
                 android:textSize="14sp" />
 
-        <EditText
-                android:id="@+id/edtCNPJ"
+        <!-- ============================================================ -->
+        <!-- FORMULÁRIO DE CADASTRO                                       -->
+        <!-- ============================================================ -->
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="CNPJ (apenas números)"
-                android:inputType="number"
-                android:paddingHorizontal="16dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#6C727F"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
 
-        <EditText
-                android:id="@+id/edtCompanyEmail"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="E-mail Corporativo"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="16dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#6C727F"
-                android:textSize="14sp" />
+            <!-- Campo: Nome da Empresa -->
+            <EditText
+                    android:id="@+id/edtCompanyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Nome da Empresa"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
 
-        <EditText
-                android:id="@+id/edtCompanyPhone"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="Telefone / WhatsApp"
-                android:inputType="phone"
-                android:paddingHorizontal="16dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#6C727F"
-                android:textSize="14sp" />
+            <!-- Campo: Razão Social -->
+            <EditText
+                    android:id="@+id/edtCorporateName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Razão Social"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
 
-        <EditText
-                android:id="@+id/edtCompanyPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="Senha"
-                android:inputType="textPassword"
-                android:paddingHorizontal="16dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#6C727F"
-                android:textSize="14sp" />
+            <!-- Campo: CNPJ -->
+            <EditText
+                    android:id="@+id/edtCNPJ"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="CNPJ (Ex: 00.000.000/0001-00)"
+                    android:inputType="text"
+                    android:maxLength="18"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
 
-        <!-- Botão Finalizar Cadastro -->
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegisterCompany"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:backgroundTint="#7C4DFF"
-                android:fontFamily="sans-serif-medium"
-                android:text="Cadastrar Empresa"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                app:cornerRadius="12dp" />
+            <!-- Campo: Site ou Redes Sociais -->
+            <EditText
+                    android:id="@+id/edtWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Site / Redes Sociais"
+                    android:inputType="textUri"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Localização (Cidade / Estado / País) -->
+            <EditText
+                    android:id="@+id/edtLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Cidade / Estado / País"
+                    android:inputType="textPostalAddress"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Segmento ou Ramo de Atividade -->
+            <EditText
+                    android:id="@+id/edtSegment"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Segmento / Ramo (Ex: Tecnologia)"
+                    android:inputType="text"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Nome do Responsável -->
+            <EditText
+                    android:id="@+id/edtResponsibleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Nome completo (Responsável)"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Cargo do Responsável -->
+            <EditText
+                    android:id="@+id/edtRole"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Cargo (Ex: Gestor de RH, Proprietário)"
+                    android:inputType="text"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: E-mail Profissional -->
+            <EditText
+                    android:id="@+id/edtCompanyEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="E-mail profissional"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Telefone / WhatsApp -->
+            <EditText
+                    android:id="@+id/edtCompanyPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Telefone comercial / WhatsApp"
+                    android:inputType="phone"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Apresentação da Empresa (Multilinha) -->
+            <EditText
+                    android:id="@+id/edtAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/edit_text_background"
+                    android:gravity="top|start"
+                    android:hint="Conheça um pouco sobre sua empresa..."
+                    android:inputType="textMultiLine"
+                    android:padding="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Rótulo das opções de tipo de contratação -->
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Tipo de contratação principal:"
+                    android:textColor="#A1A5B7"
+                    android:textSize="14sp" />
+
+            <!-- Seleção do tipo de contratação (RadioButtons) -->
+            <RadioGroup
+                    android:id="@+id/rgContractType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal">
+
+                <RadioButton
+                        android:id="@+id/rbProject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="Por projeto"
+                        android:textColor="#FFFFFF" />
+
+                <RadioButton
+                        android:id="@+id/rbHourly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="Por hora"
+                        android:textColor="#FFFFFF" />
+
+                <RadioButton
+                        android:id="@+id/rbBoth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ambos"
+                        android:textColor="#FFFFFF" />
+            </RadioGroup>
+
+            <!-- Campo: Senha de Acesso -->
+            <EditText
+                    android:id="@+id/edtCompanyPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Senha"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Campo: Confirmação de Senha -->
+            <EditText
+                    android:id="@+id/edtConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Confirmação de senha"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C727F"
+                    android:textSize="14sp" />
+
+            <!-- Aceite dos Termos de Uso -->
+            <CheckBox
+                    android:id="@+id/cbTerms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="Concordo com os termos de uso e política de privacidade"
+                    android:textColor="#A1A5B7"
+                    android:textSize="13sp" />
+
+            <!-- Botão de Ação: Cadastrar Empresa -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegisterCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginBottom="30dp"
+                    android:backgroundTint="#7C4DFF"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Cadastrar Empresa"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    app:cornerRadius="12dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>

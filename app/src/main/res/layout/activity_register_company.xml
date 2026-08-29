@@ -1,332 +1,538 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- ScrollView principal para garantir rolagens fluidas em telas menores -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#05050A"
+            android:background="#090A10"
             android:fillViewport="true"
             tools:ignore="HardcodedText">
 
-    <!-- Container Vertical Principal -->
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="36dp">
 
         <!-- ============================================================ -->
-        <!-- CABEÇALHO: LOGO E NOME DO APLICATIVO                         -->
+        <!-- CABEÇALHO FUTURISTA                                          -->
         <!-- ============================================================ -->
-        <LinearLayout
-                android:layout_width="wrap_content"
+        <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginBottom="24dp">
 
-            <!-- logo view -->
-            <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:importantForAccessibility="no"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/logo"
-                    tools:ignore="ImageContrastCheck" />
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <!-- Nome da logo -->
+                <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/logo" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="FreelaDuo"
+                        android:textColor="#FFFFFF"
+                        android:textSize="22sp" />
+            </LinearLayout>
+
+            <!-- Badge estilo indicador Tech / Neon -->
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/prociono_regular"
-                    android:text="FreelaDuo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="28sp" />
-        </LinearLayout>
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="#1E1035"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:text="✦ ENTERPRISE"
+                    android:textColor="#C084FC"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+        </RelativeLayout>
 
-        <!-- =========== TÍTULO E SUBTÍTULO DA TELA DE CADASTRO =========== -->
+        <!-- TÍTULO COM DESTAQUE -->
         <TextView
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Cadastro de Empresa"
+                android:fontFamily="sans-serif-black"
+                android:text="Conecte sua Empresa"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="28sp" />
 
         <TextView
                 android:id="@+id/txtSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="24dp"
                 android:fontFamily="sans-serif"
-                android:text="Preencha os dados corporativos para continuar."
-                android:textColor="#A1A5B7"
+                android:text="Acesse o ecossistema avançado de talentos tech e criativos."
+                android:textColor="#6B7280"
                 android:textSize="14sp" />
 
         <!-- ============================================================ -->
-        <!-- FORMULÁRIO DE CADASTRO                                       -->
+        <!-- CARD 1: DADOS DA EMPRESA (GLASS EFFECT)                     -->
         <!-- ============================================================ -->
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:orientation="vertical">
+                android:layout_marginBottom="18dp"
+                app:cardBackgroundColor="#0F111A"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#1F2438"
+                app:strokeWidth="1dp">
 
-            <!-- Campo: Nome da Empresa -->
-            <EditText
-                    android:id="@+id/edtCompanyName"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Nome da Empresa"
-                    android:inputType="textPersonName"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Razão Social -->
-            <EditText
-                    android:id="@+id/edtCorporateName"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Razão Social"
-                    android:inputType="textPersonName"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: CNPJ -->
-            <EditText
-                    android:id="@+id/edtCNPJ"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="CNPJ (Ex: 00.000.000/0001-00)"
-                    android:inputType="text"
-                    android:maxLength="18"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Site ou Redes Sociais -->
-            <EditText
-                    android:id="@+id/edtWebsite"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Site / Redes Sociais"
-                    android:inputType="textUri"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Localização (Cidade / Estado / País) -->
-            <EditText
-                    android:id="@+id/edtLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Cidade / Estado / País"
-                    android:inputType="textPostalAddress"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Segmento ou Ramo de Atividade -->
-            <EditText
-                    android:id="@+id/edtSegment"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Segmento / Ramo (Ex: Tecnologia)"
-                    android:inputType="text"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Nome do Responsável -->
-            <EditText
-                    android:id="@+id/edtResponsibleName"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Nome completo (Responsável)"
-                    android:inputType="textPersonName"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Cargo do Responsável -->
-            <EditText
-                    android:id="@+id/edtRole"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Cargo (Ex: Gestor de RH, Proprietário)"
-                    android:inputType="text"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: E-mail Profissional -->
-            <EditText
-                    android:id="@+id/edtCompanyEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="E-mail profissional"
-                    android:inputType="textEmailAddress"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Telefone / WhatsApp -->
-            <EditText
-                    android:id="@+id/edtCompanyPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Telefone comercial / WhatsApp"
-                    android:inputType="phone"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Campo: Apresentação da Empresa (Multilinha) -->
-            <EditText
-                    android:id="@+id/edtAbout"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/edit_text_background"
-                    android:gravity="top|start"
-                    android:hint="Conheça um pouco sobre sua empresa..."
-                    android:inputType="textMultiLine"
-                    android:padding="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
-
-            <!-- Rótulo das opções de tipo de contratação -->
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Tipo de contratação principal:"
-                    android:textColor="#A1A5B7"
-                    android:textSize="14sp" />
-
-            <!-- Seleção do tipo de contratação (RadioButtons) -->
-            <RadioGroup
-                    android:id="@+id/rgContractType"
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-                <RadioButton
-                        android:id="@+id/rbProject"
-                        android:layout_width="wrap_content"
+                <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="Por projeto"
-                        android:textColor="#FFFFFF" />
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                <RadioButton
-                        android:id="@+id/rbHourly"
-                        android:layout_width="wrap_content"
+                    <View
+                            android:layout_width="4dp"
+                            android:layout_height="16dp"
+                            android:background="#C084FC" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="ORGANIZAÇÃO"
+                            android:textColor="#E9D5FF"
+                            android:textSize="12sp"
+                            android:letterSpacing="0.08" />
+                </LinearLayout>
+
+                <!-- Nome Fantasia -->
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="Por hora"
-                        android:textColor="#FFFFFF" />
+                        android:layout_marginBottom="12dp"
+                        android:hint="Nome Fantasia"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
 
-                <RadioButton
-                        android:id="@+id/rbBoth"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCompanyName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Razão Social -->
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ambos"
-                        android:textColor="#FFFFFF" />
-            </RadioGroup>
+                        android:layout_marginBottom="12dp"
+                        android:hint="Razão Social"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
 
-            <!-- Campo: Senha de Acesso -->
-            <EditText
-                    android:id="@+id/edtCompanyPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Senha"
-                    android:inputType="textPassword"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCorporateName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Campo: Confirmação de Senha -->
-            <EditText
-                    android:id="@+id/edtConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/edit_text_background"
-                    android:hint="Confirmação de senha"
-                    android:inputType="textPassword"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#6C727F"
-                    android:textSize="14sp" />
+                <!-- CNPJ e Segmento em Linha (Grid Responsivo de 2 colunas) -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
 
-            <!-- Aceite dos Termos de Uso -->
-            <CheckBox
-                    android:id="@+id/cbTerms"
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:hint="CNPJ"
+                            app:boxBackgroundColor="#161926"
+                            app:boxCornerRadiusBottomEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxStrokeColor="#2A304D"
+                            app:hintTextColor="#A78BFA">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtCNPJ"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="18"
+                                android:textColor="#FFFFFF"
+                                android:textSize="13sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:hint="Segmento"
+                            app:boxBackgroundColor="#161926"
+                            app:boxCornerRadiusBottomEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxStrokeColor="#2A304D"
+                            app:hintTextColor="#A78BFA">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtSegment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:textColor="#FFFFFF"
+                                android:textSize="13sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Localização & Website -->
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:hint="Localização (Cidade, UF)"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPostalAddress"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Website ou LinkedIn"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtWebsite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textUri"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ============================================================ -->
+        <!-- CARD 2: CONTATO E PREFERÊNCIAS                               -->
+        <!-- ============================================================ -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                app:cardBackgroundColor="#0F111A"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#1F2438"
+                app:strokeWidth="1dp">
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:text="Concordo com os termos de uso e política de privacidade"
-                    android:textColor="#A1A5B7"
-                    android:textSize="13sp" />
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-            <!-- Botão de Ação: Cadastrar Empresa -->
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnRegisterCompany"
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <View
+                            android:layout_width="4dp"
+                            android:layout_height="16dp"
+                            android:background="#3B82F6" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="CONTATO E PONTOS DE CONTROLE"
+                            android:textColor="#93C5FD"
+                            android:textSize="12sp"
+                            android:letterSpacing="0.08" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:hint="Responsável Direto"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtResponsibleName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:hint="E-mail Corporativo"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCompanyEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Campo Telefone / WhatsApp -->
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:hint="Telefone / WhatsApp"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCompanyPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Seleção de Contato e pontos de controles -->
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Modelo de Demanda"
+                        android:textColor="#9CA3AF"
+                        android:textSize="12sp" />
+
+                <RadioGroup
+                        android:id="@+id/rgContractType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="4dp">
+
+                    <RadioButton
+                            android:id="@+id/rbProject"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Projeto"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                    <RadioButton
+                            android:id="@+id/rbHourly"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hora"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                    <RadioButton
+                            android:id="@+id/rbBoth"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Ambos"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                </RadioGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ============================================================ -->
+        <!-- CARD 3: SEGURANÇA                                            -->
+        <!-- ============================================================ -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#0F111A"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#1F2438"
+                app:strokeWidth="1dp">
+
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_marginBottom="30dp"
-                    android:backgroundTint="#7C4DFF"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Cadastrar Empresa"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    app:cornerRadius="12dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-        </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:hint="Senha de Acesso"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="#6B7280"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCompanyPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirmar Senha"
+                        app:boxBackgroundColor="#161926"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#2A304D"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="#6B7280"
+                        app:hintTextColor="#A78BFA">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtConfirmPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Termos de Aceite -->
+        <CheckBox
+                android:id="@+id/cbTerms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Concordo com os Termos Corporativos e Diretrizes do Ecossistema."
+                android:textColor="#6B7280"
+                android:textSize="12sp" />
+
+        <!-- Botão conta corporativa -->
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegisterCompany"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:backgroundTint="#7C3AED"
+                android:fontFamily="sans-serif-bold"
+                android:text="Inicializar Conta Corporativa ➔"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:cornerRadius="12dp"
+                app:elevation="8dp" />
 
     </LinearLayout>
 </ScrollView>

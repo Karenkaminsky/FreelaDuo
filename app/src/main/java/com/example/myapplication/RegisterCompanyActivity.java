@@ -48,7 +48,6 @@ public class RegisterCompanyActivity extends AppCompatActivity {
         String email = edtCompanyEmail.getText().toString().trim();
         String password = edtCompanyPassword.getText().toString().trim();
 
-        // Leitura da opção selecionada no RadioGroup
         int selectedContractId = rgContractType.getCheckedRadioButtonId();
         String contractType = "";
 
@@ -60,7 +59,6 @@ public class RegisterCompanyActivity extends AppCompatActivity {
             contractType = "Ambos";
         }
 
-        // Validação dos campos obrigatórios
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(cnpj) ||
                 TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ||
                 selectedContractId == -1) {
@@ -69,7 +67,6 @@ public class RegisterCompanyActivity extends AppCompatActivity {
             return;
         }
 
-        // Sucesso
         Toast.makeText(this, "Empresa cadastrada! Modelo: " + contractType, Toast.LENGTH_SHORT).show();
     }
 }

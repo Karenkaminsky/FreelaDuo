@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.R;
+import com.example.myapplication.RegisterCompanyActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -18,13 +20,13 @@ public class RegisterActivity extends AppCompatActivity {
         LinearLayout cardEmpresa = findViewById(R.id.cardEmpresa);
         TextView txtBackToLogin = findViewById(R.id.txtBackToLogin);
 
-        // Abrir cadastro de Freelancer
+        // Clique no card Freelancer
         cardFreelancer.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, RegisterFreelancerActivity.class);
             startActivity(intent);
         });
 
-        // Abrir cadastro de Empresa
+        // Clique no card Empresa
         cardEmpresa.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, RegisterCompanyActivity.class);
             startActivity(intent);

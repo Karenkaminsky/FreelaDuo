@@ -7,20 +7,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RegisterSelectionActivity extends AppCompatActivity {
+import com.example.myapplication.register.RegisterActivity;
+import com.example.myapplication.register.RegisterFreelancerActivity;
 
+public class RegisterSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 1. Vincula este arquivo Java ao arquivo de layout XML 'activity_register.xml'
         setContentView(R.layout.activity_register);
-
-        /*
-         * CORREÇÃO DO CRASH:
-         * No XML, os IDs 'cardFreelancer' e 'cardEmpresa' são componentes <RelativeLayout>.
-         * Declarar como 'LinearLayout' antes causava o encerramento do app por incompatibilidade de tipo.
-         */
         RelativeLayout cardFreelancer = findViewById(R.id.cardFreelancer);
         RelativeLayout cardEmpresa = findViewById(R.id.cardEmpresa);
 
@@ -31,16 +27,12 @@ public class RegisterSelectionActivity extends AppCompatActivity {
         // Mapeamento do texto "Faça Login" no rodapé
         TextView txtBackToLogin = findViewById(R.id.txtBackToLogin);
 
-        /*
-         * ==========================================
-         *  AÇÕES DO CARD E BOTÃO FREELANCER
-         * ==========================================
-         */
+        /*============ AÇÕES DO CARD E BOTÃO FREELANCER ============ */
+
         // Método auxiliar para centralizar a navegação do Freelancer em um só lugar
         Runnable irParaCadastroFreelancer = () -> {
-            // Quando tiver a Activity do Freelancer pronta, descomente a linha abaixo:
-            // Intent intent = new Intent(RegisterSelectionActivity.this, RegisterFreelancerActivity.class);
-            // startActivity(intent);
+             Intent intent = new Intent(RegisterSelectionActivity.this, RegisterFreelancerActivity.class);
+            startActivity(intent);
         };
 
         // Permite clicar tanto no card inteiro quanto diretamente no botão do Freelancer
@@ -51,14 +43,11 @@ public class RegisterSelectionActivity extends AppCompatActivity {
             btnCadastrarFreelancer.setOnClickListener(v -> irParaCadastroFreelancer.run());
         }
 
-        /*
-         * ==========================================
-         *  AÇÕES DO CARD E BOTÃO EMPRESA
-         * ==========================================
-         */
+        /*============ AÇÕES DO CARD E BOTÃO EMPRESA ============*/
+
         // Método auxiliar para centralizar a navegação da Empresa em um só lugar
         Runnable irParaCadastroEmpresa = () -> {
-            // Abre a Activity de cadastro da Empresa que você já possui criada
+            // Abre a Activity de cadastro da Empresa que já foi criada
             Intent intent = new Intent(RegisterSelectionActivity.this, RegisterCompanyActivity.class);
             startActivity(intent);
         };
@@ -71,13 +60,10 @@ public class RegisterSelectionActivity extends AppCompatActivity {
             btnCadastrarCompany.setOnClickListener(v -> irParaCadastroEmpresa.run());
         }
 
-        /*
-         * ==========================================
-         *  AÇÃO DO RODAPÉ (VOLTAR AO LOGIN)
-         * ==========================================
-         */
+        /*============ AÇÃO DO RODAPÉ (VOLTAR AO LOGIN) ============*/
+
         if (txtBackToLogin != null) {
-            // O comando finish() fecha a tela atual na pilha e retorna para a tela anterior (Login)
+            // O comando finish() fecha a tela atual na pilha e retorna para a tela de Login
             txtBackToLogin.setOnClickListener(v -> finish());
         }
     }

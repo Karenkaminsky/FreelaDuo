@@ -9,6 +9,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegisterCompanyActivity extends AppCompatActivity {
 
     private EditText edtCompanyName;
@@ -67,6 +71,25 @@ public class RegisterCompanyActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "Empresa cadastrada! Modelo: " + contractType, Toast.LENGTH_SHORT).show();
+        // Criando o objeto DTO com os dados digitados pelo usuário
+        UsuarioDto novoUsuario = new UsuarioDto(email, password, cnpj, "EMPRESA");
+
+        // Enviando os dados para a API Spring Boot
+        ApiClient.getApiService().cadastrarUsuario(novoUsuario).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegisterCompanyActivity.this, "Empresa cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
+                    finish(); // Fecha a tela após o cadastro
+                } else {
+                    Toast.makeText(RegisterCompanyActivity.this, "Erro no servidor ao cadastrar.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(RegisterCompanyActivity.this, "Falha na conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

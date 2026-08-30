@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -189,7 +190,7 @@
                         android:textColor="#C5CAE9"
                         android:textSize="11sp" />
 
-                <!-- Botão com efeito ao clicar -->
+                <!-- Botão Freelancer Arredondado com Letras Ajustadas -->
                 <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCadastrarFreelancer"
                         android:layout_width="wrap_content"
@@ -199,10 +200,12 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="-0.02"
                         android:paddingHorizontal="24dp"
                         android:text="Cadastrar"
                         android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:cornerRadius="22dp" />
 
             </LinearLayout>
 
@@ -255,7 +258,7 @@
                         android:textColor="#C5CAE9"
                         android:textSize="11sp" />
 
-                <!-- Botão com efeito ao clicar -->
+                <!-- Botão Empresa Arredondado com Letras Ajustadas -->
                 <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCadastrarCompany"
                         android:layout_width="wrap_content"
@@ -265,10 +268,12 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="-0.02"
                         android:paddingHorizontal="24dp"
                         android:text="Cadastrar"
                         android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:cornerRadius="22dp" />
 
             </LinearLayout>
 

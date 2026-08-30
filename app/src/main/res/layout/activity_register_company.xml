@@ -43,25 +43,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/prociono_regular"
                         android:text="FreelaDuo"
                         android:textColor="#FFFFFF"
                         android:textSize="22sp" />
             </LinearLayout>
 
-            <!-- Badge estilo indicador Tech / Neon -->
-            <TextView
+            <!-- Badge Enterprise com Cantos Arredondados estilo Pílula -->
+            <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:background="#1E1035"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
-                    android:text="✦ ENTERPRISE"
-                    android:textColor="#C084FC"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    app:cardBackgroundColor="#1A102F"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#3B2063"
+                    app:strokeWidth="1dp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-bold"
+                        android:letterSpacing="0.05"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="6dp"
+                        android:text="✦ ENTERPRISE"
+                        android:textColor="#C084FC"
+                        android:textSize="10sp" />
+            </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
 
         <!-- TÍTULO COM DESTAQUE -->
@@ -121,10 +131,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="sans-serif-bold"
+                            android:letterSpacing="0.08"
                             android:text="ORGANIZAÇÃO"
                             android:textColor="#E9D5FF"
-                            android:textSize="12sp"
-                            android:letterSpacing="0.08" />
+                            android:textSize="12sp" />
                 </LinearLayout>
 
                 <!-- Nome Fantasia -->
@@ -317,10 +327,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="sans-serif-bold"
+                            android:letterSpacing="0.08"
                             android:text="CONTATO E PONTOS DE CONTROLE"
                             android:textColor="#93C5FD"
-                            android:textSize="12sp"
-                            android:letterSpacing="0.08" />
+                            android:textSize="12sp" />
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -498,6 +508,40 @@
                         app:endIconMode="password_toggle"
                         app:endIconTint="#6B7280"
                         app:hintTextColor="#A78BFA">
+
+                    <!-- Validações visuais da senha -->
+                    <TextView
+                            android:id="@+id/txtRuleLength"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• Mínimo de 8 caracteres"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp" />
+
+                    <TextView
+                            android:id="@+id/txtRuleUppercase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• Pelo menos 1 letra maiúscula"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp" />
+
+                    <TextView
+                            android:id="@+id/txtRuleNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• Pelo menos 1 número"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp" />
+
+                    <TextView
+                            android:id="@+id/txtRuleSpecialChar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• Pelo menos 1 caractere especial (!@#$%...)"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp" />
+
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtConfirmPassword"

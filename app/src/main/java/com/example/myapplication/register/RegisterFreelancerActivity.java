@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.freeladuo.util.FormattersAndValidators;
 import com.example.myapplication.R;
 
 import java.util.Calendar;
@@ -37,6 +38,7 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
 
         initViews();
         setupDatePicker();
+        setupFormattersAndMasks();
         setupPasswordValidation();
 
         btnRegister.setOnClickListener(v -> realizarCadastro());
@@ -71,10 +73,15 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
         txtRuleSpecialChar = findViewById(R.id.txtRuleSpecialChar);
 
         btnRegister = findViewById(R.id.btnRegisterFreelancer);
-        edtState.setFilters(new InputFilter[] { new InputFilter.AllCaps(), new InputFilter.LengthFilter(2) });
+
+        if (edtState != null) {
+            edtState.setFilters(new InputFilter[] { new InputFilter.AllCaps(), new InputFilter.LengthFilter(2) });
+        }
     }
 
     private void setupDatePicker() {
+        if (edtBirthDate == null) return;
+
         edtBirthDate.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -93,7 +100,21 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
         });
     }
 
+    private void setupFormattersAndMasks() {
+        if (edtCPF != null) {
+            edtCPF.addTextChangedListener(FormattersAndValidators.cpfTextWatcher());
+        }
+        if (edtWhatsapp != null) {
+            edtWhatsapp.addTextChangedListener(FormattersAndValidators.phoneTextWatcher());
+        }
+        if (edtPhoneOptional != null) {
+            edtPhoneOptional.addTextChangedListener(FormattersAndValidators.phoneTextWatcher());
+        }
+    }
+
     private void setupPasswordValidation() {
+        if (edtPassword == null) return;
+
         edtPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -114,6 +135,7 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
     }
 
     private void updateRuleStatus(TextView textView, boolean isValid) {
+        if (textView == null) return;
         if (isValid) {
             textView.setTextColor(Color.parseColor("#4CAF50")); // Verde
         } else {
@@ -122,21 +144,38 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
     }
 
     private void realizarCadastro() {
-        String name = edtFreelancerName.getText().toString().trim();
-        String cpf = edtCPF.getText().toString().trim();
-        String password = edtPassword.getText().toString().trim();
-        String confirmPassword = edtConfirmPassword.getText().toString().trim();
+        String name = edtFreelancerName != null ? edtFreelancerName.getText().toString().trim() : "";
+        String cpf = edtCPF != null ? edtCPF.getText().toString().trim() : "";
+        String password = edtPassword != null ? edtPassword.getText().toString().trim() : "";
+        String confirmPassword = edtConfirmPassword != null ? edtConfirmPassword.getText().toString().trim() : "";
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(cpf) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Preencha os campos obrigatórios.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Validação de CPF
+        if (!FormattersAndValidators.isValidCpf(cpf)) {
+            if (edtCPF != null) {
+                edtCPF.setError("CPF inválido");
+                edtCPF.requestFocus();
+            } else {
+                Toast.makeText(this, "CPF inválido.", Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "As senhas não coincidem.", Toast.LENGTH_SHORT).show();
+            if (edtConfirmPassword != null) {
+                edtConfirmPassword.setError("As senhas não coincidem");
+                edtConfirmPassword.requestFocus();
+            } else {
+                Toast.makeText(this, "As senhas não coincidem.", Toast.LENGTH_SHORT).show();
+            }
             return;
         }
 
         Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
+        finish();
     }
 }

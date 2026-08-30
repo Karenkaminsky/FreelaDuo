@@ -81,7 +81,7 @@
                 android:textColor="#6B7280"
                 android:textSize="14sp" />
 
-        <!-- DADOS PESSOAIS E ENDEREÇO -->
+        <!-- INFORMAÇÕES PESSOAIS -->
         <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-                <!-- CEP, Cidade e Estado -->
+                <!-- CEP, Cidade e UF -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -328,13 +328,12 @@
                             android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Cargo / Especialidade -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:hint="Área / Especialidade (ex: UI Designer)"
+                        android:hint="Área / Especialidade"
                         app:boxBackgroundColor="#161926"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
@@ -352,13 +351,12 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Habilidades (Skills) -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:hint="Habilidades (ex: Figma, Kotlin, React)"
+                        android:hint="Habilidades (Skills)"
                         app:boxBackgroundColor="#161926"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
@@ -376,7 +374,6 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Sobre Você -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -402,7 +399,6 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Valor Hora -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -427,7 +423,6 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Modalidade de Trabalho -->
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -473,7 +468,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- CONTATO E REDES -->
+        <!-- CONTATO E ACESSO -->
         <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -500,7 +495,7 @@
                     <View
                             android:layout_width="4dp"
                             android:layout_height="16dp"
-                            android:background="#3B82F6" />
+                            android:background="#38BDF8" />
 
                     <TextView
                             android:layout_width="wrap_content"
@@ -508,11 +503,12 @@
                             android:layout_marginStart="8dp"
                             android:fontFamily="sans-serif-bold"
                             android:letterSpacing="0.08"
-                            android:text="CONTATO E REDES"
-                            android:textColor="#93C5FD"
+                            android:text="CONTATO E SEGURANÇA"
+                            android:textColor="#E9D5FF"
                             android:textSize="12sp" />
                 </LinearLayout>
 
+                <!-- E-mail -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -536,6 +532,7 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- WhatsApp -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -555,16 +552,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="phone"
+                            android:maxLength="15"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Telefone fixo Opcional -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:hint="Telefone (Opcional)"
+                        android:hint="Telefone Opcional"
                         app:boxBackgroundColor="#161926"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
@@ -578,15 +577,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="phone"
+                            android:maxLength="15"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Redes corporativas -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="LinkedIn / Portfólio (Opcional)"
+                        android:layout_marginBottom="12dp"
+                        android:hint="Redes corporativas (Opcional)"
                         app:boxBackgroundColor="#161926"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
@@ -603,41 +605,22 @@
                             android:textColor="#FFFFFF"
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- CREDENCIAIS E VALIDAÇÃO DE SENHA -->
-        <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="#0F111A"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-                app:strokeColor="#1F2438"
-                app:strokeWidth="1dp">
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="18dp">
-
+                <!-- Senha -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:hint="Senha de Acesso"
+                        android:hint="Senha"
                         app:boxBackgroundColor="#161926"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
                         app:boxCornerRadiusTopEnd="10dp"
                         app:boxCornerRadiusTopStart="10dp"
                         app:boxStrokeColor="#2A304D"
-                        app:endIconMode="password_toggle"
-                        app:endIconTint="#6B7280"
-                        app:hintTextColor="#A78BFA">
+                        app:hintTextColor="#A78BFA"
+                        app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtPassword"
@@ -648,11 +631,12 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Confirmar Senha -->
                 <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="12dp"
                         android:hint="Confirmar Senha"
                         app:boxBackgroundColor="#161926"
                         app:boxCornerRadiusBottomEnd="10dp"
@@ -660,9 +644,8 @@
                         app:boxCornerRadiusTopEnd="10dp"
                         app:boxCornerRadiusTopStart="10dp"
                         app:boxStrokeColor="#2A304D"
-                        app:endIconMode="password_toggle"
-                        app:endIconTint="#6B7280"
-                        app:hintTextColor="#A78BFA">
+                        app:hintTextColor="#A78BFA"
+                        app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtConfirmPassword"
@@ -673,13 +656,13 @@
                             android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Validações visuais da senha -->
+                <!-- Regras de Senha -->
                 <TextView
                         android:id="@+id/txtRuleLength"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Mínimo de 8 caracteres"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="12sp" />
 
                 <TextView
@@ -687,7 +670,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Pelo menos 1 letra maiúscula"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="12sp" />
 
                 <TextView
@@ -695,34 +678,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Pelo menos 1 número"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="12sp" />
 
                 <TextView
                         android:id="@+id/txtRuleSpecialChar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="• Pelo menos 1 caractere especial (!@#$%...)"
-                        android:textColor="#6B7280"
+                        android:text="• Pelo menos 1 caractere especial"
+                        android:textColor="#F44336"
                         android:textSize="12sp" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- BOTÃO DE CADASTRO -->
+        <!-- Botão Registrar -->
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegisterFreelancer"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:background="@drawable/bg_button_gradient_purple"
-                android:fontFamily="sans-serif-bold"
-                android:text="Criar Conta de Freelancer"
-                android:textAllCaps="false"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:text="FINALIZAR CADASTRO"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                app:backgroundTint="@null"
-                app:cornerRadius="12dp"
-                app:elevation="8dp" />
+                app:backgroundTint="#8B5CF6"
+                app:cornerRadius="10dp" />
 
     </LinearLayout>
 </ScrollView>

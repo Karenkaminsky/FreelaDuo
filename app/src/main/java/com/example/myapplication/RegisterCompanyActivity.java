@@ -70,17 +70,13 @@ public class RegisterCompanyActivity extends AppCompatActivity {
             Toast.makeText(this, "Por favor, preencha todos os campos e selecione o modelo de demanda.", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Criando o objeto DTO com os dados digitados pelo usuário
         UsuarioDto novoUsuario = new UsuarioDto(email, password, cnpj, "EMPRESA");
-
-        // Enviando os dados para a API Spring Boot
         ApiClient.getApiService().cadastrarUsuario(novoUsuario).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterCompanyActivity.this, "Empresa cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
-                    finish(); // Fecha a tela após o cadastro
+                    finish();
                 } else {
                     Toast.makeText(RegisterCompanyActivity.this, "Erro no servidor ao cadastrar.", Toast.LENGTH_SHORT).show();
                 }

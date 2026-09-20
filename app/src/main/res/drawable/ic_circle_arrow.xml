@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Círculo de fundo -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="40dp" android:height="40dp" />
+            <stroke android:width="1dp" android:color="#00000000"/> <!-- Sem borda -->
+        </shape>
+    </item>
+    <!-- O ícone da seta deve ser adicionado aqui como um bitmap ou um vetor -->
+    <!-- Para fins de demonstração, vamos usar a tint cor de acento diretamente -->
+</layer-list>

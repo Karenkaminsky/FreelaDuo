@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cores Padrão do Android -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Cores da Paleta FreelaDuo -->
+    <color name="freela_dark_background">#050A1A</color>
+    <color name="freela_card_background">#121E36</color>
+    <color name="freela_purple_primary">#7B26F7</color>
+    <color name="freela_dark_blue_light">#2A4365</color>
+    <color name="freela_pink_accent">#FF007F</color>
+
+    <!-- Bordas dos Cards -->
+    <color name="freela_card_freelancer_border">#7B26F7</color>
+    <color name="freela_card_company_border">#2A4365</color>
+
+    <!-- Textos -->
+    <color name="freela_white">#FFFFFF</color>
+    <color name="freela_white_subtle">#BDBDBD</color>
+</resources>

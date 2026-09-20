@@ -1,12 +1,12 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FeedActivity extends AppCompatActivity {
@@ -16,35 +16,37 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
+        // Ajusta a cor da logo "Duo" para SlateBlue
         TextView txtLogoDuo = findViewById(R.id.txtLogoDuo);
-        Shader textShader = new LinearGradient(
-                0f, 0f, txtLogoDuo.getPaint().measureText("Duo"), 0f,
-                new int[]{
-                        Color.parseColor("#7B2CBF"), // Roxo
-                        Color.parseColor("#FF007A"), // Rosa
-                        Color.parseColor("#0072FF")  // Azul
-                },
-                null, Shader.TileMode.CLAMP
-        );
-        txtLogoDuo.getPaint().setShader(textShader);
+        txtLogoDuo.setTextColor(Color.parseColor("#6A5ACD"));
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
+
+        // Garante que o ícone "Início" venha marcado ao abrir a tela
+        bottomNav.setSelectedItemId(R.id.nav_home);
+
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+
             if (itemId == R.id.nav_home) {
-                Toast.makeText(this, "Início", Toast.LENGTH_SHORT).show();
+                // Ao clicar em Início, recarrega a FeedActivity limpando telas anteriores da pilha
+                Intent intent = new Intent(FeedActivity.this, FeedActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
             } else if (itemId == R.id.nav_network) {
-                Toast.makeText(this, "Minha rede", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Minha rede em breve", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (itemId == R.id.nav_post) {
-                Toast.makeText(this, "Publicar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Publicar em breve", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (itemId == R.id.nav_jobs) {
-                Toast.makeText(this, "Vagas", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Vagas em breve", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (itemId == R.id.nav_profile) {
-                Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show();
+                // Redireciona para a tela de Perfil
+                Intent intent = new Intent(FeedActivity.this, ProfileActivity.class);
+                startActivity(intent);
                 return true;
             }
             return false;

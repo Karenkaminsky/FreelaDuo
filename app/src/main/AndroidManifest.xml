@@ -22,11 +22,17 @@
             </intent-filter>
         </activity>
 
-        <!-- FeedActivity adicionada para evitar o crash -->
+        <!-- FeedActivity -->
         <activity
             android:name=".FeedActivity"
             android:exported="false" />
 
+        <!-- ProfileActivity (Tela de Perfil) -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+
+        <!-- Telas de Cadastro e Seleção -->
         <activity
             android:name=".RegisterSelectionActivity"
             android:exported="false" />

@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="#070D17">
 
-    <!-- BARRA SUPERIOR (CABEÇALHO REESTRUTURADO) -->
     <LinearLayout
         android:id="@+id/headerBar"
         android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                 android:layout_height="32dp"
                 android:src="@drawable/logo" />
 
-            <!-- Freela em Branco e Negrito -->
+            <!-- ajuste de desing do nome freela (negrito) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,7 +37,7 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <!-- Duo que receberá o Gradiente no Java -->
+            <!-- ajuste de desing Duo que receberá o Gradiente no Java -->
             <TextView
                 android:id="@+id/txtLogoDuo"
                 android:layout_width="wrap_content"
@@ -62,7 +61,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="#16253B"
-                android:hint="Pesquisar..."
+                android:hint="Pesquisar"
                 android:paddingStart="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#8A99AD"
@@ -93,6 +92,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- PRIMEIRO POST: Karen Kaminsky -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,24 +152,19 @@
                                 android:textColor="#6A7B95"
                                 android:textSize="11sp" />
                         </LinearLayout>
-
-                        <ImageButton
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:src="@android:drawable/ic_menu_more"
-                            app:tint="#A0B0C0" />
                     </LinearLayout>
 
+                    <!-- Descrição da publicação -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:lineSpacingExtra="3dp"
-                        android:text="Hoje foi um dia de muito aprendizado! 🚀\nTive a oportunidade de trabalhar em um novo projeto na empresa, onde pude colocar em prática alguns conhecimentos de suporte técnico."
+                        android:text="Hoje foi um day de muito aprendizado! 🚀\nTive a oportunidade de trabalhar em um novo projeto na empresa, onde pude colocar em prática alguns conhecimentos de suporte técnico."
                         android:textColor="#E0E6ED"
                         android:textSize="14sp" />
 
+                    <!-- # da publicação -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,6 +189,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
+                            <!-- Imagem da Publicação -->
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="match_parent"
@@ -207,6 +203,7 @@
                                 android:orientation="vertical"
                                 android:padding="12dp">
 
+                                <!-- Informações da imagem de publicação -->
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -223,6 +220,7 @@
                                     android:textSize="13sp"
                                     android:textStyle="bold" />
 
+                                <!-- SubTitulo da imagem de publicação -->
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -234,6 +232,7 @@
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
+                    <!-- Seção inferior de reações e comentários -->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -256,14 +255,14 @@
                             android:textSize="8sp" />
                     </RelativeLayout>
 
-                    <!-- LINHA DIVISÓRIA DA SEÇÃO DE REAÇÕES -->
+                    <!-- Linha divisória da seção de reações -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="10dp"
                         android:background="#1E324D" />
 
-                    <!-- BOTÕES DE AÇÃO COM ÍCONES AJUSTADOS E DIVISORES -->
+                    <!-- Botões de ação com ícones ajustados e com divisores -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -321,14 +320,393 @@
                             app:iconSize="20dp"
                             app:iconTint="#A0B0C0" />
                     </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
+            <!-- SEGUNDO POST: Empresa TOTVS -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D192B"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_totvs"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TOTVS"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tecnologia • 10.000+ funcionários"
+                                android:textColor="#A0B0C0"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8 h • 🌐"
+                                android:textColor="#6A7B95"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Descrição da publicação com alteração para buscar Freelance de QA -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="Inovações no setor de tecnologia da informação continuam a transformar o mercado global. Estamos em busca de um Analista de QA freelancer para somar em nossos novos projetos de TI!"
+                        android:textColor="#E0E6ED"
+                        android:textSize="14sp" />
+
+                    <!-- # da publicação -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="#TI #SuporteTécnico #Aprendizado #Tecnologia #QA #Freela"
+                        android:textColor="#00D2A0"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardBackgroundColor="#132237"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#1E324D"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Seção inferior de reações e comentários -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="👍❤️💡 250"
+                            android:textColor="#A0B0C0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="210 comentários • 326 compartilhamentos"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp" />
+                    </RelativeLayout>
+
+                    <!-- Linha divisória da seção de reações -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="#1E324D" />
+
+                    <!-- Botões de ação com ícones ajustados e com divisores -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Curtir"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/curtir"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <!-- Linha Divisória 1 -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Comentar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/comentar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <!-- Linha Divisória 2 -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Compartilhar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/compartilhar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- SEGUNDO POST: Empresa NUBANK -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D192B"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_nubank"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="NUBANK"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tecnologia Bancária • 10.000+ funcionários"
+                                android:textColor="#A0B0C0"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5 min • 🌐"
+                                android:textColor="#6A7B95"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Descrição da publicação com alteração para buscar Freelance de QA -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="Inovação e inteligência de dados andam lado a lado no Nubank.\nPara apoiar nossas tomadas de decisão e otimizar os processos de novas soluções financeiras, estamos contratando um Analista de Dados (Freelancer) para atuar em um projeto temporário.\nSe você domina análise de dados e busca uma oportunidade num ambiente dinâmico e de alta escala, junta-se a nós!"
+                        android:textColor="#E0E6ED"
+                        android:textSize="14sp" />
+
+                    <!-- # da publicação -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="#DataScience #DataAnalytics #Dados #Nubank #Freela #Tecnologia"
+                        android:textColor="#00D2A0"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardBackgroundColor="#132237"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#1E324D"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Seção inferior de reações e comentários -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="👍❤️💡 560"
+                            android:textColor="#A0B0C0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="318 comentários • 435 compartilhamentos"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp" />
+                    </RelativeLayout>
+
+                    <!-- Linha divisória da seção de reações -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="#1E324D" />
+
+                    <!-- Botões de ação com ícones ajustados e com divisores -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Curtir"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/curtir"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <!-- Linha Divisória 1 -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Comentar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/comentar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <!-- Linha Divisória 2 -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Compartilhar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/compartilhar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- RODAPÉ DE NAVEGAÇÃO -->
+    <!-- Rodapé de navegações (menus inferiores) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"

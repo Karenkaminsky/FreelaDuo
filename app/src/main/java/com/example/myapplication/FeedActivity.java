@@ -22,14 +22,12 @@ public class FeedActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
 
-        // Garante que o ícone "Início" venha marcado ao abrir a tela
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.nav_home) {
-                // Ao clicar em Início, recarrega a FeedActivity limpando telas anteriores da pilha
                 Intent intent = new Intent(FeedActivity.this, FeedActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

@@ -10,6 +10,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Cores da Paleta FreelaDuo -->
+    <color name="freela_background">#050A1A</color>
     <color name="freela_dark_background">#050A1A</color>
     <color name="freela_card_background">#121E36</color>
     <color name="freela_purple_primary">#7B26F7</color>

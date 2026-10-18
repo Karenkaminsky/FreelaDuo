@@ -141,7 +141,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     // Encerra a sessão e redireciona para a tela de Login (MainActivity)
     private void logoutUser() {
-        SharedPreferences preferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
         preferences.edit().clear().apply();
 
         Intent intent = new Intent(ProfileActivity.this, MainActivity.class);

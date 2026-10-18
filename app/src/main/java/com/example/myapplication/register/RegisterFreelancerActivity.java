@@ -14,6 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import com.example.myapplication.ApiClient;
+import com.example.myapplication.RegisterRequestDto;
+import com.example.myapplication.register.MainActivity;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import com.example.freeladuo.util.FormattersAndValidators;
 import com.example.myapplication.R;
 
@@ -145,12 +154,14 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
 
     private void realizarCadastro() {
         String name = edtFreelancerName != null ? edtFreelancerName.getText().toString().trim() : "";
+        String email = edtEmail != null ? edtEmail.getText().toString().trim() : "";
         String cpf = edtCPF != null ? edtCPF.getText().toString().trim() : "";
         String password = edtPassword != null ? edtPassword.getText().toString().trim() : "";
         String confirmPassword = edtConfirmPassword != null ? edtConfirmPassword.getText().toString().trim() : "";
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(cpf) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Preencha os campos obrigatórios.", Toast.LENGTH_SHORT).show();
+        // Validação de campos vazios
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(cpf) || TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -165,6 +176,7 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
             return;
         }
 
+        // Validação de confirmação de senha
         if (!password.equals(confirmPassword)) {
             if (edtConfirmPassword != null) {
                 edtConfirmPassword.setError("As senhas não coincidem");
@@ -175,7 +187,41 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
-        finish();
+        // Desativa o botão temporariamente para evitar cliques duplos
+        btnRegister.setEnabled(false);
+
+        // Prepara o DTO para enviar ao backend
+        RegisterRequestDto registerRequest = new RegisterRequestDto(
+                name,
+                email,
+                password,
+                "Freelancer",
+                cpf.replaceAll("[^0-9]", "") // Envia o CPF limpo (apenas números)
+        );
+
+        // Chamada à API PHP
+        ApiClient.getApiService().cadastrarUsuario(registerRequest).enqueue(new retrofit2.Callback<okhttp3.ResponseBody>() {
+            @Override
+            public void onResponse(retrofit2.Call<okhttp3.ResponseBody> call, retrofit2.Response<okhttp3.ResponseBody> response) {
+                btnRegister.setEnabled(true);
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegisterFreelancerActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
+
+                    // Redireciona para a tela de Login (MainActivity)
+                    Intent intent = new Intent(RegisterFreelancerActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(RegisterFreelancerActivity.this, "Erro no cadastro. Verifique se o e-mail/CPF já existem.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<okhttp3.ResponseBody> call, Throwable t) {
+                btnRegister.setEnabled(true);
+                Toast.makeText(RegisterFreelancerActivity.this, "Falha de conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

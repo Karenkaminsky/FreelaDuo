@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,15 +54,6 @@ public class RegisterCompanyActivity extends AppCompatActivity {
         String password = edtCompanyPassword.getText().toString().trim();
 
         int selectedContractId = rgContractType.getCheckedRadioButtonId();
-        String contractType = "";
-
-        if (selectedContractId == R.id.rbProject) {
-            contractType = "Projeto";
-        } else if (selectedContractId == R.id.rbHourly) {
-            contractType = "Hora";
-        } else if (selectedContractId == R.id.rbBoth) {
-            contractType = "Ambos";
-        }
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(cnpj) ||
                 TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ||
@@ -70,10 +62,13 @@ public class RegisterCompanyActivity extends AppCompatActivity {
             Toast.makeText(this, "Por favor, preencha todos os campos e selecione o modelo de demanda.", Toast.LENGTH_SHORT).show();
             return;
         }
-        UsuarioDto novoUsuario = new UsuarioDto(email, password, cnpj, "EMPRESA");
-        ApiClient.getApiService().cadastrarUsuario(novoUsuario).enqueue(new Callback<Void>() {
+
+        // Passando os 5 argumentos na ordem correta: (nome, email, senha, documento/cnpj, tipoConta)
+        RegisterRequestDto novoUsuario = new RegisterRequestDto(name, email, password, cnpj, "Empresa");
+
+        ApiClient.getApiService().cadastrarUsuario(novoUsuario).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterCompanyActivity.this, "Empresa cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
                     finish();
@@ -83,7 +78,7 @@ public class RegisterCompanyActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(RegisterCompanyActivity.this, "Falha na conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

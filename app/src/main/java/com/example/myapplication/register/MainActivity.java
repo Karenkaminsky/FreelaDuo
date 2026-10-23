@@ -8,18 +8,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.ApiClient;
 import com.example.myapplication.FeedActivity;
-import com.example.myapplication.LoginRequestDto;
-import com.example.myapplication.LoginResponseDto;
 import com.example.myapplication.R;
 import com.example.myapplication.RegisterSelectionActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,10 +44,19 @@ public class MainActivity extends AppCompatActivity {
         MaterialCardView btnGithub = findViewById(R.id.btnGithub);
         MaterialCardView btnLinkedin = findViewById(R.id.btnLinkedin);
         TextView txtRegister = findViewById(R.id.txtRegister);
+        TextView txtForgotPassword = findViewById(R.id.txtForgotPassword);
 
         // 2. Ação do botão Entrar
         if (btnLogin != null) {
             btnLogin.setOnClickListener(v -> realizarLogin());
+        }
+
+        // Abrir o modal de recuperação de senha
+        if (txtForgotPassword != null) {
+            txtForgotPassword.setOnClickListener(v -> {
+                SenhaRecup recuperacao = new SenhaRecup(MainActivity.this);
+                recuperacao.mostrar();
+            });
         }
 
         // Ações dos botões de login social

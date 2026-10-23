@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollSenhaRecup"
@@ -16,114 +15,233 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- Botão fechar -->
+        <!-- FORMULÁRIO DE RECUPERAÇÃO -->
         <LinearLayout
+            android:id="@+id/layoutFormularioRecup"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="end|center_vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/btnFecharRecup"
-                android:layout_width="40dp"
+            <!-- Botão fechar -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:gravity="end|center_vertical">
+
+                <TextView
+                    android:id="@+id/btnFecharRecup"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="×"
+                    android:textSize="32sp"
+                    android:textColor="#8995B0"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="Fechar recuperação de senha"
+                    android:background="?attr/selectableItemBackgroundBorderless" />
+            </LinearLayout>
+
+            <!-- Ícone de e-mail -->
+            <TextView
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="×"
-                android:textSize="32sp"
-                android:textColor="#8995B0"
+                android:text="✉"
+                android:textSize="54sp"
+                android:textColor="#9B5CFF"
+                android:contentDescription="Recuperação de senha" />
+
+            <!-- Título -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Recuperar senha"
+                android:textColor="#F5F6FF"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <!-- Descrição -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="Informe seu e-mail para receber o link de redefinição da senha."
+                android:textColor="#9AA8C1"
+                android:textSize="16sp" />
+
+            <!-- Rótulo do e-mail -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="E-mail"
+                android:textColor="#E8EBF5"
+                android:textSize="15sp" />
+
+            <!-- Campo de e-mail -->
+            <EditText
+                android:id="@+id/edtEmailRecup"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:hint="seu@email.com"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionDone"
+                android:textColor="#F5F6FF"
+                android:textColorHint="#68748C"
+                android:textSize="16sp"
+                android:autofillHints="emailAddress" />
+
+            <!-- Botão enviar -->
+            <Button
+                android:id="@+id/btnEnviarRecup"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="28dp"
+                android:background="@android:color/transparent"
+                android:text="Enviar link de recuperação"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+            <!-- Voltar para login -->
+            <TextView
+                android:id="@+id/btnVoltarLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Voltar para login"
+                android:textColor="#9380FF"
+                android:textSize="16sp"
                 android:clickable="true"
-                android:focusable="true"
-                android:contentDescription="Fechar recuperação de senha"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:focusable="true" />
 
         </LinearLayout>
 
-        <!-- Ícone de recuperação -->
-        <TextView
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:text="✉"
-            android:textSize="54sp"
-            android:textColor="#9B5CFF"
-            android:contentDescription="Recuperação de senha" />
-
-        <!-- Título -->
-        <TextView
+        <!-- TELA DE SUCESSO: COMEÇA ESCONDIDA -->
+        <LinearLayout
+            android:id="@+id/layoutSucessoRecup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="Recuperar senha"
-            android:textColor="#F5F6FF"
-            android:textSize="27sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone">
 
-        <!-- Descrição -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:text="Informe seu e-mail para receber o link de redefinição da senha."
-            android:textColor="#9AA8C1"
-            android:textSize="16sp" />
+            <!-- Botão fechar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="end|center_vertical">
 
-        <!-- Rótulo do e-mail -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="E-mail"
-            android:textColor="#E8EBF5"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/btnFecharSucessoRecup"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="×"
+                    android:textSize="32sp"
+                    android:textColor="#8995B0"
+                    android:contentDescription="Fechar confirmação"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
 
-        <!-- Campo de e-mail -->
-        <EditText
-            android:id="@+id/edtEmailRecup"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
-            android:hint="seu@email.com"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:singleLine="true"
-            android:inputType="textEmailAddress"
-            android:imeOptions="actionDone"
-            android:textColor="#F5F6FF"
-            android:textColorHint="#68748C"
-            android:textSize="16sp"
-            android:autofillHints="emailAddress" />
+            <!-- Círculo verde animado -->
+            <FrameLayout
+                android:id="@+id/circuloSucessoRecup"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_circulo_sucesso"
+                android:gravity="center">
 
-        <!-- Botão de recuperação -->
-        <Button
-            android:id="@+id/btnEnviarRecup"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
-            android:background="@android:color/transparent"
-            android:text="Enviar link de recuperação"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/txtCheckSucesso"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="✓"
+                    android:textColor="#FFFFFF"
+                    android:textSize="62sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
 
-        <!-- Voltar para o login -->
-        <TextView
-            android:id="@+id/btnVoltarLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Voltar para login"
-            android:textColor="#9380FF"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:focusable="true" />
+            <!-- Título da confirmação -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Código enviado!"
+                android:textColor="#F5F6FF"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <!-- Mensagem -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="Um código de confirmação foi encaminhado para seu e-mail:"
+                android:textColor="#9AA8C1"
+                android:textSize="16sp" />
+
+            <!-- E-mail informado -->
+            <TextView
+                android:id="@+id/txtEmailConfirmacaoRecup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:padding="16dp"
+                android:gravity="center"
+                android:background="@drawable/bg_email_confirmacao"
+                android:text="seu@email.com"
+                android:textColor="#F5F6FF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:breakStrategy="simple" />
+
+            <!-- Orientação -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="Verifique sua caixa de entrada e também o spam, caso não encontre."
+                android:textColor="#9AA8C1"
+                android:textSize="15sp" />
+
+            <!-- Botão entendido -->
+            <Button
+                android:id="@+id/btnEntendiRecup"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@android:color/transparent"
+                android:text="Entendi"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
 </ScrollView>

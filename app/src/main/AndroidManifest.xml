@@ -58,6 +58,10 @@
             android:name=".Comunidade"
             android:exported="false" />
 
+        <activity
+            android:name=".Publicar"
+            android:exported="false" />
+
     </application>
 
 </manifest>

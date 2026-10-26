@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,17 +64,16 @@ public class FeedActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
 
-                } else if (itemId == R.id.nav_post) {
+                }else if (itemId == R.id.nav_post) {
+                    Intent intent = new Intent(
+                        FeedActivity.this,
+                        Publicar.class
+                );
+                startActivity(intent);
+                return true;
 
-                    Toast.makeText(
-                            this,
-                            "Publicar em breve",
-                            Toast.LENGTH_SHORT
-                    ).show();
 
-                    return true;
-
-                } else if (itemId == R.id.nav_jobs) {
+            } else if (itemId == R.id.nav_jobs) {
 
                     Toast.makeText(
                             this,

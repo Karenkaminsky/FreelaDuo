@@ -58,8 +58,14 @@
             android:name=".Comunidade"
             android:exported="false" />
 
+        <!-- Publicar -->
         <activity
             android:name=".Publicar"
+            android:exported="false" />
+
+        <!-- Tela de Vagas Freelance -->
+        <activity
+            android:name=".Vagas"
             android:exported="false" />
 
     </application>

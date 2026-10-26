@@ -73,15 +73,14 @@ public class FeedActivity extends AppCompatActivity {
                 return true;
 
 
-            } else if (itemId == R.id.nav_jobs) {
-
-                    Toast.makeText(
-                            this,
-                            "Vagas em breve",
-                            Toast.LENGTH_SHORT
-                    ).show();
-
+                } else if (itemId == R.id.nav_jobs) {
+                    Intent intent = new Intent(
+                            FeedActivity.this,
+                            Vagas.class
+                    );
+                    startActivity(intent);
                     return true;
+
 
                 } else if (itemId == R.id.nav_profile) {
 

@@ -1,3 +1,4 @@
+
 package com.example.myapplication.register;
 
 import android.content.Intent;
@@ -6,6 +7,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.FeedActivity;
@@ -22,8 +24,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 1. Verificação de sessão (Saber se o usuário já está logado)
-        SharedPreferences preferences = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
+        // Verificação de sessão
+        SharedPreferences preferences = getSharedPreferences(
+                "FreelaDuoPrefs", MODE_PRIVATE
+        );
+
         boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
         String tipoContaSalva = preferences.getString("tipo_conta", "");
 
@@ -34,102 +39,142 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        // Mapeamento dos campos de entrada
+        // Mapeamento dos campos
         editEmail = findViewById(R.id.editEmail);
         editSenha = findViewById(R.id.editPassword);
 
-        // Mapeamento dos botões da interface
+        // Mapeamento dos botões
         MaterialButton btnLogin = findViewById(R.id.btnLogin);
         MaterialCardView btnGoogle = findViewById(R.id.btnGoogle);
         MaterialCardView btnGithub = findViewById(R.id.btnGithub);
         MaterialCardView btnLinkedin = findViewById(R.id.btnLinkedin);
+
         TextView txtRegister = findViewById(R.id.txtRegister);
         TextView txtForgotPassword = findViewById(R.id.txtForgotPassword);
 
-        // 2. Ação do botão Entrar
+        // Ação do botão Entrar
         if (btnLogin != null) {
             btnLogin.setOnClickListener(v -> realizarLogin());
+        }
+
+        // Login com Google
+        if (btnGoogle != null) {
+            btnGoogle.setOnClickListener(v ->
+                    Toast.makeText(this,
+                            "Redirecionando para login com Google...",
+                            Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        // Login com GitHub
+        if (btnGithub != null) {
+            btnGithub.setOnClickListener(v ->
+                    Toast.makeText(this,
+                            "Redirecionando para login com GitHub...",
+                            Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        // Login com LinkedIn
+        if (btnLinkedin != null) {
+            btnLinkedin.setOnClickListener(v ->
+                    Toast.makeText(this,
+                            "Redirecionando para login com LinkedIn...",
+                            Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        // Redirecionamento para cadastro
+        if (txtRegister != null) {
+            txtRegister.setOnClickListener(v -> {
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        RegisterSelectionActivity.class
+                );
+                startActivity(intent);
+            });
         }
 
         // Abrir o modal de recuperação de senha
         if (txtForgotPassword != null) {
             txtForgotPassword.setOnClickListener(v -> {
-                SenhaRecup recuperacao = new SenhaRecup(MainActivity.this);
-                recuperacao.mostrar();
-            });
-        }
-
-        // Ações dos botões de login social
-        if (btnGoogle != null) {
-            btnGoogle.setOnClickListener(v ->
-                    Toast.makeText(this, "Redirecionando para login com Google...", Toast.LENGTH_SHORT).show()
-            );
-        }
-
-        if (btnGithub != null) {
-            btnGithub.setOnClickListener(v ->
-                    Toast.makeText(this, "Redirecionando para login com GitHub...", Toast.LENGTH_SHORT).show()
-            );
-        }
-
-        if (btnLinkedin != null) {
-            btnLinkedin.setOnClickListener(v ->
-                    Toast.makeText(this, "Redirecionando para login com LinkedIn...", Toast.LENGTH_SHORT).show()
-            );
-        }
-
-        // Redirecionamento para a tela de cadastro
-        if (txtRegister != null) {
-            txtRegister.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, RegisterSelectionActivity.class);
-                startActivity(intent);
+                new SenhaRecup(MainActivity.this).mostrar();
             });
         }
     }
 
     private void realizarLogin() {
-        String email = editEmail != null ? editEmail.getText().toString().trim() : "";
-        String senha = editSenha != null ? editSenha.getText().toString().trim() : "";
+
+        String email = editEmail != null
+                ? editEmail.getText().toString().trim()
+                : "";
+
+        String senha = editSenha != null
+                ? editSenha.getText().toString().trim()
+                : "";
 
         if (email.isEmpty() || senha.isEmpty()) {
-            Toast.makeText(this, "Preencha e-mail e senha!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                    this,
+                    "Preencha e-mail e senha!",
+                    Toast.LENGTH_SHORT
+            ).show();
             return;
         }
 
-        // =========================================================================
-        // AJUSTE TEMPORÁRIO PARA A APRESENTAÇÃO DE HOJE:
-        // Forçamos o sucesso visual para garantir que a banca veja a tela do Feed.
-        // =========================================================================
-        SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
+        // AJUSTE TEMPORÁRIO PARA A APRESENTAÇÃO
+        SharedPreferences pref = getSharedPreferences(
+                "FreelaDuoPrefs", MODE_PRIVATE
+        );
+
         pref.edit()
                 .putBoolean("isLoggedIn", true)
                 .putInt("user_id", 1)
                 .putString("tipo_conta", "Freelancer")
                 .apply();
 
-        Toast.makeText(MainActivity.this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(
+                MainActivity.this,
+                "Login realizado com sucesso!",
+                Toast.LENGTH_SHORT
+        ).show();
+
         redirecionarPorPerfil("Freelancer");
 
         /*
-        // Código original comentado para restaurar após a apresentação se desejar:
+        Código original de autenticação pela API,
+        mantido comentado conforme a versão anterior.
+
         LoginRequestDto loginRequest = new LoginRequestDto(email, senha);
 
-        ApiClient.getApiService().realizarLogin(loginRequest).enqueue(new Callback<LoginResponseDto>() {
+        ApiClient.getApiService().realizarLogin(loginRequest)
+                .enqueue(new Callback<LoginResponseDto>() {
+
             @Override
-            public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
-                // ... lógica original da API ...
+            public void onResponse(
+                    Call<LoginResponseDto> call,
+                    Response<LoginResponseDto> response
+            ) {
+                // Lógica original da API
             }
 
             @Override
-            public void onFailure(Call<LoginResponseDto> call, Throwable t) {
-                // ... lógica original de falha ...
+            public void onFailure(
+                    Call<LoginResponseDto> call,
+                    Throwable t
+            ) {
+                // Lógica original de falha
             }
         });
         */
     }
 
     private void redirecionarPorPerfil(String tipoConta) {
-        Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+        Intent intent = new Intent(
+                MainActivity.this,
+                FeedActivity.class
+        );
+
         startActivity(intent);
         finish();
     }

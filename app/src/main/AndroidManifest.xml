@@ -26,14 +26,29 @@
 
         </activity>
 
-        <!-- FeedActivity -->
+        <!-- Feed -->
         <activity
             android:name=".FeedActivity"
             android:exported="false" />
 
-        <!-- ProfileActivity (Tela de Perfil) -->
+        <!-- Perfil -->
         <activity
             android:name=".ProfileActivity"
+            android:exported="false" />
+
+        <!-- Comunidade -->
+        <activity
+            android:name=".Comunidade"
+            android:exported="false" />
+
+        <!-- Publicar -->
+        <activity
+            android:name=".Publicar"
+            android:exported="false" />
+
+        <!-- Vagas -->
+        <activity
+            android:name=".Vagas"
             android:exported="false" />
 
         <!-- Telas de Cadastro e Seleção -->

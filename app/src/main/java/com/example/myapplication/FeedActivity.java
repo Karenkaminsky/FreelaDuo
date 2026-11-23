@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,31 +29,20 @@ public class FeedActivity extends AppCompatActivity {
 
         if (bottomNav != null) {
 
-            // Garante que o ícone "Início" venha marcado ao abrir a tela
+            // Marca o ícone Início ao abrir a tela
             bottomNav.setSelectedItemId(R.id.nav_home);
 
             bottomNav.setOnItemSelectedListener(item -> {
 
                 int itemId = item.getItemId();
 
+                // Início
                 if (itemId == R.id.nav_home) {
-
-                    Intent intent = new Intent(
-                            FeedActivity.this,
-                            FeedActivity.class
-                    );
-
-                    intent.addFlags(
-                            Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                    | Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    );
-
-                    startActivity(intent);
                     return true;
 
+                    // Comunidade
                 } else if (itemId == R.id.nav_network) {
 
-                    // Abre a nova tela Comunidade
                     Intent intent = new Intent(
                             FeedActivity.this,
                             Comunidade.class
@@ -64,27 +51,31 @@ public class FeedActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
 
-                }else if (itemId == R.id.nav_post) {
+                    // Publicar
+                } else if (itemId == R.id.nav_post) {
+
                     Intent intent = new Intent(
-                        FeedActivity.this,
-                        Publicar.class
-                );
-                startActivity(intent);
-                return true;
+                            FeedActivity.this,
+                            Publicar.class
+                    );
 
+                    startActivity(intent);
+                    return true;
 
+                    // Vagas
                 } else if (itemId == R.id.nav_jobs) {
+
                     Intent intent = new Intent(
                             FeedActivity.this,
                             Vagas.class
                     );
+
                     startActivity(intent);
                     return true;
 
-
+                    // Perfil
                 } else if (itemId == R.id.nav_profile) {
 
-                    // Redireciona para a tela de Perfil
                     Intent intent = new Intent(
                             FeedActivity.this,
                             ProfileActivity.class

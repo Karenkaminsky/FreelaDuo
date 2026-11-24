@@ -7,6 +7,14 @@
     android:orientation="vertical"
     android:background="#0F172A">
 
+
+    <!-- CABEÇALHO COMPARTILHADO -->
+    <include
+        layout="@layout/view_header_freeladuo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
     <!-- CONTEÚDO ROLÁVEL -->
     <ScrollView
         android:layout_width="match_parent"

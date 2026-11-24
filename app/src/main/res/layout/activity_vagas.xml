@@ -14,7 +14,14 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-    <!-- Cabeçalho -->
+        <!-- CABEÇALHO 2 -->
+        <include
+            layout="@layout/view_header_freeladuo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <!-- Cabeçalho 1-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

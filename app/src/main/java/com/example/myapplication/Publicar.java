@@ -34,6 +34,9 @@ public class Publicar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicar);
 
+        // Configuração do menu inferior
+        BottomNavigationHelper.configurar(this, R.id.nav_post);
+
         edtTexto = findViewById(R.id.edtTexto);
         edtLink = findViewById(R.id.edtLink);
         txtAnexos = findViewById(R.id.txtAnexos);

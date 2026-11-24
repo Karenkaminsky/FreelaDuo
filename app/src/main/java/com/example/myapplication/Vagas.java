@@ -69,6 +69,9 @@ public class Vagas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vagas);
 
+        // Configuração do menu inferior
+        BottomNavigationHelper.configurar(this, R.id.nav_jobs);
+
         edtPesquisarVaga = findViewById(R.id.edtPesquisarVaga);
         scrollFiltros = findViewById(R.id.scrollFiltrosVagas);
         containerFiltros = findViewById(R.id.containerFiltrosVagas);

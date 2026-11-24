@@ -7,7 +7,7 @@
     <item
         android:id="@+id/nav_network"
         android:icon="@android:drawable/ic_menu_share"
-        android:title="Minha rede" />
+        android:title="Comunidade" />
     <item
         android:id="@+id/nav_post"
         android:icon="@android:drawable/ic_input_add"

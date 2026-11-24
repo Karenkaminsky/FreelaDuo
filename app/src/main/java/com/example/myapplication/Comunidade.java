@@ -39,6 +39,9 @@ public class Comunidade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comunidade);
 
+        // Configuração do menu inferior
+        BottomNavigationHelper.configurar(this, R.id.nav_network);
+
         areaConteudo = findViewById(R.id.areaConteudo);
         btnFeed = findViewById(R.id.btnFeed);
         btnProjetos = findViewById(R.id.btnProjetos);

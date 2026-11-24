@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.example.myapplication.FeedActivity;
 import com.example.myapplication.R;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Mapeamento dos botões
         MaterialButton btnLogin = findViewById(R.id.btnLogin);
+
         MaterialCardView btnGoogle = findViewById(R.id.btnGoogle);
         MaterialCardView btnGithub = findViewById(R.id.btnGithub);
         MaterialCardView btnLinkedin = findViewById(R.id.btnLinkedin);
@@ -60,27 +62,33 @@ public class MainActivity extends AppCompatActivity {
         // Login com Google
         if (btnGoogle != null) {
             btnGoogle.setOnClickListener(v ->
-                    Toast.makeText(this,
+                    Toast.makeText(
+                            this,
                             "Redirecionando para login com Google...",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT
+                    ).show()
             );
         }
 
         // Login com GitHub
         if (btnGithub != null) {
             btnGithub.setOnClickListener(v ->
-                    Toast.makeText(this,
+                    Toast.makeText(
+                            this,
                             "Redirecionando para login com GitHub...",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT
+                    ).show()
             );
         }
 
         // Login com LinkedIn
         if (btnLinkedin != null) {
             btnLinkedin.setOnClickListener(v ->
-                    Toast.makeText(this,
+                    Toast.makeText(
+                            this,
                             "Redirecionando para login com LinkedIn...",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT
+                    ).show()
             );
         }
 
@@ -91,11 +99,12 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this,
                         RegisterSelectionActivity.class
                 );
+
                 startActivity(intent);
             });
         }
 
-        // Abrir o modal de recuperação de senha
+        // Recuperação de senha
         if (txtForgotPassword != null) {
             txtForgotPassword.setOnClickListener(v -> {
                 new SenhaRecup(MainActivity.this).mostrar();
@@ -113,12 +122,14 @@ public class MainActivity extends AppCompatActivity {
                 ? editSenha.getText().toString().trim()
                 : "";
 
-        if (email.isEmpty() || senha.isEmpty()) {
+        // Validação dos campos
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
             Toast.makeText(
                     this,
                     "Preencha e-mail e senha!",
                     Toast.LENGTH_SHORT
             ).show();
+
             return;
         }
 
@@ -140,36 +151,11 @@ public class MainActivity extends AppCompatActivity {
         ).show();
 
         redirecionarPorPerfil("Freelancer");
-
-        /*
-        Código original de autenticação pela API,
-        mantido comentado conforme a versão anterior.
-
-        LoginRequestDto loginRequest = new LoginRequestDto(email, senha);
-
-        ApiClient.getApiService().realizarLogin(loginRequest)
-                .enqueue(new Callback<LoginResponseDto>() {
-
-            @Override
-            public void onResponse(
-                    Call<LoginResponseDto> call,
-                    Response<LoginResponseDto> response
-            ) {
-                // Lógica original da API
-            }
-
-            @Override
-            public void onFailure(
-                    Call<LoginResponseDto> call,
-                    Throwable t
-            ) {
-                // Lógica original de falha
-            }
-        });
-        */
     }
 
+    // Redirecionamento conforme o perfil
     private void redirecionarPorPerfil(String tipoConta) {
+
         Intent intent = new Intent(
                 MainActivity.this,
                 FeedActivity.class

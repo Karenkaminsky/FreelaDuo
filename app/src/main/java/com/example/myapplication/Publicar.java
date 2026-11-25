@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -41,19 +44,19 @@ public class Publicar extends AppCompatActivity {
         edtLink = findViewById(R.id.edtLink);
         txtAnexos = findViewById(R.id.txtAnexos);
 
-        Button btnGaleria = findViewById(R.id.btnGaleria);
-        Button btnArquivos = findViewById(R.id.btnArquivos);
-        Button btnDrive = findViewById(R.id.btnDrive);
-        Button btnLink = findViewById(R.id.btnLink);
-        Button btnPublicar = findViewById(R.id.btnPublicar);
-        Button btnVoltar = findViewById(R.id.btnVoltar);
+        ImageButton btnGaleria = findViewById(R.id.btnGaleria);
+        ImageButton btnArquivos = findViewById(R.id.btnArquivos);
+        ImageButton btnDrive = findViewById(R.id.btnDrive);
+        ImageButton btnLink = findViewById(R.id.btnLink);
+
+        FloatingActionButton btnPublicar =
+                findViewById(R.id.btnPublicar);
 
         btnGaleria.setOnClickListener(v -> abrirGaleria());
         btnArquivos.setOnClickListener(v -> abrirArquivos());
         btnDrive.setOnClickListener(v -> abrirDrive());
         btnLink.setOnClickListener(v -> edtLink.requestFocus());
         btnPublicar.setOnClickListener(v -> validarPublicacao());
-        btnVoltar.setOnClickListener(v -> finish());
     }
 
     private void abrirGaleria() {
@@ -110,6 +113,7 @@ public class Publicar extends AppCompatActivity {
             for (int i = 0; i < quantidade; i++) {
                 adicionarAnexo(data.getClipData().getItemAt(i).getUri());
             }
+
         } else if (data.getData() != null) {
             adicionarAnexo(data.getData());
         }
@@ -177,6 +181,7 @@ public class Publicar extends AppCompatActivity {
                     "Escreva algo ou adicione um anexo ou link.",
                     Toast.LENGTH_SHORT
             ).show();
+
             return;
         }
 
@@ -187,6 +192,7 @@ public class Publicar extends AppCompatActivity {
                     "Informe um link começando com http:// ou https://.",
                     Toast.LENGTH_SHORT
             ).show();
+
             return;
         }
 

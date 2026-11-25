@@ -27,21 +27,25 @@ public class ProfileActivity extends AppCompatActivity {
     private ShapeableImageView imgProfile;
     private FloatingActionButton btnChangePhoto;
     private TextInputEditText edtName, edtTitle, edtBio;
-    private MaterialButton btnSaveProfile, btnLogout;
+
+    private MaterialButton btnSaveProfile, btnLogout, btnViewPlans;
     private Button btnDeleteAccount;
     private ImageButton btnBack;
 
     private Uri selectedImageUri;
-    private boolean isDataChanged = false; // Controle de edições pendentes
+    private boolean isDataChanged = false;
 
-    // Lançador para abrir a galeria de imagens
+    // Lançador para abrir a galeria
     private final ActivityResultLauncher<String> galleryLauncher =
             registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
                 if (uri != null) {
                     selectedImageUri = uri;
                     imgProfile.setImageURI(uri);
                     isDataChanged = true;
-                    Toast.makeText(this, "Foto atualizada! Lembre-se de salvar as alterações.", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(this,
+                            "Foto atualizada! Lembre-se de salvar as alterações.",
+                            Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -52,21 +56,26 @@ public class ProfileActivity extends AppCompatActivity {
 
         BottomNavigationHelper.configurar(this, R.id.nav_profile);
 
-        // Mapeando componentes da interface
+        // Mapeando componentes
         imgProfile = findViewById(R.id.imgProfile);
         btnChangePhoto = findViewById(R.id.btnChangePhoto);
+
         edtName = findViewById(R.id.edtName);
         edtTitle = findViewById(R.id.edtTitle);
         edtBio = findViewById(R.id.edtBio);
+
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
         btnLogout = findViewById(R.id.btnLogout);
         btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
         btnBack = findViewById(R.id.btnBack);
 
-        // Carregar dados iniciais do usuário
+        // Botão para visualizar os planos
+        btnViewPlans = findViewById(R.id.btnViewPlans);
+
+        // Carregar dados iniciais
         loadUserProfile();
 
-        // Monitorar edições nos campos
+        // Monitorar edições
         setupChangeListeners();
 
         // Eventos de clique
@@ -75,10 +84,16 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> confirmLogout());
         btnDeleteAccount.setOnClickListener(v -> confirmAccountDeletion());
 
-        // Botão de voltar do cabeçalho
+        // Abrir tela de planos
+        btnViewPlans.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, PlanosActivity.class);
+            startActivity(intent);
+        });
+
+        // Botão voltar do cabeçalho
         btnBack.setOnClickListener(v -> finish());
 
-        // Tratamento do botão nativo de voltar do celular
+        // Botão nativo de voltar
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -87,15 +102,16 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    // Carregar dados de perfil (Simulação/Backend)
+    // Carregar dados do perfil
     private void loadUserProfile() {
         edtName.setText("Karen Kaminsky");
         edtTitle.setText("Estagiária de TI | Estudante de Informática");
         edtBio.setText("Entusiasta de desenvolvimento mobile e suporte técnico.");
-        isDataChanged = false; // Reseta o status de alteração ao carregar
+
+        isDataChanged = false;
     }
 
-    // Monitora alterações de texto para saber se há dados pendentes de salvamento
+    // Monitorar alterações nos campos
     private void setupChangeListeners() {
         TextWatcher watcher = new TextWatcher() {
             @Override
@@ -126,12 +142,15 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
-        // Aqui é realizada a integração POST/PUT com a API em PHP
+        // Integração POST/PUT com a API em PHP futuramente
         isDataChanged = false;
-        Toast.makeText(this, "Perfil atualizado com sucesso!", Toast.LENGTH_LONG).show();
+
+        Toast.makeText(this,
+                "Perfil atualizado com sucesso!",
+                Toast.LENGTH_LONG).show();
     }
 
-    // Diálogo de confirmação para sair da conta
+    // Confirmação para sair da conta
     private void confirmLogout() {
         new AlertDialog.Builder(this)
                 .setTitle("Sair da Conta")
@@ -141,24 +160,31 @@ public class ProfileActivity extends AppCompatActivity {
                 .show();
     }
 
-    // Encerra a sessão e redireciona para a tela de Login (MainActivity)
+    // Encerrar sessão
     private void logoutUser() {
-        SharedPreferences preferences = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(
+                "FreelaDuoPrefs", MODE_PRIVATE);
+
         preferences.edit().clear().apply();
 
         Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         startActivity(intent);
         finish();
     }
 
-    // Diálogo de confirmação para exclusão de conta
+    // Confirmação para excluir conta
     private void confirmAccountDeletion() {
         new AlertDialog.Builder(this)
                 .setTitle("Excluir Conta")
                 .setMessage("Tem certeza de que deseja excluir sua conta? Esta ação não poderá ser desfeita.")
                 .setPositiveButton("Sim, excluir", (dialog, which) -> {
-                    Toast.makeText(ProfileActivity.this, "Conta excluída com sucesso.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProfileActivity.this,
+                            "Conta excluída com sucesso.",
+                            Toast.LENGTH_LONG).show();
+
                     logoutUser();
                 })
                 .setNegativeButton("Cancelar", null)

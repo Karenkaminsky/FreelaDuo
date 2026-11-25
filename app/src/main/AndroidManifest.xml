@@ -26,27 +26,27 @@
 
         </activity>
 
-        <!-- Feed -->
+        <!-- Telas principais -->
         <activity
             android:name=".FeedActivity"
             android:exported="false" />
 
-        <!-- Perfil -->
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
 
-        <!-- Comunidade -->
+        <activity
+            android:name=".PlanosActivity"
+            android:exported="false" />
+
         <activity
             android:name=".Comunidade"
             android:exported="false" />
 
-        <!-- Publicar -->
         <activity
             android:name=".Publicar"
             android:exported="false" />
 
-        <!-- Vagas -->
         <activity
             android:name=".Vagas"
             android:exported="false" />
@@ -66,21 +66,6 @@
 
         <activity
             android:name=".register.RegisterActivity"
-            android:exported="false" />
-
-        <!-- Comunidade -->
-        <activity
-            android:name=".Comunidade"
-            android:exported="false" />
-
-        <!-- Publicar -->
-        <activity
-            android:name=".Publicar"
-            android:exported="false" />
-
-        <!-- Tela de Vagas Freelance -->
-        <activity
-            android:name=".Vagas"
             android:exported="false" />
 
     </application>

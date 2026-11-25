@@ -1,4 +1,3 @@
-
 package com.example.myapplication;
 
 import android.app.AlertDialog;
@@ -14,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,6 +35,7 @@ public class Vagas extends AppCompatActivity {
     private final ArrayList<Vaga> vagas = new ArrayList<>();
 
     private static class Vaga {
+
         String cargo;
         String empresa;
         String categoria;
@@ -46,11 +47,25 @@ public class Vagas extends AppCompatActivity {
         String horario;
         String remuneracao;
 
-        Vaga(String cargo, String empresa, String categoria,
-             String nivel, String modalidade, String tipo,
-             String descricao, String periodo, String horario,
-             String remuneracao) {
+        int logoEmpresa;
+        int fotoCompartilhador;
+        String compartilhadaPor;
 
+        Vaga(
+                String cargo,
+                String empresa,
+                String categoria,
+                String nivel,
+                String modalidade,
+                String tipo,
+                String descricao,
+                String periodo,
+                String horario,
+                String remuneracao,
+                int logoEmpresa,
+                int fotoCompartilhador,
+                String compartilhadaPor
+        ) {
             this.cargo = cargo;
             this.empresa = empresa;
             this.categoria = categoria;
@@ -61,6 +76,9 @@ public class Vagas extends AppCompatActivity {
             this.periodo = periodo;
             this.horario = horario;
             this.remuneracao = remuneracao;
+            this.logoEmpresa = logoEmpresa;
+            this.fotoCompartilhador = fotoCompartilhador;
+            this.compartilhadaPor = compartilhadaPor;
         }
     }
 
@@ -71,6 +89,13 @@ public class Vagas extends AppCompatActivity {
 
         // Configuração do menu inferior
         BottomNavigationHelper.configurar(this, R.id.nav_jobs);
+
+        // Identificação da tela no cabeçalho
+        TextView identificacaoTela = findViewById(R.id.txtIdentificacaoTela);
+
+        if (identificacaoTela != null) {
+            identificacaoTela.setText("✦ VAGAS");
+        }
 
         edtPesquisarVaga = findViewById(R.id.edtPesquisarVaga);
         scrollFiltros = findViewById(R.id.scrollFiltrosVagas);
@@ -94,6 +119,7 @@ public class Vagas extends AppCompatActivity {
         });
     }
 
+    // Carrega as oportunidades demonstrativas
     private void carregarVagasExemplo() {
 
         vagas.add(new Vaga(
@@ -106,7 +132,42 @@ public class Vagas extends AppCompatActivity {
                 "Desenvolver funcionalidades para uma plataforma web, trabalhar com APIs e colaborar com a equipe de produto.",
                 "01/12/2026 a 15/12/2026",
                 "Segunda a sexta - 4 horas por dia",
-                "R$ 80,00 por hora"
+                "R$ 80,00 por hora",
+                R.drawable.logo_totvs,
+                R.drawable.carol,
+                "Carol"
+        ));
+
+        vagas.add(new Vaga(
+                "Desenvolvedor Front-end",
+                "Nubank",
+                "Desenvolvimento",
+                "Júnior",
+                "Remoto",
+                "Freelance",
+                "Desenvolver interfaces modernas e responsivas utilizando HTML, CSS, JavaScript e React.",
+                "05/12/2026 a 20/12/2026",
+                "Segunda a sexta - 6 horas por dia",
+                "R$ 70,00 por hora",
+                R.drawable.logo_nubank,
+                R.drawable.joao,
+                "João"
+        ));
+
+        vagas.add(new Vaga(
+                "Desenvolvedor Back-end",
+                "Itaú",
+                "Desenvolvimento",
+                "Pleno",
+                "Híbrido",
+                "Freelance",
+                "Desenvolver e manter APIs utilizando Java e Spring Boot, além de trabalhar com bancos de dados SQL.",
+                "02/12/2026 a 18/12/2026",
+                "Segunda a sexta - 5 horas por dia",
+                "R$ 85,00 por hora",
+                R.drawable.logo_itau,
+                R.drawable.lucas,
+                "Lucas"
         ));
 
         vagas.add(new Vaga(
@@ -119,20 +180,10 @@ public class Vagas extends AppCompatActivity {
                 "Criar e melhorar telas de aplicativos Android utilizando Java e integração com APIs.",
                 "05/12/2026 a 20/12/2026",
                 "Segunda a sexta - 6 horas por dia",
-                "R$ 55,00 por hora"
-        ));
-
-        vagas.add(new Vaga(
-                "Designer UI/UX",
-                "Creative Studio",
-                "Design",
-                "Pleno",
-                "Remoto",
-                "Freelance",
-                "Desenvolver protótipos, interfaces e experiências digitais para aplicações web e mobile.",
-                "02/12/2026 a 18/12/2026",
-                "Horário flexível",
-                "R$ 65,00 por hora"
+                "R$ 55,00 por hora",
+                0,
+                R.drawable.miguel,
+                "Miguel"
         ));
 
         vagas.add(new Vaga(
@@ -145,33 +196,26 @@ public class Vagas extends AppCompatActivity {
                 "Executar testes manuais, registrar erros e auxiliar na validação de sistemas.",
                 "03/12/2026 a 17/12/2026",
                 "Segunda a sexta - 4 horas por dia",
-                "R$ 45,00 por hora"
+                "R$ 45,00 por hora",
+                0,
+                R.drawable.allan,
+                "Allan"
         ));
 
         vagas.add(new Vaga(
-                "Analista de Cibersegurança",
-                "SecureNet",
-                "Cibersegurança",
-                "Sênior",
+                "Designer UI/UX",
+                "Creative Studio",
+                "Design",
+                "Pleno",
                 "Remoto",
                 "Freelance",
-                "Analisar vulnerabilidades, revisar configurações de segurança e elaborar recomendações técnicas.",
-                "08/12/2026 a 22/12/2026",
-                "Horário flexível",
-                "R$ 110,00 por hora"
-        ));
-
-        vagas.add(new Vaga(
-                "Desenvolvedor Front-end",
-                "WebLab",
-                "Desenvolvimento",
-                "Pleno",
-                "Presencial",
-                "Freelance",
-                "Construir interfaces responsivas utilizando HTML, CSS e JavaScript.",
+                "Desenvolver protótipos, interfaces e experiências digitais para aplicações web e mobile.",
                 "10/12/2026 a 30/12/2026",
-                "Segunda a sexta - 5 horas por dia",
-                "R$ 70,00 por hora"
+                "Horário flexível",
+                "R$ 65,00 por hora",
+                0,
+                R.drawable.pedro,
+                "Pedro"
         ));
     }
 
@@ -274,7 +318,7 @@ public class Vagas extends AppCompatActivity {
         filtro.setBackground(fundo);
     }
 
-    // Atualiza a lista de oportunidades conforme a pesquisa e o filtro selecionado.
+    // Atualiza a lista conforme a pesquisa e o filtro selecionado.
     private void atualizarListaVagas() {
 
         listaVagas.removeAllViews();
@@ -308,6 +352,7 @@ public class Vagas extends AppCompatActivity {
         }
 
         if (quantidadeEncontrada == 0) {
+
             TextView vazio = criarTexto(
                     "Nenhuma oportunidade encontrada.",
                     15,
@@ -321,7 +366,7 @@ public class Vagas extends AppCompatActivity {
         }
     }
 
-    // Cria dinamicamente o cartão visual de cada oportunidade na lista de vagas.
+    // Cria o cartão visual de cada oportunidade.
     private void criarCartaoVaga(Vaga vaga) {
 
         LinearLayout cartao = new LinearLayout(this);
@@ -343,19 +388,44 @@ public class Vagas extends AppCompatActivity {
         cabecalho.setOrientation(LinearLayout.HORIZONTAL);
         cabecalho.setGravity(Gravity.CENTER_VERTICAL);
 
-        TextView inicial = new TextView(this);
-        inicial.setText(vaga.empresa.substring(0, 1).toUpperCase());
-        inicial.setTextColor(Color.WHITE);
-        inicial.setTextSize(20);
-        inicial.setTypeface(null, Typeface.BOLD);
-        inicial.setGravity(Gravity.CENTER);
-        inicial.setBackgroundResource(R.drawable.bg_logo_vaga);
+        // Logo da empresa ou inicial do nome
+        if (vaga.logoEmpresa != 0) {
 
-        LinearLayout.LayoutParams tamanhoInicial =
-                new LinearLayout.LayoutParams(dp(54), dp(54));
+            ImageView logo = new ImageView(this);
 
-        inicial.setLayoutParams(tamanhoInicial);
+            logo.setImageResource(vaga.logoEmpresa);
+            logo.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            logo.setPadding(dp(5), dp(5), dp(5), dp(5));
+            logo.setBackgroundResource(R.drawable.bg_logo_vaga);
+            logo.setClipToOutline(true);
 
+            LinearLayout.LayoutParams tamanhoLogo =
+                    new LinearLayout.LayoutParams(dp(54), dp(54));
+
+            logo.setLayoutParams(tamanhoLogo);
+
+            cabecalho.addView(logo);
+
+        } else {
+
+            TextView inicial = new TextView(this);
+
+            inicial.setText(vaga.empresa.substring(0, 1).toUpperCase());
+            inicial.setTextColor(Color.WHITE);
+            inicial.setTextSize(20);
+            inicial.setTypeface(null, Typeface.BOLD);
+            inicial.setGravity(Gravity.CENTER);
+            inicial.setBackgroundResource(R.drawable.bg_logo_vaga);
+
+            LinearLayout.LayoutParams tamanhoInicial =
+                    new LinearLayout.LayoutParams(dp(54), dp(54));
+
+            inicial.setLayoutParams(tamanhoInicial);
+
+            cabecalho.addView(inicial);
+        }
+
+        // Informações da oportunidade
         LinearLayout informacoes = new LinearLayout(this);
         informacoes.setOrientation(LinearLayout.VERTICAL);
 
@@ -381,7 +451,6 @@ public class Vagas extends AppCompatActivity {
                 vaga.tipo, 12, Color.rgb(167, 176, 192)
         ));
 
-        cabecalho.addView(inicial);
         cabecalho.addView(informacoes);
 
         cartao.addView(cabecalho);
@@ -407,11 +476,14 @@ public class Vagas extends AppCompatActivity {
 
         cartao.addView(descricao);
 
+        // Período
         cartao.addView(criarTexto(
                 "Período: " + vaga.periodo,
-                13, Color.WHITE
+                13,
+                Color.WHITE
         ));
 
+        // Horário
         TextView horario = criarTexto(
                 vaga.horario, 12, Color.rgb(167, 176, 192)
         );
@@ -419,15 +491,67 @@ public class Vagas extends AppCompatActivity {
         horario.setPadding(0, dp(5), 0, dp(10));
         cartao.addView(horario);
 
+        // Remuneração
         cartao.addView(criarTexto(
                 vaga.remuneracao, 19, Color.WHITE, true
         ));
 
+        // Pessoa que compartilhou a oportunidade
+        LinearLayout compartilhamento = new LinearLayout(this);
+        compartilhamento.setOrientation(LinearLayout.HORIZONTAL);
+        compartilhamento.setGravity(Gravity.CENTER_VERTICAL);
+
+        compartilhamento.setPadding(0, dp(14), 0, dp(2));
+
+        // Foto do colega
+        ImageView foto = new ImageView(this);
+
+        foto.setImageResource(vaga.fotoCompartilhador);
+        foto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        GradientDrawable fundoFoto = new GradientDrawable();
+        fundoFoto.setShape(GradientDrawable.OVAL);
+        fundoFoto.setColor(Color.rgb(55, 48, 82));
+
+        foto.setBackground(fundoFoto);
+        foto.setClipToOutline(true);
+
+        LinearLayout.LayoutParams tamanhoFoto =
+                new LinearLayout.LayoutParams(dp(34), dp(34));
+
+        foto.setLayoutParams(tamanhoFoto);
+
+        compartilhamento.addView(foto);
+
+        // Identificação de quem compartilhou
+        TextView textoCompartilhamento = criarTexto(
+                "Compartilhada por " + vaga.compartilhadaPor,
+                12,
+                Color.rgb(167, 176, 192)
+        );
+
+        LinearLayout.LayoutParams parametrosCompartilhamento =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+        parametrosCompartilhamento.setMargins(dp(9), 0, 0, 0);
+
+        textoCompartilhamento.setLayoutParams(parametrosCompartilhamento);
+
+        compartilhamento.addView(textoCompartilhamento);
+
+        cartao.addView(compartilhamento);
+
+        // Botão de detalhes
         Button detalhes = new Button(this);
+
         detalhes.setText("Ver detalhes da vaga");
         detalhes.setTransformationMethod(null);
         detalhes.setTextColor(Color.WHITE);
         detalhes.setTextSize(14);
+
         detalhes.setBackgroundTintList(
                 ColorStateList.valueOf(Color.rgb(106, 90, 205))
         );
@@ -490,7 +614,7 @@ public class Vagas extends AppCompatActivity {
         return texto;
     }
 
-    // Exibe os detalhes completos da oportunidade selecionada.
+    // Exibe os detalhes completos da oportunidade.
     private void abrirDetalhesVaga(Vaga vaga) {
 
         String mensagem =

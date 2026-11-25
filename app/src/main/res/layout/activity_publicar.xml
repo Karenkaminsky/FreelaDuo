@@ -7,187 +7,252 @@
     android:orientation="vertical"
     android:background="#0F172A">
 
-
     <!-- CABEÇALHO COMPARTILHADO -->
     <include
         layout="@layout/view_header_freeladuo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
-    <!-- CONTEÚDO ROLÁVEL -->
-    <ScrollView
+    <!-- CONTEÚDO -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_weight="1">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="20dp">
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:paddingBottom="90dp">
 
-                <Button
-                    android:id="@+id/btnVoltar"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:backgroundTint="#25243A"
-                    android:text="‹"
-                    android:textColor="#FFFFFF"
-                    android:textSize="28sp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <!-- TÍTULO -->
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="Criar publicação"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="22dp"
+                    android:text="Compartilhe suas ideias, projetos e conquistas."
+                    android:textColor="#A7B0C0"
+                    android:textSize="14sp" />
+
+                <!-- CARTÃO DE PUBLICAÇÃO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp"
+                    android:background="#1E293B">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FreelaDuo"
-                        android:textColor="#A99BFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Criar publicação"
+                        android:text="O que você gostaria de compartilhar?"
                         android:textColor="#FFFFFF"
-                        android:textSize="24sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edtTexto"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_publish_input"
+                        android:gravity="top|start"
+                        android:hint="Escreva sua publicação..."
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:padding="14dp"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#929BB0"
+                        android:textSize="15sp" />
+
+                    <!-- ANEXOS -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="14dp"
+                        android:text="Adicionar à publicação"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/btnGaleria"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:background="@drawable/bg_publish_icon"
+                                android:src="@drawable/outline_add_home_work_24"
+                                android:scaleType="centerInside"
+                                android:padding="13dp"
+                                android:contentDescription="Adicionar imagem"
+                                app:tint="#C084FC" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="Imagem"
+                                android:textColor="#A7B0C0"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/btnArquivos"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:background="@drawable/bg_publish_icon"
+                                android:src="@drawable/outline_account_circle_24"
+                                android:scaleType="centerInside"
+                                android:padding="13dp"
+                                android:contentDescription="Adicionar arquivo"
+                                app:tint="#C084FC" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="Arquivos"
+                                android:textColor="#A7B0C0"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/btnDrive"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:background="@drawable/bg_publish_icon"
+                                android:src="@drawable/outline_add_24"
+                                android:scaleType="centerInside"
+                                android:padding="13dp"
+                                android:contentDescription="Adicionar pelo Drive"
+                                app:tint="#C084FC" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="Drive"
+                                android:textColor="#A7B0C0"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/btnLink"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:background="@drawable/bg_publish_icon"
+                                android:src="@drawable/outline_bath_public_large_24"
+                                android:scaleType="centerInside"
+                                android:padding="13dp"
+                                android:contentDescription="Adicionar link"
+                                app:tint="#C084FC" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="Link"
+                                android:textColor="#A7B0C0"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- CAMPO DE LINK -->
+                    <EditText
+                        android:id="@+id/edtLink"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/bg_publish_input"
+                        android:hint="https://exemplo.com"
+                        android:inputType="textUri"
+                        android:padding="13dp"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#929BB0"
+                        android:textSize="14sp" />
+
+                    <!-- LISTA DE ANEXOS -->
+                    <TextView
+                        android:id="@+id/txtAnexos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#25334A"
+                        android:padding="14dp"
+                        android:text="Nenhum arquivo anexado"
+                        android:textColor="#CBD5E1"
+                        android:textSize="13sp" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="O que você gostaria de compartilhar?"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        </ScrollView>
 
-            <EditText
-                android:id="@+id/edtTexto"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#6A5ACD"
-                android:gravity="top|start"
-                android:hint="Compartilhe ideias, projetos, novidades..."
-                android:inputType="textCapSentences|textMultiLine"
-                android:padding="14dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#929BB0"
-                android:textSize="16sp" />
+        <!-- BOTÃO FLUTUANTE -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnPublicar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="22dp"
+            android:contentDescription="Publicar conteúdo"
+            android:src="@drawable/outline_add_24"
+            app:backgroundTint="#C084FC"
+            app:tint="#171B2D"
+            app:elevation="8dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Adicionar à publicação"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnGaleria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#25243A"
-                android:gravity="start|center_vertical"
-                android:padding="14dp"
-                android:text="▣   Galeria de fotos"
-                android:textAllCaps="false"
-                android:textColor="#C4B5FD" />
-
-            <Button
-                android:id="@+id/btnArquivos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#25243A"
-                android:gravity="start|center_vertical"
-                android:padding="14dp"
-                android:text="▤   Arquivos (PDF, Word, Excel...)"
-                android:textAllCaps="false"
-                android:textColor="#C4B5FD" />
-
-            <Button
-                android:id="@+id/btnDrive"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#25243A"
-                android:gravity="start|center_vertical"
-                android:padding="14dp"
-                android:text="☁   Drive / Nuvem"
-                android:textAllCaps="false"
-                android:textColor="#C4B5FD" />
-
-            <Button
-                android:id="@+id/btnLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#25243A"
-                android:gravity="start|center_vertical"
-                android:padding="14dp"
-                android:text="↗   Adicionar link"
-                android:textAllCaps="false"
-                android:textColor="#C4B5FD" />
-
-            <EditText
-                android:id="@+id/edtLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#6A5ACD"
-                android:hint="https://exemplo.com"
-                android:inputType="textUri"
-                android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#929BB0" />
-
-            <TextView
-                android:id="@+id/txtAnexos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#1E293B"
-                android:padding="14dp"
-                android:text="Nenhum arquivo anexado"
-                android:textColor="#CBD5E1"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/btnPublicar"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="#6A5ACD"
-                android:text="Publicar"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </ScrollView>
+    </FrameLayout>
 
     <!-- MENU INFERIOR -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

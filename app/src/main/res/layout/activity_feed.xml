@@ -469,8 +469,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#0D192B"
-        app:itemIconTint="#A0B0C0"
-        app:itemTextColor="#A0B0C0"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemTextColor="@color/bottom_nav_item_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 

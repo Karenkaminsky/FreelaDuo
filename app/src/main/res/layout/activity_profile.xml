@@ -114,13 +114,14 @@
 
             <!-- CARTÃO DO PLANO -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 app:cardBackgroundColor="#111D30"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#34305A"
+                app:strokeColor="#C084FC"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -136,6 +137,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/txtPlanLabel"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -145,6 +147,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txtPlanBadge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_badge_talent"
@@ -164,6 +167,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/containerPlanIcon"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="#292044"
@@ -171,6 +175,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/imgCurrentPlanIcon"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:src="@drawable/ic_plan_gift"

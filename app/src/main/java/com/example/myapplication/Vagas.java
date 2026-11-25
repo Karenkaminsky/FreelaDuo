@@ -135,7 +135,7 @@ public class Vagas extends AppCompatActivity {
                 "R$ 80,00 por hora",
                 R.drawable.logo_totvs,
                 R.drawable.carol,
-                "Carol"
+                "Caroline Araújo"
         ));
 
         vagas.add(new Vaga(
@@ -151,7 +151,7 @@ public class Vagas extends AppCompatActivity {
                 "R$ 70,00 por hora",
                 R.drawable.logo_nubank,
                 R.drawable.joao,
-                "João"
+                "João Yarlei"
         ));
 
         vagas.add(new Vaga(
@@ -167,7 +167,7 @@ public class Vagas extends AppCompatActivity {
                 "R$ 85,00 por hora",
                 R.drawable.logo_itau,
                 R.drawable.lucas,
-                "Lucas"
+                "Lucas Ferreira Silva"
         ));
 
         vagas.add(new Vaga(
@@ -181,9 +181,9 @@ public class Vagas extends AppCompatActivity {
                 "05/12/2026 a 20/12/2026",
                 "Segunda a sexta - 6 horas por dia",
                 "R$ 55,00 por hora",
-                0,
+                R.drawable.empresatech,
                 R.drawable.miguel,
-                "Miguel"
+                "Antônio Miguel Leão Neto"
         ));
 
         vagas.add(new Vaga(
@@ -197,9 +197,9 @@ public class Vagas extends AppCompatActivity {
                 "03/12/2026 a 17/12/2026",
                 "Segunda a sexta - 4 horas por dia",
                 "R$ 45,00 por hora",
-                0,
+                R.drawable.logo,
                 R.drawable.allan,
-                "Allan"
+                "Allan Fernandes"
         ));
 
         vagas.add(new Vaga(
@@ -215,7 +215,23 @@ public class Vagas extends AppCompatActivity {
                 "R$ 65,00 por hora",
                 0,
                 R.drawable.pedro,
-                "Pedro"
+                "Pedro Araújo"
+        ));
+
+        vagas.add(new Vaga(
+                "Desenvolvedora Full Stack",
+                "NVIDIA",
+                "Desenvolvimento",
+                "Pleno",
+                "Remoto",
+                "Freelance",
+                "Desenvolver e manter aplicações Full Stack, com foco principal no Back-end, criação de APIs, integração de sistemas, banco de dados e otimização de serviços.",
+                "15/12/2026 a 30/12/2026",
+                "Segunda a sexta - 6 horas por dia",
+                "R$ 100,00 por hora",
+                R.drawable.nvidia,
+                R.drawable.perfilkaren,
+                "Karen Kaminsky Silva"
         ));
     }
 

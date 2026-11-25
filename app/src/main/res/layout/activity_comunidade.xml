@@ -7,8 +7,7 @@
     android:orientation="vertical"
     android:background="#070D17">
 
-
-    <!-- CABEÇALHO -->
+    <!-- CABEÇALHO COMPARTILHADO -->
     <include
         layout="@layout/view_header_freeladuo"
         android:layout_width="match_parent"
@@ -21,80 +20,38 @@
         android:orientation="vertical"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingTop="18dp"
+        android:paddingBottom="14dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="COMUNIDADE"
-            android:textColor="#A5B4CC"
+            android:textColor="#C084FC"
             android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Conecte-se com outros profissionais"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Conecte-se. Compartilhe. Colabore."
-            android:textColor="#A0AEC5"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
-    <!-- ABAS INTERNAS -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="12dp">
-
-        <Button
-            android:id="@+id/btnFeed"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:layout_marginEnd="4dp"
-            android:backgroundTint="#6A5ACD"
-            android:minWidth="0dp"
-            android:text="Feed"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="13sp" />
-
-        <Button
-            android:id="@+id/btnProjetos"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:backgroundTint="#121C2D"
-            android:minWidth="0dp"
-            android:text="Projetos"
-            android:textAllCaps="false"
-            android:textColor="#A0AEC5"
-            android:textSize="13sp" />
-
-        <Button
-            android:id="@+id/btnChat"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:layout_marginStart="4dp"
-            android:backgroundTint="#121C2D"
-            android:minWidth="0dp"
-            android:text="Chat"
-            android:textAllCaps="false"
+            android:layout_marginTop="5dp"
+            android:text="Compartilhe ideias, tire dúvidas e colabore."
             android:textColor="#A0AEC5"
             android:textSize="13sp" />
 
     </LinearLayout>
 
-    <!-- CONTEÚDO DAS ABAS -->
+    <!-- ÁREA ÚNICA DO CHAT -->
     <FrameLayout
         android:id="@+id/areaConteudo"
         android:layout_width="match_parent"

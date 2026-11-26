@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast; // IMPORTANTE: Adicionado para o Toast funcionar
 
 import com.example.myapplication.R;
 
@@ -37,287 +38,166 @@ public class SenhaRecup {
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
 
-        // Componentes principais
-        LinearLayout modal =
-                dialog.findViewById(R.id.modalSenhaRecup);
+        // --- Componentes principais ---
+        LinearLayout modal = dialog.findViewById(R.id.modalSenhaRecup);
+        LinearLayout formulario = dialog.findViewById(R.id.layoutFormularioRecup);
+        LinearLayout sucesso = dialog.findViewById(R.id.layoutSucessoRecup);
+        LinearLayout validarCodigo = dialog.findViewById(R.id.layoutValidarCodigo); // NOVO
 
-        LinearLayout formulario =
-                dialog.findViewById(R.id.layoutFormularioRecup);
+        EditText edtEmail = dialog.findViewById(R.id.edtEmailRecup);
+        EditText edtCodigo = dialog.findViewById(R.id.edtCodigo); // NOVO
 
-        LinearLayout sucesso =
-                dialog.findViewById(R.id.layoutSucessoRecup);
+        Button btnEnviar = dialog.findViewById(R.id.btnEnviarRecup);
+        Button btnEntendi = dialog.findViewById(R.id.btnEntendiRecup);
+        Button btnValidarCodigo = dialog.findViewById(R.id.btnValidarCodigo); // NOVO
 
-        EditText edtEmail =
-                dialog.findViewById(R.id.edtEmailRecup);
+        TextView btnFechar = dialog.findViewById(R.id.btnFecharRecup);
+        TextView btnVoltar = dialog.findViewById(R.id.btnVoltarLogin);
+        TextView btnFecharSucesso = dialog.findViewById(R.id.btnFecharSucessoRecup);
+        TextView txtEmailConfirmacao = dialog.findViewById(R.id.txtEmailConfirmacaoRecup);
 
-        Button btnEnviar =
-                dialog.findViewById(R.id.btnEnviarRecup);
+        View circulo = dialog.findViewById(R.id.circuloSucessoRecup);
+        View check = dialog.findViewById(R.id.txtCheckSucesso);
 
-        TextView btnFechar =
-                dialog.findViewById(R.id.btnFecharRecup);
-
-        TextView btnVoltar =
-                dialog.findViewById(R.id.btnVoltarLogin);
-
-        TextView btnFecharSucesso =
-                dialog.findViewById(R.id.btnFecharSucessoRecup);
-
-        Button btnEntendi =
-                dialog.findViewById(R.id.btnEntendiRecup);
-
-        TextView txtEmailConfirmacao =
-                dialog.findViewById(R.id.txtEmailConfirmacaoRecup);
-
-        View circulo =
-                dialog.findViewById(R.id.circuloSucessoRecup);
-
-        View check =
-                dialog.findViewById(R.id.txtCheckSucesso);
-
-        // Fundo do modal
-        modal.setBackground(criarFundo(
-                Color.rgb(11, 13, 25),
-                Color.rgb(62, 84, 190),
-                26,
-                1
-        ));
-
-        // Fundo do campo de e-mail
-        edtEmail.setBackground(criarFundo(
-                Color.rgb(18, 21, 37),
-                Color.rgb(52, 62, 112),
-                12,
-                1
-        ));
+        // Fundo do modal e campo de e-mail
+        modal.setBackground(criarFundo(Color.rgb(11, 13, 25), Color.rgb(62, 84, 190), 26, 1));
+        edtEmail.setBackground(criarFundo(Color.rgb(18, 21, 37), Color.rgb(52, 62, 112), 12, 1));
 
         // Gradiente dos botões
         GradientDrawable gradiente = new GradientDrawable(
                 GradientDrawable.Orientation.LEFT_RIGHT,
-                new int[]{
-                        Color.rgb(55, 126, 247),
-                        Color.rgb(126, 49, 239)
-                }
+                new int[]{Color.rgb(55, 126, 247), Color.rgb(126, 49, 239)}
         );
-
         gradiente.setCornerRadius(dp(12));
 
+        // Aplica o gradiente nos 3 botões
         btnEnviar.setBackground(gradiente);
         btnEnviar.setBackgroundTintList(null);
         btnEnviar.setTextColor(Color.WHITE);
-        btnEnviar.setAllCaps(false);
-        btnEnviar.setElevation(dp(2));
 
-        btnEntendi.setBackground(gradiente.getConstantState() != null
-                ? gradiente.getConstantState().newDrawable().mutate()
-                : gradiente);
+        btnEntendi.setBackground(gradiente.getConstantState() != null ? gradiente.getConstantState().newDrawable().mutate() : gradiente);
         btnEntendi.setBackgroundTintList(null);
         btnEntendi.setTextColor(Color.WHITE);
-        btnEntendi.setAllCaps(false);
-        btnEntendi.setElevation(dp(2));
+
+        btnValidarCodigo.setBackground(gradiente.getConstantState() != null ? gradiente.getConstantState().newDrawable().mutate() : gradiente);
+        btnValidarCodigo.setBackgroundTintList(null);
+        btnValidarCodigo.setTextColor(Color.WHITE);
 
         // Fechar o modal
         btnFechar.setOnClickListener(v -> fechar());
         btnVoltar.setOnClickListener(v -> fechar());
         btnFecharSucesso.setOnClickListener(v -> fechar());
-        btnEntendi.setOnClickListener(v -> fechar());
 
-        // Validar o e-mail e mostrar a confirmação
+        // --- AÇÃO 1: ENVIAR E-MAIL E MOSTRAR SUCESSO ---
         btnEnviar.setOnClickListener(v -> {
+            String email = edtEmail.getText().toString().trim();
 
-            String email = edtEmail.getText()
-                    .toString()
-                    .trim();
-
-            if (TextUtils.isEmpty(email)) {
-                edtEmail.setError("Informe seu e-mail");
-                edtEmail.requestFocus();
-                return;
-            }
-
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 edtEmail.setError("Informe um e-mail válido");
                 edtEmail.requestFocus();
                 return;
             }
 
-            // Por enquanto, apenas demonstração visual.
-            // O envio real do código será implementado futuramente.
             txtEmailConfirmacao.setText(email);
-
-            // Esconde o formulário
             formulario.setVisibility(View.GONE);
-
-            // Exibe a confirmação
             sucesso.setVisibility(View.VISIBLE);
 
-            // Prepara a animação
+            // Prepara a animação de entrada
             sucesso.setAlpha(0f);
             sucesso.setTranslationY(dp(18));
+            circulo.setScaleX(0.1f); circulo.setScaleY(0.1f); circulo.setAlpha(0f);
+            check.setScaleX(0.3f); check.setScaleY(0.3f); check.setAlpha(0f);
 
-            circulo.setScaleX(0.1f);
-            circulo.setScaleY(0.1f);
-            circulo.setAlpha(0f);
-
-            check.setScaleX(0.3f);
-            check.setScaleY(0.3f);
-            check.setAlpha(0f);
-
-            // Animação de entrada do conteúdo
-            sucesso.animate()
-                    .alpha(1f)
-                    .translationY(0f)
-                    .setDuration(350)
-                    .start();
+            sucesso.animate().alpha(1f).translationY(0f).setDuration(350).start();
 
             // O círculo cresce com um efeito elástico
-            ObjectAnimator escalaX = ObjectAnimator.ofFloat(
-                    circulo, View.SCALE_X, 0.1f, 1f
-            );
-
-            ObjectAnimator escalaY = ObjectAnimator.ofFloat(
-                    circulo, View.SCALE_Y, 0.1f, 1f
-            );
-
-            ObjectAnimator aparecerCirculo = ObjectAnimator.ofFloat(
-                    circulo, View.ALPHA, 0f, 1f
-            );
-
             AnimatorSet animacaoCirculo = new AnimatorSet();
             animacaoCirculo.playTogether(
-                    escalaX,
-                    escalaY,
-                    aparecerCirculo
+                    ObjectAnimator.ofFloat(circulo, View.SCALE_X, 0.1f, 1f),
+                    ObjectAnimator.ofFloat(circulo, View.SCALE_Y, 0.1f, 1f),
+                    ObjectAnimator.ofFloat(circulo, View.ALPHA, 0f, 1f)
             );
-
             animacaoCirculo.setDuration(550);
-            animacaoCirculo.setInterpolator(
-                    new OvershootInterpolator(1.3f)
-            );
-
+            animacaoCirculo.setInterpolator(new OvershootInterpolator(1.3f));
             animacaoCirculo.start();
 
             // O check aparece em seguida
             check.postDelayed(() -> {
-
-                if (dialog == null || !dialog.isShowing()) {
-                    return;
+                if (dialog != null && dialog.isShowing()) {
+                    AnimatorSet animacaoCheck = new AnimatorSet();
+                    animacaoCheck.playTogether(
+                            ObjectAnimator.ofFloat(check, View.SCALE_X, 0.3f, 1f),
+                            ObjectAnimator.ofFloat(check, View.SCALE_Y, 0.3f, 1f),
+                            ObjectAnimator.ofFloat(check, View.ALPHA, 0f, 1f)
+                    );
+                    animacaoCheck.setDuration(300);
+                    animacaoCheck.setInterpolator(new OvershootInterpolator());
+                    animacaoCheck.start();
                 }
-
-                ObjectAnimator checkX = ObjectAnimator.ofFloat(
-                        check, View.SCALE_X, 0.3f, 1f
-                );
-
-                ObjectAnimator checkY = ObjectAnimator.ofFloat(
-                        check, View.SCALE_Y, 0.3f, 1f
-                );
-
-                ObjectAnimator checkAlpha = ObjectAnimator.ofFloat(
-                        check, View.ALPHA, 0f, 1f
-                );
-
-                AnimatorSet animacaoCheck = new AnimatorSet();
-
-                animacaoCheck.playTogether(
-                        checkX,
-                        checkY,
-                        checkAlpha
-                );
-
-                animacaoCheck.setDuration(300);
-                animacaoCheck.setInterpolator(
-                        new OvershootInterpolator()
-                );
-
-                animacaoCheck.start();
-
             }, 220);
         });
 
-        // Configuração da janela
+        // --- AÇÃO 2: TELA DE SUCESSO -> TELA DE VALIDAR CÓDIGO ---
+        btnEntendi.setOnClickListener(v -> {
+            sucesso.setVisibility(View.GONE);
+            validarCodigo.setVisibility(View.VISIBLE);
+        });
+
+        // --- AÇÃO 3: VALIDAR O CÓDIGO DIGITADO ---
+        btnValidarCodigo.setOnClickListener(v -> {
+            String codigo = edtCodigo.getText().toString().trim();
+
+            if (codigo.length() != 6) {
+                edtCodigo.setError("Digite os 6 dígitos");
+                edtCodigo.requestFocus();
+                return;
+            }
+
+            // AQUI NO FUTURO VOCÊ CHAMA O PHP. POR ENQUANTO, SÓ MOSTRA O SUCESSO.
+            Toast.makeText(activity, "Código validado! Redefina sua senha.", Toast.LENGTH_LONG).show();
+
+            // Aqui você poderia fechar o dialog e abrir a tela de "Nova Senha"
+            fechar();
+        });
+
+        // --- Configuração da janela (Desfoque, Tamanho, etc) ---
         Window window = dialog.getWindow();
-
         if (window != null) {
-
-            window.setBackgroundDrawableResource(
-                    android.R.color.transparent
-            );
-
-            window.addFlags(
-                    WindowManager.LayoutParams.FLAG_DIM_BEHIND
-            );
-
-            WindowManager.LayoutParams params =
-                    window.getAttributes();
-
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            WindowManager.LayoutParams params = window.getAttributes();
             params.dimAmount = 0.78f;
             params.gravity = Gravity.CENTER;
-
             window.setAttributes(params);
 
-            // Desfoque em versões compatíveis (Android 12+)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-
-                window.addFlags(
-                        WindowManager.LayoutParams.FLAG_BLUR_BEHIND
-                );
-
-                WindowManager.LayoutParams blurParams =
-                        window.getAttributes();
-
+                window.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+                WindowManager.LayoutParams blurParams = window.getAttributes();
                 blurParams.setBlurBehindRadius(dp(24));
                 window.setAttributes(blurParams);
             }
-
-            window.setSoftInputMode(
-                    WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-            );
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
 
         dialog.show();
 
-        // Largura do modal
         Window janela = dialog.getWindow();
-
         if (janela != null) {
-
-            int largura = (int) (
-                    activity.getResources()
-                            .getDisplayMetrics()
-                            .widthPixels * 0.92f
-            );
-
-            janela.setLayout(
-                    largura,
-                    WindowManager.LayoutParams.WRAP_CONTENT
-            );
+            int largura = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.92f);
+            janela.setLayout(largura, WindowManager.LayoutParams.WRAP_CONTENT);
         }
     }
 
-    private GradientDrawable criarFundo(
-            int cor,
-            int borda,
-            int raioDp,
-            int espessuraDp) {
-
+    private GradientDrawable criarFundo(int cor, int borda, int raioDp, int espessuraDp) {
         GradientDrawable fundo = new GradientDrawable();
-
         fundo.setColor(cor);
         fundo.setCornerRadius(dp(raioDp));
-
-        fundo.setStroke(
-                dp(espessuraDp),
-                borda
-        );
-
+        fundo.setStroke(dp(espessuraDp), borda);
         return fundo;
     }
 
     private int dp(float valor) {
-        return (int) (
-                valor * activity.getResources()
-                        .getDisplayMetrics()
-                        .density + 0.5f
-        );
+        return (int) (valor * activity.getResources().getDisplayMetrics().density + 0.5f);
     }
 
     public void fechar() {

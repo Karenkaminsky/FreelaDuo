@@ -15,7 +15,7 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- FORMULÁRIO DE RECUPERAÇÃO -->
+        <!-- ================= TELA 1: FORMULÁRIO ================= -->
         <LinearLayout
             android:id="@+id/layoutFormularioRecup"
             android:layout_width="match_parent"
@@ -28,7 +28,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="end|center_vertical">
-
                 <TextView
                     android:id="@+id/btnFecharRecup"
                     android:layout_width="40dp"
@@ -39,11 +38,9 @@
                     android:textColor="#8995B0"
                     android:clickable="true"
                     android:focusable="true"
-                    android:contentDescription="Fechar recuperação de senha"
                     android:background="?attr/selectableItemBackgroundBorderless" />
             </LinearLayout>
 
-            <!-- Ícone de e-mail -->
             <TextView
                 android:layout_width="84dp"
                 android:layout_height="84dp"
@@ -51,10 +48,8 @@
                 android:gravity="center"
                 android:text="✉"
                 android:textSize="54sp"
-                android:textColor="#9B5CFF"
-                android:contentDescription="Recuperação de senha" />
+                android:textColor="#9B5CFF" />
 
-            <!-- Título -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,18 +60,15 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <!-- Descrição -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:lineSpacingExtra="4dp"
                 android:text="Informe seu e-mail para receber o link de redefinição da senha."
                 android:textColor="#9AA8C1"
                 android:textSize="16sp" />
 
-            <!-- Rótulo do e-mail -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +77,6 @@
                 android:textColor="#E8EBF5"
                 android:textSize="15sp" />
 
-            <!-- Campo de e-mail -->
             <EditText
                 android:id="@+id/edtEmailRecup"
                 android:layout_width="match_parent"
@@ -97,13 +88,10 @@
                 android:paddingEnd="16dp"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
-                android:imeOptions="actionDone"
                 android:textColor="#F5F6FF"
                 android:textColorHint="#68748C"
-                android:textSize="16sp"
-                android:autofillHints="emailAddress" />
+                android:textSize="16sp" />
 
-            <!-- Botão enviar -->
             <Button
                 android:id="@+id/btnEnviarRecup"
                 android:layout_width="match_parent"
@@ -115,7 +103,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
 
-            <!-- Voltar para login -->
             <TextView
                 android:id="@+id/btnVoltarLogin"
                 android:layout_width="wrap_content"
@@ -126,13 +113,10 @@
                 android:paddingEnd="16dp"
                 android:text="Voltar para login"
                 android:textColor="#9380FF"
-                android:textSize="16sp"
-                android:clickable="true"
-                android:focusable="true" />
-
+                android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- TELA DE SUCESSO: COMEÇA ESCONDIDA -->
+        <!-- ================= TELA 2: SUCESSO (CÓDIGO ENVIADO) ================= -->
         <LinearLayout
             android:id="@+id/layoutSucessoRecup"
             android:layout_width="match_parent"
@@ -141,12 +125,10 @@
             android:gravity="center_horizontal"
             android:visibility="gone">
 
-            <!-- Botão fechar -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="end|center_vertical">
-
                 <TextView
                     android:id="@+id/btnFecharSucessoRecup"
                     android:layout_width="40dp"
@@ -155,13 +137,10 @@
                     android:text="×"
                     android:textSize="32sp"
                     android:textColor="#8995B0"
-                    android:contentDescription="Fechar confirmação"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:focusable="true" />
+                    android:background="?attr/selectableItemBackgroundBorderless" />
             </LinearLayout>
 
-            <!-- Círculo verde animado -->
             <FrameLayout
                 android:id="@+id/circuloSucessoRecup"
                 android:layout_width="112dp"
@@ -169,7 +148,6 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_circulo_sucesso"
                 android:gravity="center">
-
                 <TextView
                     android:id="@+id/txtCheckSucesso"
                     android:layout_width="match_parent"
@@ -181,7 +159,6 @@
                     android:textStyle="bold" />
             </FrameLayout>
 
-            <!-- Título da confirmação -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,18 +169,15 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <!-- Mensagem -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:lineSpacingExtra="4dp"
                 android:text="Um código de confirmação foi encaminhado para seu e-mail:"
                 android:textColor="#9AA8C1"
                 android:textSize="16sp" />
 
-            <!-- E-mail informado -->
             <TextView
                 android:id="@+id/txtEmailConfirmacaoRecup"
                 android:layout_width="match_parent"
@@ -215,32 +189,72 @@
                 android:text="seu@email.com"
                 android:textColor="#F5F6FF"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:breakStrategy="simple" />
+                android:textStyle="bold" />
 
-            <!-- Orientação -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:lineSpacingExtra="4dp"
-                android:text="Verifique sua caixa de entrada e também o spam, caso não encontre."
-                android:textColor="#9AA8C1"
-                android:textSize="15sp" />
-
-            <!-- Botão entendido -->
             <Button
                 android:id="@+id/btnEntendiRecup"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
                 android:background="@android:color/transparent"
-                android:text="Entendi"
+                android:text="Já tenho o código"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
+        </LinearLayout>
 
+        <!-- ================= TELA 3: VALIDAR CÓDIGO ================= -->
+        <LinearLayout
+            android:id="@+id/layoutValidarCodigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Digite o código"
+                android:textColor="#F5F6FF"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="Insira o código de 6 dígitos enviado para seu e-mail."
+                android:textColor="#9AA8C1"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_email_confirmacao"
+                android:hint="000000"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="#F5F6FF"
+                android:textColorHint="#68748C"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnValidarCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="28dp"
+                android:background="@android:color/transparent"
+                android:text="Validar código"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

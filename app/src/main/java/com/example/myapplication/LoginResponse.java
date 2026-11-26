@@ -9,18 +9,22 @@ public class LoginResponse {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("usuario")
-    private UsuarioDto usuario;
+    @SerializedName("id_usuario")
+    private int id_usuario;
 
-    public String getStatus() {
-        return status;
-    }
+    @SerializedName("nome")
+    private String nome;
 
-    public String getMessage() {
-        return message;
-    }
+    @SerializedName("email")
+    private String email;
 
-    public UsuarioDto getUsuario() {
-        return usuario;
-    }
+    @SerializedName("tipo_conta")
+    private String tipo_conta;
+
+    public String getStatus() { return status; }
+    public String getMessage() { return message; }
+    public int getId_usuario() { return id_usuario; }
+    public String getNome() { return nome; }
+    public String getEmail() { return email; }
+    public String getTipo_conta() { return tipo_conta; }
 }

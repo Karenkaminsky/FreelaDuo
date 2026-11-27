@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#070D17">
 
-    <!-- BARRA SUPERIOR (CABEÇALHO REESTRUTURADO) -->
+    <!-- BARRA SUPERIOR -->
     <LinearLayout
         android:id="@+id/headerBar"
         android:layout_width="match_parent"
@@ -16,12 +16,10 @@
         android:paddingTop="12dp"
         android:paddingBottom="10dp">
 
-
         <include
             layout="@layout/view_header_freeladuo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
         <!-- Linha 2: Barra de Pesquisa e Notificação -->
         <LinearLayout
@@ -51,7 +49,6 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
                 android:src="@drawable/notificacao" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -68,7 +65,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 1. POST DA KAREN -->
+            <!-- 1. POST DA KAREN (MANTIDO) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -204,7 +201,7 @@
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
-                    <!-- Estatísticas de Curtidas/Comentários -->
+                    <!-- Estatísticas -->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -227,14 +224,12 @@
                             android:textSize="8sp" />
                     </RelativeLayout>
 
-                    <!-- Divisória -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="10dp"
                         android:background="#1E324D" />
 
-                    <!-- Botões de Ação -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -290,11 +285,10 @@
                             app:iconSize="20dp"
                             app:iconTint="#A0B0C0" />
                     </LinearLayout>
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 2. POST DO ITAÚ (Oportunidade Freelancer) -->
+            <!-- 2. POST - ITAÚ -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -389,7 +383,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:text="12 comentários • 3 compartilhamentos"
+                            android:text="34 comentários • 12 compartilhamentos"
                             android:textColor="#A0B0C0"
                             android:textSize="8sp" />
                     </RelativeLayout>
@@ -455,7 +449,662 @@
                             app:iconSize="20dp"
                             app:iconTint="#A0B0C0" />
                     </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
+            <!-- 3. POST - JOÃO -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D192B"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/joao"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="João Yarlei"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Desenvolvedor Front-end"
+                                android:textColor="#A0B0C0"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5 h • 🌐"
+                                android:textColor="#6A7B95"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="Finalizei mais um projeto de freelance incrível! 🎉\nDesenvolvi uma landing page completa em React para uma startup de saúde e o cliente adorou o resultado. O FreelaDuo tem me ajudado demais a encontrar essas oportunidades."
+                        android:textColor="#E0E6ED"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="#React #Frontend #Freelancer #WebDesign"
+                        android:textColor="#00D2A0"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="👍❤️ 128"
+                            android:textColor="#A0B0C0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="5 comentários • 2 compartilhamentos"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="#1E324D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Curtir"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/curtir"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Comentar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/comentar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Compartilhar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/compartilhar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 4. POST - NUBANK -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D192B"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_nubank"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nubank"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nu | O futuro é digital"
+                                android:textColor="#A0B0C0"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 dia • 🌐"
+                                android:textColor="#6A7B95"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="Estamos em busca de talentos freelancers para nos ajudar a construir o futuro dos serviços financeiros! 💜\nTemos vagas abertas para desenvolvedores Front-end Júnior com foco em React e JavaScript para um projeto de curta duração na nossa equipe de experiência do cliente."
+                        android:textColor="#E0E6ED"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="#Vagas #React #JavaScript #Frontend #Nubank"
+                        android:textColor="#00D2A0"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="👍❤️ 2451"
+                            android:textColor="#A0B0C0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="102 comentários • 34 compartilhamentos"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="#1E324D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Curtir"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/curtir"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Comentar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/comentar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Compartilhar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/compartilhar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 5. POST - TOTVS -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D192B"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo_totvs"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TOTVS"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TOTVS | Tecnologia que transforma"
+                                android:textColor="#A0B0C0"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2 dias • 🌐"
+                                android:textColor="#6A7B95"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="O time da TOTVS está contratando freelancers Full Stack para um projeto desafiador de modernização de sistemas! 💻\nBuscamos profissionais com experiência em C#, .NET e JavaScript para atuar em um projeto de 3 meses, com possibilidade de extensão."
+                        android:textColor="#E0E6ED"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="#Vagas #FullStack #DotNet #JavaScript #TOTVS"
+                        android:textColor="#00D2A0"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="👍❤️ 1893"
+                            android:textColor="#A0B0C0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="78 comentários • 21 compartilhamentos"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="#1E324D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Curtir"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/curtir"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Comentar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/comentar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Compartilhar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/compartilhar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 6. POST - LUCAS -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D192B"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/lucas"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lucas Ferreira Santos"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Desenvolvedor Back-end"
+                                android:textColor="#A0B0C0"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3 dias • 🌐"
+                                android:textColor="#6A7B95"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="Compartilhando minha experiência no FreelaDuo: consegui minha primeira vaga como freelancer através da plataforma! 🚀\nFoi incrível a facilidade de encontrar projetos que combinam com minhas habilidades em Java e Spring Boot. Recomendo demais!"
+                        android:textColor="#E0E6ED"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="#Java #SpringBoot #Freelancer #Backend"
+                        android:textColor="#00D2A0"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="👍❤️ 342"
+                            android:textColor="#A0B0C0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="23 comentários • 7 compartilhamentos"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="#1E324D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Curtir"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/curtir"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Comentar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/comentar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="16dp"
+                            android:background="#1E324D" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Compartilhar"
+                            android:textColor="#A0B0C0"
+                            android:textSize="8sp"
+                            app:icon="@drawable/compartilhar"
+                            app:iconPadding="4dp"
+                            app:iconSize="20dp"
+                            app:iconTint="#A0B0C0" />
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

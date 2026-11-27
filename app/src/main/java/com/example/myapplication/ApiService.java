@@ -21,9 +21,8 @@ public interface ApiService {
     @POST("deletar_usuario.php")
     Call<Void> deletarUsuario(@Body DeletarUsuarioDto deletarData);
 
-    // ==========================================
-    // Endpoints do CRUD de Projetos (O Feed)
-    // ==========================================
+    @POST("publicar.php")
+    Call<okhttp3.ResponseBody> criarPost(@Body PostRequestDto postData);
 
     // Listar todos os projetos
     @GET("projetos.php")

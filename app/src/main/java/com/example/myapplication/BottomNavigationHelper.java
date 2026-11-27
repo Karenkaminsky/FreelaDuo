@@ -2,54 +2,57 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationHelper {
 
-    public static void configurar(Activity activity, int itemSelecionado) {
+    public static void configurar(Activity activity, int itemIdSelecionado) {
+        BottomNavigationView bottomNav = activity.findViewById(R.id.bottomNavigation);
+        if (bottomNav == null) return;
 
-        BottomNavigationView menu =
-                activity.findViewById(R.id.bottomNavigation);
+        // 1. Remove qualquer listener antigo para evitar conflitos
+        bottomNav.setOnItemSelectedListener(null);
 
-        if (menu == null) {
-            return;
-        }
+        // 2. Marca visualmente a aba correta
+        bottomNav.setSelectedItemId(itemIdSelecionado);
 
-        menu.setSelectedItemId(itemSelecionado);
+        // 3. Adiciona o novo listener
+        bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-        menu.setOnItemSelectedListener(item -> {
+                // Se clicar na aba que já está, não faz nada (evita bug)
+                if (itemId == itemIdSelecionado) {
+                    return false;
+                }
 
-            Class<?> destino;
+                Intent intent = null;
 
-            int id = item.getItemId();
+                if (itemId == R.id.nav_home) {
+                    intent = new Intent(activity, FeedActivity.class);
+                } else if (itemId == R.id.nav_network) {
+                    intent = new Intent(activity, Comunidade.class);
+                } else if (itemId == R.id.nav_post) {
+                    intent = new Intent(activity, Publicar.class);
+                } else if (itemId == R.id.nav_jobs) {
+                    intent = new Intent(activity, Vagas.class);
+                } else if (itemId == R.id.nav_profile) {
+                    intent = new Intent(activity, ProfileActivity.class);
+                }
 
-            if (id == R.id.nav_home) {
-                destino = FeedActivity.class;
-
-            } else if (id == R.id.nav_network) {
-                destino = Comunidade.class;
-
-            } else if (id == R.id.nav_post) {
-                destino = Publicar.class;
-
-            } else if (id == R.id.nav_jobs) {
-                destino = Vagas.class;
-
-            } else if (id == R.id.nav_profile) {
-                destino = ProfileActivity.class;
-
-            } else {
-                return false;
+                if (intent != null) {
+                    // Garante que a nova tela seja única na pilha
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    activity.startActivity(intent);
+                    activity.overridePendingTransition(0, 0); // Sem animação
+                }
+                return true;
             }
-
-            if (!activity.getClass().equals(destino)) {
-                Intent intent = new Intent(activity, destino);
-                activity.startActivity(intent);
-                activity.finish();
-            }
-
-            return true;
         });
     }
 }

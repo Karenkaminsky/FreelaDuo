@@ -1,4 +1,4 @@
-    package com.example.myapplication;
+package com.example.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +27,10 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -63,7 +67,6 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int DOURADO_FUNDO = Color.rgb(59, 48, 27); // #3B301B
     private static final int DOURADO_CARD = Color.rgb(33, 31, 26); // #211F1A
 
-    // Lançador para abrir a galeria
     private final ActivityResultLauncher<String> galleryLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.GetContent(),
@@ -72,12 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
                             selectedImageUri = uri;
                             imgProfile.setImageURI(uri);
                             isDataChanged = true;
-
-                            Toast.makeText(
-                                    this,
-                                    "Foto atualizada! Lembre-se de salvar as alterações.",
-                                    Toast.LENGTH_SHORT
-                            ).show();
+                            Toast.makeText(this, "Foto atualizada! Lembre-se de salvar as alterações.", Toast.LENGTH_SHORT).show();
                         }
                     }
             );
@@ -92,11 +90,9 @@ public class ProfileActivity extends AppCompatActivity {
         // Componentes do perfil
         imgProfile = findViewById(R.id.imgProfile);
         btnChangePhoto = findViewById(R.id.btnChangePhoto);
-
         edtName = findViewById(R.id.edtName);
         edtTitle = findViewById(R.id.edtTitle);
         edtBio = findViewById(R.id.edtBio);
-
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
         btnLogout = findViewById(R.id.btnLogout);
         btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
@@ -111,34 +107,28 @@ public class ProfileActivity extends AppCompatActivity {
         imgCurrentPlanIcon = findViewById(R.id.imgCurrentPlanIcon);
         containerPlanIcon = findViewById(R.id.containerPlanIcon);
 
-        // Carregar dados iniciais
         loadUserProfile();
-
-        // Monitorar edições
         setupChangeListeners();
-
-        // Atualizar plano atual
         atualizarPlanoAtual();
 
         // Eventos de clique
-        btnChangePhoto.setOnClickListener(v ->
-                galleryLauncher.launch("image/*"));
+        btnChangePhoto.setOnClickListener(v -> galleryLauncher.launch("image/*"));
+        btnSaveProfile.setOnClickListener(v -> saveUserProfile());
+        btnLogout.setOnClickListener(v -> confirmLogout());
 
-        btnSaveProfile.setOnClickListener(v ->
-                saveUserProfile());
-
-        btnLogout.setOnClickListener(v ->
-                confirmLogout());
-
-        btnDeleteAccount.setOnClickListener(v ->
-                confirmAccountDeletion());
+        // CORRIGIDO: O botão de excluir agora abre o diálogo corretamente
+        btnDeleteAccount.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Excluir Conta")
+                    .setMessage("Tem certeza que deseja excluir sua conta permanentemente? Esta ação não pode ser desfeita.")
+                    .setPositiveButton("Sim, excluir", (dialog, which) -> executarExclusaoConta())
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+        });
 
         // Abrir tela de planos
         btnViewPlans.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    ProfileActivity.this,
-                    PlanosActivity.class
-            );
+            Intent intent = new Intent(ProfileActivity.this, PlanosActivity.class);
             startActivity(intent);
         });
 
@@ -146,127 +136,72 @@ public class ProfileActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         // Botão nativo de voltar
-        getOnBackPressedDispatcher().addCallback(this,
-                new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        finish();
-                    }
-                });
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
     }
 
-    // Atualizar plano sempre que o Perfil voltar a ficar visível
     @Override
     protected void onResume() {
         super.onResume();
         atualizarPlanoAtual();
     }
 
-    // Consultar o plano salvo e atualizar sua aparência
     private void atualizarPlanoAtual() {
-
-        SharedPreferences preferencias = getSharedPreferences(
-                PREFS_PLANOS,
-                MODE_PRIVATE
-        );
-
-        String plano = preferencias.getString(
-                CHAVE_PLANO,
-                "gratuito"
-        );
-
+        SharedPreferences preferencias = getSharedPreferences(PREFS_PLANOS, MODE_PRIVATE);
+        String plano = preferencias.getString(CHAVE_PLANO, "gratuito");
         boolean premium = plano.equals("premium");
 
         if (premium) {
-            // Plano Premium
             txtCurrentPlan.setText("Plano Premium");
-
-            imgCurrentPlanIcon.setImageResource(
-                    R.drawable.outline_diamond_24
-            );
-            imgCurrentPlanIcon.setImageTintList(
-                    ColorStateList.valueOf(DOURADO)
-            );
-
-            containerPlanIcon.setBackgroundTintList(
-                    ColorStateList.valueOf(DOURADO_FUNDO)
-            );
-
+            imgCurrentPlanIcon.setImageResource(R.drawable.outline_diamond_24);
+            imgCurrentPlanIcon.setImageTintList(ColorStateList.valueOf(DOURADO));
+            containerPlanIcon.setBackgroundTintList(ColorStateList.valueOf(DOURADO_FUNDO));
             cardPlan.setCardBackgroundColor(DOURADO_CARD);
             cardPlan.setStrokeColor(DOURADO);
-
             txtPlanLabel.setTextColor(DOURADO);
             txtPlanBadge.setTextColor(DOURADO);
-            txtPlanBadge.setBackgroundTintList(
-                    ColorStateList.valueOf(DOURADO_FUNDO)
-            );
-
+            txtPlanBadge.setBackgroundTintList(ColorStateList.valueOf(DOURADO_FUNDO));
             btnViewPlans.setTextColor(DOURADO);
-            btnViewPlans.setBackgroundTintList(
-                    ColorStateList.valueOf(DOURADO_FUNDO)
-            );
-
+            btnViewPlans.setBackgroundTintList(ColorStateList.valueOf(DOURADO_FUNDO));
         } else {
-            // Plano Gratuito
             txtCurrentPlan.setText("Plano Gratuito");
-
-            imgCurrentPlanIcon.setImageResource(
-                    R.drawable.ic_plan_gift
-            );
-            imgCurrentPlanIcon.setImageTintList(
-                    ColorStateList.valueOf(ROXO)
-            );
-
-            containerPlanIcon.setBackgroundTintList(
-                    ColorStateList.valueOf(ROXO_FUNDO)
-            );
-
-            cardPlan.setCardBackgroundColor(
-                    Color.parseColor("#111D30")
-            );
+            imgCurrentPlanIcon.setImageResource(R.drawable.ic_plan_gift);
+            imgCurrentPlanIcon.setImageTintList(ColorStateList.valueOf(ROXO));
+            containerPlanIcon.setBackgroundTintList(ColorStateList.valueOf(ROXO_FUNDO));
+            cardPlan.setCardBackgroundColor(Color.parseColor("#111D30"));
             cardPlan.setStrokeColor(ROXO);
-
             txtPlanLabel.setTextColor(ROXO);
             txtPlanBadge.setTextColor(ROXO);
-            txtPlanBadge.setBackgroundTintList(
-                    ColorStateList.valueOf(ROXO_FUNDO)
-            );
-
+            txtPlanBadge.setBackgroundTintList(ColorStateList.valueOf(ROXO_FUNDO));
             btnViewPlans.setTextColor(ROXO);
-            btnViewPlans.setBackgroundTintList(
-                    ColorStateList.valueOf(ROXO_BOTAO)
-            );
+            btnViewPlans.setBackgroundTintList(ColorStateList.valueOf(ROXO_BOTAO));
         }
     }
 
-    // Carregar dados do perfil
     private void loadUserProfile() {
-        edtName.setText("Karen Kaminsky");
+        SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
+        String nome = pref.getString("nome", "Usuário");
+
+        edtName.setText(nome);
         edtTitle.setText("Estagiária de TI | Estudante de Informática");
         edtBio.setText("Entusiasta de desenvolvimento mobile e suporte técnico.");
-
         isDataChanged = false;
     }
 
-    // Monitorar alterações nos campos
     private void setupChangeListeners() {
-
         TextWatcher watcher = new TextWatcher() {
-
             @Override
-            public void beforeTextChanged(
-                    CharSequence s, int start, int count, int after) {
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
-            public void onTextChanged(
-                    CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 isDataChanged = true;
             }
-
             @Override
-            public void afterTextChanged(Editable s) {
-            }
+            public void afterTextChanged(Editable s) {}
         };
 
         edtName.addTextChangedListener(watcher);
@@ -274,81 +209,72 @@ public class ProfileActivity extends AppCompatActivity {
         edtBio.addTextChangedListener(watcher);
     }
 
-    // Salvar dados do perfil
     private void saveUserProfile() {
-
         String name = edtName.getText().toString().trim();
-        String title = edtTitle.getText().toString().trim();
-        String bio = edtBio.getText().toString().trim();
-
         if (name.isEmpty()) {
             edtName.setError("O nome é obrigatório");
             return;
         }
 
-        // Integração POST/PUT com a API em PHP futuramente
         isDataChanged = false;
-
-        Toast.makeText(
-                this,
-                "Perfil atualizado com sucesso!",
-                Toast.LENGTH_LONG
-        ).show();
+        Toast.makeText(this, "Perfil atualizado com sucesso!", Toast.LENGTH_LONG).show();
     }
 
-    // Confirmação para sair da conta
     private void confirmLogout() {
-
         new AlertDialog.Builder(this)
                 .setTitle("Sair da Conta")
                 .setMessage("Tem certeza de que deseja sair? Você precisará realizar o login novamente.")
-                .setPositiveButton("Sair",
-                        (dialog, which) -> logoutUser())
+                .setPositiveButton("Sair", (dialog, which) -> logoutUser())
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
 
-    // Encerrar sessão
     private void logoutUser() {
-
-        SharedPreferences preferences = getSharedPreferences(
-                "FreelaDuoPrefs",
-                MODE_PRIVATE
-        );
-
+        SharedPreferences preferences = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
         preferences.edit().clear().apply();
 
-        Intent intent = new Intent(
-                ProfileActivity.this,
-                MainActivity.class
-        );
-
-        intent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK
-        );
-
+        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
 
-    // Confirmação para excluir conta
-    private void confirmAccountDeletion() {
+    // NOVO MÉTODO: Exclui a conta no banco de dados via API
+    private void executarExclusaoConta() {
+        SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
+        int idUsuario = pref.getInt("user_id", -1);
 
-        new AlertDialog.Builder(this)
-                .setTitle("Excluir Conta")
-                .setMessage("Tem certeza de que deseja excluir sua conta? Esta ação não poderá ser desfeita.")
-                .setPositiveButton("Sim, excluir", (dialog, which) -> {
+        if (idUsuario == -1) {
+            Toast.makeText(this, "Erro: Usuário não encontrado na sessão.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-                    Toast.makeText(
-                            ProfileActivity.this,
-                            "Conta excluída com sucesso.",
-                            Toast.LENGTH_LONG
-                    ).show();
+        DeletarUsuarioDto dto = new DeletarUsuarioDto(idUsuario);
+        ApiService api = ApiClient.getApiService();
 
-                    logoutUser();
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
+        api.deletarUsuario(dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ProfileActivity.this, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    // Limpa a sessão
+                    pref.edit().clear().apply();
+                    getSharedPreferences(PREFS_PLANOS, MODE_PRIVATE).edit().clear().apply();
+
+                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(ProfileActivity.this, "Erro ao excluir conta. Tente novamente.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(ProfileActivity.this, "Erro de conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

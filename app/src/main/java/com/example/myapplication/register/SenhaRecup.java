@@ -18,7 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast; // IMPORTANTE: Adicionado para o Toast funcionar
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.myapplication.R;
 
@@ -42,14 +44,14 @@ public class SenhaRecup {
         LinearLayout modal = dialog.findViewById(R.id.modalSenhaRecup);
         LinearLayout formulario = dialog.findViewById(R.id.layoutFormularioRecup);
         LinearLayout sucesso = dialog.findViewById(R.id.layoutSucessoRecup);
-        LinearLayout validarCodigo = dialog.findViewById(R.id.layoutValidarCodigo); // NOVO
+        LinearLayout validarCodigo = dialog.findViewById(R.id.layoutValidarCodigo);
 
         EditText edtEmail = dialog.findViewById(R.id.edtEmailRecup);
-        EditText edtCodigo = dialog.findViewById(R.id.edtCodigo); // NOVO
+        EditText edtCodigo = dialog.findViewById(R.id.edtCodigo);
 
         Button btnEnviar = dialog.findViewById(R.id.btnEnviarRecup);
         Button btnEntendi = dialog.findViewById(R.id.btnEntendiRecup);
-        Button btnValidarCodigo = dialog.findViewById(R.id.btnValidarCodigo); // NOVO
+        Button btnValidarCodigo = dialog.findViewById(R.id.btnValidarCodigo);
 
         TextView btnFechar = dialog.findViewById(R.id.btnFecharRecup);
         TextView btnVoltar = dialog.findViewById(R.id.btnVoltarLogin);
@@ -153,11 +155,20 @@ public class SenhaRecup {
                 return;
             }
 
-            // AQUI NO FUTURO VOCÊ CHAMA O PHP. POR ENQUANTO, SÓ MOSTRA O SUCESSO.
-            Toast.makeText(activity, "Código validado! Redefina sua senha.", Toast.LENGTH_LONG).show();
-
-            // Aqui você poderia fechar o dialog e abrir a tela de "Nova Senha"
-            fechar();
+            // Exibe o alerta perguntando se deseja ir para o site
+            new AlertDialog.Builder(activity)
+                    .setTitle("Código Validado!")
+                    .setMessage("Seu código está correto. Deseja ir para a página de redefinição de senha?")
+                    .setPositiveButton("Redefinir Senha", (alertDialog, which) -> {
+                        // Abre o navegador do celular no site do FreelaDuo
+                        // ATENÇÃO: Troque o IP abaixo pelo IP da sua máquina na hora de apresentar!
+                        String url = "http://192.168.1.14:8000/redefinir_senha.html";
+                        android.content.Intent browserIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url));
+                        activity.startActivity(browserIntent);
+                        fechar();
+                    })
+                    .setNegativeButton("Cancelar", (alertDialog, which) -> fechar())
+                    .show();
         });
 
         // --- Configuração da janela (Desfoque, Tamanho, etc) ---

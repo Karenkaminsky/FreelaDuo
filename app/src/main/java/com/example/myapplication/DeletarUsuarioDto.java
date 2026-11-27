@@ -1,8 +1,12 @@
-    package com.example.myapplication;
-    public class DeletarUsuarioDto {
-        private int id_usuario;
+package com.example.myapplication;
 
-        public DeletarUsuarioDto(int id_usuario) {
-            this.id_usuario = id_usuario;
-        }
+import com.google.gson.annotations.SerializedName;
+
+public class DeletarUsuarioDto {
+    @SerializedName("id_usuario")
+    private int id_usuario;
+
+    public DeletarUsuarioDto(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
+}

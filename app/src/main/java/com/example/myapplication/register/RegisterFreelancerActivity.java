@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.RegisterRequestDto;
-import com.example.myapplication.register.MainActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,11 +29,9 @@ import java.util.regex.Pattern;
 
 public class RegisterFreelancerActivity extends AppCompatActivity {
 
+    // Só os campos que ficaram no XML
     private EditText edtFreelancerName, edtBirthDate, edtCPF;
-    private EditText edtZipCode, edtCity, edtState;
-    private EditText edtRole, edtSkills, edtAboutMe, edtHourlyRate;
-    private RadioGroup rgWorkModality;
-    private EditText edtEmail, edtWhatsapp, edtPhoneOptional, edtLinkedinOptional;
+    private EditText edtEmail;
     private EditText edtPassword, edtConfirmPassword;
     private TextView txtRuleLength, txtRuleUppercase, txtRuleNumber, txtRuleSpecialChar;
     private Button btnRegister;
@@ -58,20 +54,7 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
         edtBirthDate = findViewById(R.id.edtBirthDate);
         edtCPF = findViewById(R.id.edtCPF);
 
-        edtZipCode = findViewById(R.id.edtZipCode);
-        edtCity = findViewById(R.id.edtCity);
-        edtState = findViewById(R.id.edtState);
-
-        edtRole = findViewById(R.id.edtRole);
-        edtSkills = findViewById(R.id.edtSkills);
-        edtAboutMe = findViewById(R.id.edtAboutMe);
-        edtHourlyRate = findViewById(R.id.edtHourlyRate);
-        rgWorkModality = findViewById(R.id.rgWorkModality);
-
         edtEmail = findViewById(R.id.edtEmail);
-        edtWhatsapp = findViewById(R.id.edtWhatsapp);
-        edtPhoneOptional = findViewById(R.id.edtPhoneOptional);
-        edtLinkedinOptional = findViewById(R.id.edtLinkedinOptional);
 
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
@@ -82,10 +65,6 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
         txtRuleSpecialChar = findViewById(R.id.txtRuleSpecialChar);
 
         btnRegister = findViewById(R.id.btnRegisterFreelancer);
-
-        if (edtState != null) {
-            edtState.setFilters(new InputFilter[] { new InputFilter.AllCaps(), new InputFilter.LengthFilter(2) });
-        }
     }
 
     private void setupDatePicker() {
@@ -112,12 +91,6 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
     private void setupFormattersAndMasks() {
         if (edtCPF != null) {
             edtCPF.addTextChangedListener(FormattersAndValidators.cpfTextWatcher());
-        }
-        if (edtWhatsapp != null) {
-            edtWhatsapp.addTextChangedListener(FormattersAndValidators.phoneTextWatcher());
-        }
-        if (edtPhoneOptional != null) {
-            edtPhoneOptional.addTextChangedListener(FormattersAndValidators.phoneTextWatcher());
         }
     }
 
@@ -159,9 +132,9 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
         String password = edtPassword != null ? edtPassword.getText().toString().trim() : "";
         String confirmPassword = edtConfirmPassword != null ? edtConfirmPassword.getText().toString().trim() : "";
 
-        // Validação de campos vazios
+        // Validação de campos obrigatórios
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(cpf) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Preencha Nome, E-mail, CPF e Senha.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -187,19 +160,17 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
             return;
         }
 
-        // Desativa o botão temporariamente para evitar cliques duplos
         btnRegister.setEnabled(false);
 
-        // Prepara o DTO para enviar ao backend
+        // Envia apenas o essencial para o banco
         RegisterRequestDto registerRequest = new RegisterRequestDto(
                 name,
                 email,
                 password,
                 "Freelancer",
-                cpf.replaceAll("[^0-9]", "") // Envia o CPF limpo (apenas números)
+                cpf.replaceAll("[^0-9]", "") // CPF limpo
         );
 
-        // Chamada à API PHP
         ApiClient.getApiService().cadastrarUsuario(registerRequest).enqueue(new retrofit2.Callback<okhttp3.ResponseBody>() {
             @Override
             public void onResponse(retrofit2.Call<okhttp3.ResponseBody> call, retrofit2.Response<okhttp3.ResponseBody> response) {
@@ -207,7 +178,6 @@ public class RegisterFreelancerActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterFreelancerActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
 
-                    // Redireciona para a tela de Login (MainActivity)
                     Intent intent = new Intent(RegisterFreelancerActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

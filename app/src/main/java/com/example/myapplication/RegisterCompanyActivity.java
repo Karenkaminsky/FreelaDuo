@@ -1,13 +1,16 @@
+
 package com.example.myapplication;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -16,12 +19,12 @@ import retrofit2.Response;
 
 public class RegisterCompanyActivity extends AppCompatActivity {
 
-    private EditText edtCompanyName;
-    private EditText edtCNPJ;
-    private EditText edtCompanyEmail;
-    private EditText edtCompanyPassword;
+    private TextInputEditText edtCorporateName;
+    private TextInputEditText edtCNPJ;
+    private TextInputEditText edtCompanyEmail;
+    private TextInputEditText edtCompanyPassword;
     private RadioGroup rgContractType;
-    private Button btnRegisterCompany;
+    private MaterialButton btnRegisterCompany;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class RegisterCompanyActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        edtCompanyName = findViewById(R.id.edtCompanyName);
+        edtCorporateName = findViewById(R.id.edtCorporateName);
         edtCNPJ = findViewById(R.id.edtCNPJ);
         edtCompanyEmail = findViewById(R.id.edtCompanyEmail);
         edtCompanyPassword = findViewById(R.id.edtCompanyPassword);
@@ -48,39 +51,78 @@ public class RegisterCompanyActivity extends AppCompatActivity {
     }
 
     private void cadastrarEmpresa() {
-        String name = edtCompanyName.getText().toString().trim();
+
+        String name = edtCorporateName.getText().toString().trim();
         String cnpj = edtCNPJ.getText().toString().trim();
         String email = edtCompanyEmail.getText().toString().trim();
         String password = edtCompanyPassword.getText().toString().trim();
 
         int selectedContractId = rgContractType.getCheckedRadioButtonId();
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(cnpj) ||
-                TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ||
-                selectedContractId == -1) {
+        if (TextUtils.isEmpty(name)
+                || TextUtils.isEmpty(cnpj)
+                || TextUtils.isEmpty(email)
+                || TextUtils.isEmpty(password)
+                || selectedContractId == -1) {
 
-            Toast.makeText(this, "Por favor, preencha todos os campos e selecione o modelo de demanda.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                    this,
+                    "Por favor, preencha todos os campos e selecione o modelo de demanda.",
+                    Toast.LENGTH_SHORT
+            ).show();
+
             return;
         }
 
-        // Passando os 5 argumentos na ordem correta: (nome, email, senha, documento/cnpj, tipoConta)
-        RegisterRequestDto novoUsuario = new RegisterRequestDto(name, email, password, cnpj, "Empresa");
+        // Criação do cadastro da empresa
+        RegisterRequestDto novoUsuario = new RegisterRequestDto(
+                name,
+                email,
+                password,
+                cnpj,
+                "Empresa"
+        );
 
-        ApiClient.getApiService().cadastrarUsuario(novoUsuario).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(RegisterCompanyActivity.this, "Empresa cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(RegisterCompanyActivity.this, "Erro no servidor ao cadastrar.", Toast.LENGTH_SHORT).show();
-                }
-            }
+        ApiClient.getApiService()
+                .cadastrarUsuario(novoUsuario)
+                .enqueue(new Callback<ResponseBody>() {
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(RegisterCompanyActivity.this, "Falha na conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onResponse(
+                            Call<ResponseBody> call,
+                            Response<ResponseBody> response
+                    ) {
+                        if (response.isSuccessful()) {
+
+                            Toast.makeText(
+                                    RegisterCompanyActivity.this,
+                                    "Empresa cadastrada com sucesso!",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+
+                            finish();
+
+                        } else {
+
+                            Toast.makeText(
+                                    RegisterCompanyActivity.this,
+                                    "Erro no servidor ao cadastrar.",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(
+                            Call<ResponseBody> call,
+                            Throwable t
+                    ) {
+                        Toast.makeText(
+                                RegisterCompanyActivity.this,
+                                "Falha na conexão: " + t.getMessage(),
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                });
     }
 }

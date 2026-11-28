@@ -27,6 +27,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private EditText editEmail, editSenha;
+    private MaterialButton btnLogin; // Transformado em variável de classe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         editSenha = findViewById(R.id.editPassword);
 
         // Mapeamento dos botões
-        MaterialButton btnLogin = findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.btnLogin);
         MaterialCardView btnGoogle = findViewById(R.id.btnGoogle);
         MaterialCardView btnGithub = findViewById(R.id.btnGithub);
         MaterialCardView btnLinkedin = findViewById(R.id.btnLinkedin);
@@ -108,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        // MELHORIA: Desativa o botão e mostra "Entrando..." enquanto espera o servidor
+        btnLogin.setEnabled(false);
+        btnLogin.setText("Entrando...");
+
         // Cria o objeto que o Retrofit vai enviar no formato JSON
         LoginRequestDto loginData = new LoginRequestDto(email, senha);
 
@@ -137,15 +142,27 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         // Erro de senha/email tratado no PHP
                         Toast.makeText(MainActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        // MELHORIA: Reativa o botão em caso de erro
+                        btnLogin.setEnabled(true);
+                        btnLogin.setText("Entrar na Conta");
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "E-mail ou senha incorretos.", Toast.LENGTH_SHORT).show();
+
+                    // MELHORIA: Reativa o botão em caso de erro
+                    btnLogin.setEnabled(true);
+                    btnLogin.setText("Entrar na Conta");
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Erro de conexão com o servidor: " + t.getMessage(), Toast.LENGTH_LONG).show();
+
+                // MELHORIA: Reativa o botão em caso de falha de rede
+                btnLogin.setEnabled(true);
+                btnLogin.setText("Entrar na Conta");
             }
         });
     }
@@ -154,6 +171,6 @@ public class MainActivity extends AppCompatActivity {
     private void redirecionarPorPerfil(String tipoConta) {
         Intent intent = new Intent(MainActivity.this, FeedActivity.class);
         startActivity(intent);
-        finish(); // Fecha a tela de login para o usuário não voltar com o botão "Voltar"
+        finish();
     }
 }

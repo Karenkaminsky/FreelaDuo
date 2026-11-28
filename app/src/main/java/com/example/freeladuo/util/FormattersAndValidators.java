@@ -50,7 +50,7 @@ public class FormattersAndValidators {
         }
     }
 
-    // Máscara para o WhatsApp
+    // Máscara para o WhatsApp / Telefone
     public static TextWatcher phoneTextWatcher() {
         return new TextWatcher() {
             private boolean isUpdating = false;
@@ -127,6 +127,51 @@ public class FormattersAndValidators {
                 }
                 if (length >= 10) {
                     formatted.append("-").append(str.substring(9, Math.min(11, length)));
+                }
+
+                isUpdating = true;
+                Editable editable = (Editable) s;
+                editable.replace(0, editable.length(), formatted.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        };
+    }
+
+    // Campo- CNPJ
+    public static TextWatcher cnpjTextWatcher() {
+        return new TextWatcher() {
+            private boolean isUpdating = false;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isUpdating) {
+                    isUpdating = false;
+                    return;
+                }
+
+                String str = s.toString().replaceAll("[^0-9]", "");
+                StringBuilder formatted = new StringBuilder();
+                int length = str.length();
+
+                if (length > 0) {
+                    formatted.append(str.substring(0, Math.min(2, length)));
+                }
+                if (length >= 3) {
+                    formatted.append(".").append(str.substring(2, Math.min(5, length)));
+                }
+                if (length >= 6) {
+                    formatted.append(".").append(str.substring(5, Math.min(8, length)));
+                }
+                if (length >= 9) {
+                    formatted.append("/").append(str.substring(8, Math.min(12, length)));
+                }
+                if (length >= 13) {
+                    formatted.append("-").append(str.substring(12, Math.min(14, length)));
                 }
 
                 isUpdating = true;

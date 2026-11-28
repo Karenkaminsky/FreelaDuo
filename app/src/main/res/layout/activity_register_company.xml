@@ -350,6 +350,7 @@
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
                         android:inputType="phone"
+                        android:maxLength="15"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -532,7 +533,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Mínimo de 8 caracteres"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="11sp" />
 
                     <TextView
@@ -540,7 +541,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Pelo menos 1 letra maiúscula"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="11sp" />
 
                     <TextView
@@ -548,7 +549,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Pelo menos 1 número"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="11sp" />
 
                     <TextView
@@ -556,23 +557,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="• Pelo menos 1 caractere especial (!@#$%...)"
-                        android:textColor="#6B7280"
+                        android:textColor="#F44336"
                         android:textSize="11sp" />
                 </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- TERMOS -->
-        <CheckBox
-            android:id="@+id/cbTerms"
+        <!-- TERMOS E RESPONSABILIDADES -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="TERMOS E RESPONSABILIDADES"
+            android:textColor="#E9D5FF"
+            android:textSize="12sp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:buttonTint="#C084FC"
-            android:text="Concordo com os Termos Corporativos e Diretrizes do Ecossistema."
-            android:textColor="#9CA3AF"
-            android:textSize="12sp" />
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/cbTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#C084FC" />
+
+            <TextView
+                android:id="@+id/txtTermsLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Concordo com os Termos e diretrizes. Clique aqui"
+                android:textColor="#9CA3AF"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <!-- BOTÃO -->
         <com.google.android.material.button.MaterialButton

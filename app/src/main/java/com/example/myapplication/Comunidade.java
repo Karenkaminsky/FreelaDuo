@@ -64,8 +64,6 @@ public class Comunidade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comunidade);
 
-        BottomNavigationHelper.configurar(this, R.id.nav_network);
-
         TextView identificacaoTela = findViewById(R.id.txtIdentificacaoTela);
         if (identificacaoTela != null) {
             identificacaoTela.setText("✦ COMUNIDADE");
@@ -155,9 +153,9 @@ public class Comunidade extends AppCompatActivity {
         ));
 
         projetos.add(new Mensagem(
-                "Allan",
+                "Lucas",
                 "Tenho interesse! Qual tecnologia vocês estão utilizando?",
-                R.drawable.allan
+                R.drawable.lucas
         ));
 
         projetos.add(new Mensagem(
@@ -539,5 +537,11 @@ public class Comunidade extends AppCompatActivity {
     private int dp(float valor) {
         return (int) (valor * getResources()
                 .getDisplayMetrics().density + 0.5f);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationHelper.atualizarAbaSelecionada(this, R.id.nav_network);
     }
 }

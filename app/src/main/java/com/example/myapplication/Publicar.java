@@ -40,9 +40,6 @@ public class Publicar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicar);
 
-        // Configuração do menu inferior
-        BottomNavigationHelper.configurar(this, R.id.nav_post);
-
         edtTexto = findViewById(R.id.edtTexto);
         edtLink = findViewById(R.id.edtLink);
         txtAnexos = findViewById(R.id.txtAnexos);
@@ -139,11 +136,9 @@ public class Publicar extends AppCompatActivity {
             return;
         }
 
-        // Recupera o ID do usuário logado salvo no SharedPreferences
         SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
-        int idUsuario = pref.getInt("user_id", 1); // Se não achar, usa o 1 por padrão
+        int idUsuario = pref.getInt("user_id", 1);
 
-        // Monta o objeto com o que o nosso PHP espera
         PostRequestDto novoPost = new PostRequestDto(idUsuario, texto);
 
         ApiService api = ApiClient.getApiService();
@@ -155,7 +150,6 @@ public class Publicar extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(Publicar.this, "Publicado com sucesso!", Toast.LENGTH_SHORT).show();
 
-                    // Limpa os campos
                     edtTexto.setText("");
                     edtLink.setText("");
                     anexos.clear();
@@ -171,5 +165,11 @@ public class Publicar extends AppCompatActivity {
                 Toast.makeText(Publicar.this, "Erro de rede: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationHelper.atualizarAbaSelecionada(this, R.id.nav_post);
     }
 }

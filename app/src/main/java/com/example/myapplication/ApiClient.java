@@ -11,14 +11,14 @@ public class ApiClient {
     // =========================================================================
 
     // OPÇÃO 1: Wi-Fi de casa (IP do seu notebook no roteador de casa)
-    // private static final String BASE_URL = "http://192.168.1.145:8000/";
+    private static final String BASE_URL = "http://192.168.1.145:8000/";
 
     // OPÇÃO 2: Dados móveis / Hotspot do celular
     // private static final String BASE_URL = "http://192.168.218.223:8000/";
 
     // OPÇÃO 3: Emulador do Android Studio
     // private static final String BASE_URL = "http://10.0.2.2:8000/";
-    private static final String BASE_URL = "http://192.168.1.14:8000/";
+   // private static final String BASE_URL = "http://192.168.1.14:8000/";
 
     private static Retrofit retrofit = null;
 

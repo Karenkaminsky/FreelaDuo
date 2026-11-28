@@ -85,8 +85,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        BottomNavigationHelper.configurar(this, R.id.nav_profile);
-
         // Componentes do perfil
         imgProfile = findViewById(R.id.imgProfile);
         btnChangePhoto = findViewById(R.id.btnChangePhoto);
@@ -116,7 +114,6 @@ public class ProfileActivity extends AppCompatActivity {
         btnSaveProfile.setOnClickListener(v -> saveUserProfile());
         btnLogout.setOnClickListener(v -> confirmLogout());
 
-        // CORRIGIDO: O botão de excluir agora abre o diálogo corretamente
         btnDeleteAccount.setOnClickListener(v -> {
             new AlertDialog.Builder(this)
                     .setTitle("Excluir Conta")
@@ -126,16 +123,13 @@ public class ProfileActivity extends AppCompatActivity {
                     .show();
         });
 
-        // Abrir tela de planos
         btnViewPlans.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, PlanosActivity.class);
             startActivity(intent);
         });
 
-        // Botão voltar do cabeçalho
         btnBack.setOnClickListener(v -> finish());
 
-        // Botão nativo de voltar
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -147,7 +141,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        atualizarPlanoAtual();
+        atualizarPlanoAtual(); // Atualiza o card de plano
+        BottomNavigationHelper.atualizarAbaSelecionada(this, R.id.nav_profile); // Atualiza a aba do menu
     }
 
     private void atualizarPlanoAtual() {
@@ -239,7 +234,6 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
     }
 
-    // NOVO MÉTODO: Exclui a conta no banco de dados via API
     private void executarExclusaoConta() {
         SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
         int idUsuario = pref.getInt("user_id", -1);
@@ -258,7 +252,6 @@ public class ProfileActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(ProfileActivity.this, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show();
 
-                    // Limpa a sessão
                     pref.edit().clear().apply();
                     getSharedPreferences(PREFS_PLANOS, MODE_PRIVATE).edit().clear().apply();
 

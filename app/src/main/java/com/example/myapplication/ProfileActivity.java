@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button btnDeleteAccount;
     private ImageButton btnBack;
 
-    // Elementos do topo (Ajustados para o ID do seu XML)
+    // Elementos do topo
     private TextView txtUserBadge;
     private TextView txtTituloTopo;
 
@@ -85,7 +85,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // Componentes do perfil
         imgProfile = findViewById(R.id.imgProfile);
         btnChangePhoto = findViewById(R.id.btnChangePhoto);
         edtName = findViewById(R.id.edtName);
@@ -97,11 +96,9 @@ public class ProfileActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         btnViewPlans = findViewById(R.id.btnViewPlans);
 
-        // Componentes do topo
         txtUserBadge = findViewById(R.id.txtUserBadge);
         txtTituloTopo = findViewById(R.id.txtTituloTopo);
 
-        // Componentes visuais do plano
         cardPlan = findViewById(R.id.cardPlan);
         txtCurrentPlan = findViewById(R.id.txtCurrentPlan);
         txtPlanLabel = findViewById(R.id.txtPlanLabel);
@@ -114,7 +111,6 @@ public class ProfileActivity extends AppCompatActivity {
         setupChangeListeners();
         atualizarPlanoAtual();
 
-        // Eventos de clique
         btnChangePhoto.setOnClickListener(v -> galleryLauncher.launch("image/*"));
         btnSaveProfile.setOnClickListener(v -> saveUserProfile());
         btnLogout.setOnClickListener(v -> confirmLogout());
@@ -151,14 +147,15 @@ public class ProfileActivity extends AppCompatActivity {
             if (txtUserBadge != null) txtUserBadge.setText("✦ EMPRESA");
             if (txtTituloTopo != null) txtTituloTopo.setText("Perfil Corporativo");
 
-            // Esconde a foto
-            imgProfile.setVisibility(View.GONE);
-            btnChangePhoto.setVisibility(View.GONE);
+            // Deixa a foto visível, mas com ícone de usuário
+            imgProfile.setImageResource(R.drawable.outline_account_circle_24);
+            btnChangePhoto.setVisibility(View.VISIBLE);
+
         } else {
             if (txtUserBadge != null) txtUserBadge.setText("✦ FREELANCER");
             if (txtTituloTopo != null) txtTituloTopo.setText("Meu Perfil");
 
-            imgProfile.setVisibility(View.VISIBLE);
+            imgProfile.setImageResource(R.drawable.perfilkaren);
             btnChangePhoto.setVisibility(View.VISIBLE);
         }
     }

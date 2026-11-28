@@ -40,6 +40,12 @@ public class Publicar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicar);
 
+        // AQUI: Troca o selo do cabeçalho para "PUBLICAR"
+        TextView identificacaoTela = findViewById(R.id.txtIdentificacaoTela);
+        if (identificacaoTela != null) {
+            identificacaoTela.setText("✦ PUBLICAR");
+        }
+
         edtTexto = findViewById(R.id.edtTexto);
         edtLink = findViewById(R.id.edtLink);
         txtAnexos = findViewById(R.id.txtAnexos);

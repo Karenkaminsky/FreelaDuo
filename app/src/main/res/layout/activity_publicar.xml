@@ -94,6 +94,7 @@
                     android:gravity="center"
                     android:weightSum="4">
 
+                    <!-- IMAGEM -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -118,6 +119,7 @@
                             android:textSize="11sp" />
                     </LinearLayout>
 
+                    <!-- ARQUIVOS -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -142,6 +144,7 @@
                             android:textSize="11sp" />
                     </LinearLayout>
 
+                    <!-- DRIVE -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -166,6 +169,7 @@
                             android:textSize="11sp" />
                     </LinearLayout>
 
+                    <!-- LINK -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -217,7 +221,7 @@
 
             </LinearLayout>
 
-            <!-- BOTÃO DE PUBLICAR (FIXO, NO FINAL DO FORMULÁRIO) -->
+            <!-- BOTÃO DE PUBLICAR -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPublicar"
                 android:layout_width="match_parent"

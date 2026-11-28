@@ -5,5 +5,8 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication"/>
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication">
+        <!-- AQUI ESTÁ A CORREÇÃO: O item precisa estar DENTRO da tag <style> -->
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
 </resources>

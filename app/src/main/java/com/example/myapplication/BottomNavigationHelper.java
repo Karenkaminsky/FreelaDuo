@@ -24,7 +24,7 @@ public class BottomNavigationHelper {
                 int itemId = item.getItemId();
 
                 if (itemId == itemIdSelecionado) {
-                    return false; // Já está na tela
+                    return false;
                 }
 
                 Intent intent = null;
@@ -38,7 +38,7 @@ public class BottomNavigationHelper {
                     // Traz a tela para frente sem recriar (evita o "surgir")
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     activity.startActivity(intent);
-                    activity.overridePendingTransition(0, 0); // Sem animação
+                    activity.overridePendingTransition(0, 0);
                 }
                 return true;
             }
@@ -46,7 +46,6 @@ public class BottomNavigationHelper {
     }
 
     // 2. FORÇA o menu a marcar a aba correta quando a tela volta a ficar visível
-    // (Chamado no onResume de cada tela)
     public static void atualizarAbaSelecionada(Activity activity, int itemIdSelecionado) {
         BottomNavigationView bottomNav = activity.findViewById(R.id.bottomNavigation);
         if (bottomNav != null) {

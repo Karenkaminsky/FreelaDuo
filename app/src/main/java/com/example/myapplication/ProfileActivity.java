@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -43,10 +44,12 @@ public class ProfileActivity extends AppCompatActivity {
     private Button btnDeleteAccount;
     private ImageButton btnBack;
 
+    // Elementos do topo (Ajustados para o ID do seu XML)
+    private TextView txtUserBadge;
+    private TextView txtTituloTopo;
+
     // Elementos visuais do plano
-    private TextView txtCurrentPlan;
-    private TextView txtPlanLabel;
-    private TextView txtPlanBadge;
+    private TextView txtCurrentPlan, txtPlanLabel, txtPlanBadge;
     private ImageView imgCurrentPlanIcon;
     private LinearLayout containerPlanIcon;
     private MaterialCardView cardPlan;
@@ -54,18 +57,15 @@ public class ProfileActivity extends AppCompatActivity {
     private Uri selectedImageUri;
     private boolean isDataChanged = false;
 
-    // Preferências dos planos
     private static final String PREFS_PLANOS = "FreelaDuoPlanos";
     private static final String CHAVE_PLANO = "plano_atual";
 
-    // Cores dos planos
-    private static final int ROXO = Color.rgb(192, 132, 252); // #C084FC
-    private static final int ROXO_FUNDO = Color.rgb(41, 32, 68); // #292044
-    private static final int ROXO_BOTAO = Color.rgb(37, 32, 68); // #252044
-
-    private static final int DOURADO = Color.rgb(251, 191, 36); // #FBBF24
-    private static final int DOURADO_FUNDO = Color.rgb(59, 48, 27); // #3B301B
-    private static final int DOURADO_CARD = Color.rgb(33, 31, 26); // #211F1A
+    private static final int ROXO = Color.rgb(192, 132, 252);
+    private static final int ROXO_FUNDO = Color.rgb(41, 32, 68);
+    private static final int ROXO_BOTAO = Color.rgb(37, 32, 68);
+    private static final int DOURADO = Color.rgb(251, 191, 36);
+    private static final int DOURADO_FUNDO = Color.rgb(59, 48, 27);
+    private static final int DOURADO_CARD = Color.rgb(33, 31, 26);
 
     private final ActivityResultLauncher<String> galleryLauncher =
             registerForActivityResult(
@@ -75,7 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
                             selectedImageUri = uri;
                             imgProfile.setImageURI(uri);
                             isDataChanged = true;
-                            Toast.makeText(this, "Foto atualizada! Lembre-se de salvar as alterações.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Foto atualizada! Lembre-se de salvar.", Toast.LENGTH_SHORT).show();
                         }
                     }
             );
@@ -97,6 +97,10 @@ public class ProfileActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         btnViewPlans = findViewById(R.id.btnViewPlans);
 
+        // Componentes do topo
+        txtUserBadge = findViewById(R.id.txtUserBadge);
+        txtTituloTopo = findViewById(R.id.txtTituloTopo);
+
         // Componentes visuais do plano
         cardPlan = findViewById(R.id.cardPlan);
         txtCurrentPlan = findViewById(R.id.txtCurrentPlan);
@@ -105,6 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
         imgCurrentPlanIcon = findViewById(R.id.imgCurrentPlanIcon);
         containerPlanIcon = findViewById(R.id.containerPlanIcon);
 
+        verificarTipoConta();
         loadUserProfile();
         setupChangeListeners();
         atualizarPlanoAtual();
@@ -138,11 +143,31 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void verificarTipoConta() {
+        SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
+        String tipoConta = pref.getString("tipo_conta", "Freelancer");
+
+        if ("Empresa".equalsIgnoreCase(tipoConta)) {
+            if (txtUserBadge != null) txtUserBadge.setText("✦ EMPRESA");
+            if (txtTituloTopo != null) txtTituloTopo.setText("Perfil Corporativo");
+
+            // Esconde a foto
+            imgProfile.setVisibility(View.GONE);
+            btnChangePhoto.setVisibility(View.GONE);
+        } else {
+            if (txtUserBadge != null) txtUserBadge.setText("✦ FREELANCER");
+            if (txtTituloTopo != null) txtTituloTopo.setText("Meu Perfil");
+
+            imgProfile.setVisibility(View.VISIBLE);
+            btnChangePhoto.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        atualizarPlanoAtual(); // Atualiza o card de plano
-        BottomNavigationHelper.atualizarAbaSelecionada(this, R.id.nav_profile); // Atualiza a aba do menu
+        atualizarPlanoAtual();
+        BottomNavigationHelper.atualizarAbaSelecionada(this, R.id.nav_profile);
     }
 
     private void atualizarPlanoAtual() {
@@ -180,10 +205,17 @@ public class ProfileActivity extends AppCompatActivity {
     private void loadUserProfile() {
         SharedPreferences pref = getSharedPreferences("FreelaDuoPrefs", MODE_PRIVATE);
         String nome = pref.getString("nome", "Usuário");
+        String tipo = pref.getString("tipo_conta", "Freelancer");
 
         edtName.setText(nome);
-        edtTitle.setText("Estagiária de TI | Estudante de Informática");
-        edtBio.setText("Entusiasta de desenvolvimento mobile e suporte técnico.");
+
+        if ("Empresa".equalsIgnoreCase(tipo)) {
+            edtTitle.setText("Empresa Parceira");
+            edtBio.setText("Empresa focada em inovação e contratação de talentos.");
+        } else {
+            edtTitle.setText("Estagiária de TI | Estudante de Informática");
+            edtBio.setText("Entusiasta de desenvolvimento mobile e suporte técnico.");
+        }
         isDataChanged = false;
     }
 
